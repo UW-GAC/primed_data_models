@@ -1,0 +1,119 @@
+// Tables
+
+Table subject {
+  subject_id varchar [pk]
+  dbgap_subject_id varchar
+  consent_code varchar [ref: > consent.consent_code]
+  study_nickname varchar
+  dbgap_submission bool
+  dbgap_study_id varchar
+  reported_sex enum
+}
+
+Table consent {
+  consent_code varchar
+  consent_description varchar
+  DUL var_char
+  study_nickname varchar
+}
+
+Table ancestry {
+  subject_id varchar [ref: - subject.subject_id]
+  ancestry varchar
+  ancestry_detail varchar
+  country varchar
+  race varchar
+  ethnicity varchar
+}
+
+// there will be multiple phenotype tables for different domains
+// this is just an exammple
+Table phenotype {
+  subject_id varchar [ref: < subject.subject_id]
+  age_baseline int
+}
+
+Table sample {
+  sample_id varchar [pk]
+  subject_id varchar [ref: < subject.subject_id]
+  dbgap_sample_id varchar
+  tissue_source varchar
+  age_at_sample_collection int
+  dataset_type dataset_type
+}
+
+Table sample_set {
+  sample_set_id varchar [pk]
+  sample_id varchar [ref: < sample.sample_id]
+}
+
+Table sequencing {
+  sample_id varchar [ref: < sample.sample_id]
+  seq_center varchar
+  seq_filename varchar
+  genetic_sex sex
+  seq_batch_id varchar [ref: > sequencing_process.seq_batch_id]
+  analyte_type analyte_type
+  analyte_isolation_method varchar
+  analyte_isolation_batch varchar
+  analyte_quality_metrics varchar
+  sequencing_assay varchar
+  library_prep_kit_method varchar
+  exome_capture_platform varchar
+  capture_region_bed_filename varchar
+  date_data_generation date
+  sequencer_id varchar
+  seq_platform varchar
+  target_insert_size int
+  target_depth int
+  seq_strategy varchar
+  read_length int
+  number_of_independent_libraries int
+}
+
+Table sequencing_process {
+  seq_batch_id varchar [pk]
+  reference_genome_build varchar
+  alignment_method varchar
+  functional_equivalence_standard varchar
+  
+  
+}
+
+Table array {
+  sample_set_id varchar [ref: < sample_set.sample_set_id]
+  genotyping_center varchar
+  array_filename varchar
+  array_manufacturer varchar
+  array_name varchar
+  genotype_caling_software varchar
+}
+
+Table imputation {
+  sample_set_id varchar [ref: < sample_set.sample_set_id]
+  source_genotypes varchar
+  reference_panel varchar
+  imputation_pipeline varchar
+  quality_filter varchar
+  imputed_filename varchar
+}
+
+
+// Enumerated values
+
+enum sex {
+  F
+  M
+  X
+}
+
+enum analyte_type {
+  DNA
+  RNA
+}
+
+enum dataset_type {
+  sequencing
+  array
+  imputation
+}
