@@ -1,45 +1,83 @@
 // Tables
 
 Table subject {
-  subject_id varchar [pk]
-  dbgap_subject_id varchar
+  subject_id varchar [pk,
+    note: 'Subject/Participant Identifier within project'
+  ]
+  dbgap_subject_id varchar [
+    note: 'Subject id used by dbGaP, if available'
+  ]
   consent_code varchar [ref: > consent.consent_code]
-  study_nickname varchar
-  dbgap_submission bool
-  dbgap_study_id varchar
-  reported_sex enum
+  study_nickname varchar [ref: > consent.study_nickname]
+  dbgap_submission bool [
+    note: 'Flag if sample has been submitted to dbGaP'
+  ]
+  dbgap_study_id varchar [
+    note: 'PHS ID for study'
+  ]
+  reported_sex enum [
+    note: 'reported sex'
+  ]
 }
 
 Table consent {
-  consent_code varchar
-  consent_description varchar
-  DUL var_char
-  study_nickname varchar
+  consent_code varchar [
+    note: 'consent abbreviation (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4721915/table/pgen.1005772.t001/?report=objectonly)'
+  ]
+  consent_description varchar [
+    note: 'longer consent description'
+  ]
+  DUL varchar [
+    note: 'Data use limitations'
+  ]
+  study_nickname varchar [
+    note: 'short name for study as defined by CC'
+  ]
 }
 
 Table ancestry {
   subject_id varchar [ref: - subject.subject_id]
-  ancestry varchar
-  ancestry_detail varchar
-  country varchar
-  race varchar
-  ethnicity varchar
+  ancestry varchar [
+    note: 'ancestry category from the Human Ancestry Ontology: https://www.ebi.ac.uk/ols/ontologies/hancestro'
+  ]
+  ancestry_detail varchar [
+    note: 'additional detail on ancestry'
+  ]
+  country varchar [
+    note: 'country where participant data was collected'
+  ]
+  race varchar [
+    note: 'reported race of participant defined by NIH Racial and Ethnic Categories and Definitions (NOT-OD-15-089)'
+  ]
+  ethnicity varchar [
+    note: 'reported ethnicity of participant defined by NIH Racial and Ethnic Categories and Definitions (NOT-OD-15-089)'
+  ]
 }
 
 // there will be multiple phenotype tables for different domains
-// this is just an exammple
+// this is just an example
 Table phenotype {
   subject_id varchar [ref: < subject.subject_id]
   age_baseline int
 }
 
 Table sample {
-  sample_id varchar [pk]
+  sample_id varchar [pk,
+    note: 'sample identifier'
+  ]
   subject_id varchar [ref: < subject.subject_id]
-  dbgap_sample_id varchar
-  tissue_source varchar
-  age_at_sample_collection int
-  dataset_type dataset_type
+  dbgap_sample_id varchar [
+    note: 'Sample id used by dbGaP, if available'
+  ]
+  tissue_source varchar [
+    note: 'tissue type of sample (UBERON concepts)'
+  ]
+  age_at_sample_collection int [
+    note: 'age [] of subject when sample was collected'
+  ]
+  dataset_type dataset_type [
+    note: 'type of dataset this sample belongs to'
+  ]
 }
 
 Table sample_set {
@@ -76,8 +114,6 @@ Table sequencing_process {
   reference_genome_build varchar
   alignment_method varchar
   functional_equivalence_standard varchar
-  
-  
 }
 
 Table array {
