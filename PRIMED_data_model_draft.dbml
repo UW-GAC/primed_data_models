@@ -55,7 +55,7 @@ Table ancestry {
 }
 
 // there will be multiple phenotype tables for different domains
-// this is just an example
+// this is just an exammple
 Table phenotype {
   subject_id varchar [ref: < subject.subject_id]
   age_baseline int
@@ -85,12 +85,33 @@ Table sample_set {
   sample_id varchar [ref: < sample.sample_id]
 }
 
-Table sequencing {
-  sample_id varchar [ref: < sample.sample_id]
+Table array_dataset {
+  dataset_id [pk]
+  sample_set_id varchar [ref: < sample_set.sample_set_id]
+  genotyping_center varchar
+  array_filename varchar
+  array_manufacturer varchar
+  array_name varchar
+  genotype_caling_software varchar
+}
+
+Table imputation_dataset {
+  dataset_id [pk]
+  sample_set_id varchar [ref: < sample_set.sample_set_id]
+  source_genotypes varchar
+  reference_panel varchar
+  imputation_pipeline varchar
+  quality_filter varchar
+  imputed_filename varchar
+}
+
+Table sequencing_dataset {
+  dataset_id [pk]
+  sample_set_id varchar [ref: < sample_set.sample_set_id]
   seq_center varchar
-  seq_filename varchar
-  genetic_sex sex
-  seq_batch_id varchar [ref: > sequencing_process.seq_batch_id]
+  reference_genome_build varchar
+  alignment_method varchar
+  functional_equivalence_standard varchar
   analyte_type analyte_type
   analyte_isolation_method varchar
   analyte_isolation_batch varchar
@@ -109,29 +130,22 @@ Table sequencing {
   number_of_independent_libraries int
 }
 
-Table sequencing_process {
-  seq_batch_id varchar [pk]
-  reference_genome_build varchar
-  alignment_method varchar
-  functional_equivalence_standard varchar
+Table array_file {
+  md5 varchar [pk]
+  dataset_id varchar [ref: < array_dataset.dataset_id]
+  filename varchar
 }
 
-Table array {
-  sample_set_id varchar [ref: < sample_set.sample_set_id]
-  genotyping_center varchar
-  array_filename varchar
-  array_manufacturer varchar
-  array_name varchar
-  genotype_caling_software varchar
+Table imputation_file {
+  md5 varchar [pk]
+  dataset_id varchar [ref: < imputation_dataset.dataset_id]
+  filename varchar
 }
 
-Table imputation {
-  sample_set_id varchar [ref: < sample_set.sample_set_id]
-  source_genotypes varchar
-  reference_panel varchar
-  imputation_pipeline varchar
-  quality_filter varchar
-  imputed_filename varchar
+Table sequencing_file {
+  md5 varchar [pk]
+  dataset_id varchar [ref: < sequencing_dataset.dataset_id]
+  filename varchar
 }
 
 
