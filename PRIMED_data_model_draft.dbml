@@ -85,9 +85,14 @@ Table sample_set {
   sample_id varchar [ref: < sample.sample_id]
 }
 
-Table array_dataset {
-  dataset_id [pk]
+Table dataset {
+  dataset_id varchar [pk]
+  dataset_type dataset_type
   sample_set_id varchar [ref: < sample_set.sample_set_id]
+}
+
+Table array_dataset {
+  dataset_id varchar [pk, ref: < dataset.dataset_id]
   genotyping_center varchar
   array_manufacturer varchar
   array_name varchar
@@ -96,8 +101,7 @@ Table array_dataset {
 }
 
 Table imputation_dataset {
-  dataset_id [pk]
-  sample_set_id varchar [ref: < sample_set.sample_set_id]
+  dataset_id varchar [pk, ref: < dataset.dataset_id]
   source_genotypes varchar
   reference_panel varchar
   imputation_pipeline varchar
@@ -106,8 +110,7 @@ Table imputation_dataset {
 }
 
 Table sequencing_dataset {
-  dataset_id [pk]
-  sample_set_id varchar [ref: < sample_set.sample_set_id]
+  dataset_id varchar [pk, ref: < dataset.dataset_id]
   seq_center varchar
   reference_genome_build varchar
   alignment_method varchar
@@ -130,21 +133,9 @@ Table sequencing_dataset {
   number_of_independent_libraries int
 }
 
-Table array_file {
+Table file {
   md5 varchar [pk]
-  dataset_id varchar [ref: < array_dataset.dataset_id]
-  filename varchar
-}
-
-Table imputation_file {
-  md5 varchar [pk]
-  dataset_id varchar [ref: < imputation_dataset.dataset_id]
-  filename varchar
-}
-
-Table sequencing_file {
-  md5 varchar [pk]
-  dataset_id varchar [ref: < sequencing_dataset.dataset_id]
+  dataset_id varchar [ref: < dataset.dataset_id]
   filename varchar
 }
 
