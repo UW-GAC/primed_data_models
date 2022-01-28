@@ -89,10 +89,10 @@ Table array_dataset {
   dataset_id [pk]
   sample_set_id varchar [ref: < sample_set.sample_set_id]
   genotyping_center varchar
-  array_filename varchar
   array_manufacturer varchar
   array_name varchar
   genotype_caling_software varchar
+  reference_genome_build varchar
 }
 
 Table imputation_dataset {
@@ -102,7 +102,7 @@ Table imputation_dataset {
   reference_panel varchar
   imputation_pipeline varchar
   quality_filter varchar
-  imputed_filename varchar
+  reference_genome_build varchar
 }
 
 Table sequencing_dataset {
