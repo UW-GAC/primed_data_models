@@ -15,7 +15,7 @@ Table subject {
   dbgap_study_id varchar [
     note: 'PHS ID for study'
   ]
-  reported_sex enum [
+  reported_sex sex [
     note: 'reported sex'
   ]
 }
@@ -75,9 +75,6 @@ Table sample {
   age_at_sample_collection int [
     note: 'age [] of subject when sample was collected'
   ]
-  dataset_type dataset_type [
-    note: 'type of dataset this sample belongs to'
-  ]
 }
 
 Table sample_set {
@@ -87,12 +84,14 @@ Table sample_set {
 
 Table dataset {
   dataset_id varchar [pk]
-  dataset_type dataset_type
+  dataset_type dataset_type [
+    note: 'type of dataset'
+  ]
   sample_set_id varchar [ref: < sample_set.sample_set_id]
 }
 
 Table array_dataset {
-  dataset_id varchar [pk, ref: < dataset.dataset_id]
+  dataset_id varchar [pk, ref: - dataset.dataset_id]
   genotyping_center varchar
   array_manufacturer varchar
   array_name varchar
@@ -101,7 +100,7 @@ Table array_dataset {
 }
 
 Table imputation_dataset {
-  dataset_id varchar [pk, ref: < dataset.dataset_id]
+  dataset_id varchar [pk, ref: - dataset.dataset_id]
   source_genotypes varchar
   reference_panel varchar
   imputation_pipeline varchar
@@ -110,7 +109,7 @@ Table imputation_dataset {
 }
 
 Table sequencing_dataset {
-  dataset_id varchar [pk, ref: < dataset.dataset_id]
+  dataset_id varchar [pk, ref: - dataset.dataset_id]
   seq_center varchar
   reference_genome_build varchar
   alignment_method varchar
