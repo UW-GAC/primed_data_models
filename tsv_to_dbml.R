@@ -1,5 +1,5 @@
-remotes::install_github("UW-GAC/AnvilDataModels")
+#remotes::install_github("UW-GAC/AnvilDataModels")
 
-tsv <- "PRIMED_data_model_draft.txt"
+tsv <- "PRIMED_data_model_draft.tsv"
 dbml <- "PRIMED_data_model_draft.dbml"
 AnvilDataModels::tsv_to_dbml(tsv, dbml)
