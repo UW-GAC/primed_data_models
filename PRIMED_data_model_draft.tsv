@@ -66,3 +66,8 @@ enum	reference_assembly	GRCh37
 enum	reference_assembly	NCBI36					
 enum	reference_assembly	NCBI35					
 enum	reference_assembly	NCBI34					
+meta	subject			TRUE			
+meta	sample			TRUE			
+meta	sample_set			TRUE			
+meta	dataset			TRUE			
+meta	file			TRUE			
