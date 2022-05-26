@@ -27,20 +27,20 @@ Table	file	md5sum	string	TRUE	TRUE		md5 checksum for the file
 Table	file	dataset_id	string	TRUE		> dataset.dataset_id	
 Table	file	file_path	string	TRUE			absolute file path in cloud storage
 Table	file	description	string	TRUE			description of file contents
-Table	array_dataset	dataset_id	string	TRUE	TRUE	=- dataset.dataset_id	
+Table	array_dataset	dataset_id	string	TRUE	TRUE	- dataset.dataset_id	
 Table	array_dataset	genotyping_center	string	TRUE			name of genotyping center
 Table	array_dataset	array_manufacturer	string	TRUE			"name of array manufacturer (e.g. Illumina, Affymetrix)"
 Table	array_dataset	array_name	string	TRUE			name of genotyping array (e.g. OmniExpress)
 Table	array_dataset	genotype_calling_software	string	TRUE			software and version used for genotype calling (e.g. GenomeStudio v2.0.5)
 Table	array_dataset	reference_assembly	string	TRUE			reference genome assembly that the submitted data is mapped to
-Table	imputation_dataset	dataset_id	string	TRUE	TRUE	=- dataset.dataset_id	
+Table	imputation_dataset	dataset_id	string	TRUE	TRUE	- dataset.dataset_id	
 Table	imputation_dataset	source_dataset_id	string			> dataset.dataset_id	"if source data is in PRIMED, provide dataset_id"
 Table	imputation_dataset	source_genotypes	string				"source of input data (e.g. array name, WES, targeted sequencing)"
 Table	imputation_dataset	reference_panel	string	TRUE			"reference panel (e.g. 1000G, TOPMed)"
 Table	imputation_dataset	imputation_software	string	TRUE			software and version used for imputation (e.g. IMPUTE2 v2.3.2)
 Table	imputation_dataset	quality_filter	string	TRUE			description of quality filter applied to data (e.g. info > 0.9)
 Table	imputation_dataset	reference_assembly	string	TRUE			reference genome assembly that the submitted data is mapped to
-Table	sequencing_dataset	dataset_id	string	TRUE	TRUE	=- dataset.dataset_id	
+Table	sequencing_dataset	dataset_id	string	TRUE	TRUE	- dataset.dataset_id	
 Table	sequencing_dataset	seq_center	string	TRUE			name of sequencing center
 Table	sequencing_dataset	reference_assembly	string	TRUE			reference genome assembly that the submitted data is mapped to
 Table	sequencing_dataset	alignment_method	string	TRUE			alignment method used (e.g. BWA-MEM)
