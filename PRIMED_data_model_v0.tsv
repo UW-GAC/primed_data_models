@@ -1,0 +1,80 @@
+entity	table	column	type	required	pk	ref	note
+Table	subject	subject_id	string	TRUE	TRUE		subject/participant Identifier within project
+Table	subject	dbgap_subject_id	string				subject identifier used by dbGaP (if available)
+Table	subject	consent_code	string	TRUE			consent abbreviation (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4721915/table/pgen.1005772.t001/?report=objectonly)
+Table	subject	study_nickname	string	TRUE			short name for study as defined by CC
+Table	subject	dbgap_submission	boolean				flag if subject has been submitted to dbGaP
+Table	subject	dbgap_study_id	string				PHS ID for study
+Table	subject	reported_sex	reported_sex	TRUE			reported sex
+Table	sample	sample_id	string	TRUE	TRUE		sample identifier
+Table	sample	subject_id	string	TRUE		> subject.subject_id	
+Table	sample	dbgap_sample_id	string				sample identifier used by dbGaP (if available)
+Table	sample	tissue_source	string	TRUE			tissue type of sample (UBERON concepts)
+Table	sample	age_at_sample_collection	float				age of subject when sample was collected
+Table	sample	batch	string				processing batch for sample (e.g. genotyping plate)
+Table	sample_set	sample_set_id	string	TRUE	TRUE		sample set identifier
+Table	sample_set	sample_id	string	TRUE		> sample.sample_id	
+Table	dataset	dataset_id	string	TRUE	TRUE		dataset identifier
+Table	dataset	dataset_type	dataset_type	TRUE			type of dataset
+Table	dataset	sample_set_id	string	TRUE		> sample_set.sample_set_id	
+Table	file	file_id	string		TRUE	from: md5sum	
+Table	file	md5sum	string	TRUE			md5 checksum for the file
+Table	file	dataset_id	string	TRUE		> dataset.dataset_id	
+Table	file	file_path	string	TRUE			absolute file path in cloud storage
+Table	file	description	string	TRUE			description of file contents
+Table	array_dataset	array_dataset_id	string		TRUE	from: dataset_id	
+Table	array_dataset	dataset_id	string	TRUE		- dataset.dataset_id	
+Table	array_dataset	genotyping_center	string	TRUE			name of genotyping center
+Table	array_dataset	array_manufacturer	string	TRUE			name of array manufacturer (e.g. Illumina, Affymetrix)
+Table	array_dataset	array_name	string	TRUE			name of genotyping array (e.g. OmniExpress)
+Table	array_dataset	genotype_calling_software	string	TRUE			software and version used for genotype calling (e.g. GenomeStudio v2.0.5)
+Table	array_dataset	reference_assembly	string	TRUE			reference genome assembly that the submitted data is mapped to
+Table	imputation_dataset	imputation_dataset_id	string		TRUE	from: dataset_id	
+Table	imputation_dataset	dataset_id	string	TRUE		- dataset.dataset_id	
+Table	imputation_dataset	source_dataset_id	string			> dataset.dataset_id	if source data is in PRIMED, provide dataset_id
+Table	imputation_dataset	source_genotypes	string				source of input data (e.g. array name, WES, targeted sequencing)
+Table	imputation_dataset	reference_panel	string	TRUE			reference panel (e.g. 1000G, TOPMed)
+Table	imputation_dataset	imputation_software	string	TRUE			software and version used for imputation (e.g. IMPUTE2 v2.3.2)
+Table	imputation_dataset	quality_filter	string	TRUE			description of quality filter applied to data (e.g. info > 0.9)
+Table	imputation_dataset	reference_assembly	string	TRUE			reference genome assembly that the submitted data is mapped to
+Table	sequencing_dataset	sequencing_dataset_id	string		TRUE	from: dataset_id	
+Table	sequencing_dataset	dataset_id	string	TRUE		- dataset.dataset_id	
+Table	sequencing_dataset	seq_center	string	TRUE			name of sequencing center
+Table	sequencing_dataset	reference_assembly	reference_assembly	TRUE			reference genome assembly that the submitted data is mapped to
+Table	sequencing_dataset	alignment_method	string	TRUE			alignment method used (e.g. BWA-MEM)
+Table	sequencing_dataset	functional_equivalence_standard	string				CCDG example: https://github.com/CCDG/Pipeline-Standardization/blob/master/PipelineStandard.md
+Table	sequencing_dataset	analyte_type	analyte_type	TRUE			analyte type (e.g. DNA, RNA)
+Table	sequencing_dataset	sequencing_assay	sequencing_assay	TRUE			type of sequencing assay performed (e.g. WGS, WES)
+Table	sequencing_dataset	exome_capture_platform	string				exome capture platform (if applicable)
+Table	sequencing_dataset	capture_region_bed_filename	string				name of capture region bed file (if applicable)
+Table	sequencing_dataset	date_data_generation	date				date of data generation
+Table	sequencing_dataset	sequencer_id	string				machine identifier for sequencer
+Table	sequencing_dataset	seq_platform	string	TRUE			sequencing platform used (e.g. Illumina HiSeq X)
+Table	sequencing_dataset	average_target_size	integer				average target size for DNA fragments
+Table	sequencing_dataset	average_target_depth	integer				average target sequencing depth
+Table	sequencing_dataset	seq_strategy	string				paired end or single end
+enum	reported_sex	F					
+enum	reported_sex	M					
+enum	reported_sex	X					
+enum	dataset_type	sequencing					
+enum	dataset_type	array					
+enum	dataset_type	imputation					
+enum	reference_assembly	GRCh38					
+enum	reference_assembly	GRCh37					
+enum	reference_assembly	NCBI36					
+enum	reference_assembly	NCBI35					
+enum	reference_assembly	NCBI34					
+enum	analyte_type	DNA					
+enum	analyte_type	RNA					
+enum	sequencing_assay	WGS					
+enum	sequencing_assay	WES					
+enum	sequencing_assay	RNASeq					
+enum	sequencing_assay	targeted					
+meta	subject			TRUE			
+meta	sample			TRUE			
+meta	sample_set			TRUE			
+meta	dataset			TRUE			
+meta	file			TRUE			
+meta	array_dataset						
+meta	imputation_dataset						
+meta	sequencing_dataset						
