@@ -43,7 +43,8 @@ enum_format <- function(t) {
 }
 
 enum_tsv <- lapply(table_names, enum_format) %>%
-    bind_rows
+    bind_rows %>%
+    distinct()
 
 out <- bind_rows(out, enum_tsv, meta_tsv)
 
