@@ -9,7 +9,7 @@ Table	subject	reported_sex	reported_sex	TRUE			reported sex
 Table	sample	sample_id	string	TRUE	TRUE		sample identifier
 Table	sample	subject_id	string	TRUE		> subject.subject_id	
 Table	sample	dbgap_sample_id	string				sample identifier used by dbGaP (if available)
-Table	sample	tissue_source	tissue_source	TRUE			tissue type of sample (UBERON concepts)
+Table	sample	tissue_source	string	TRUE			tissue type of sample (UBERON concepts)
 Table	sample	age_at_sample_collection	float				age of subject when sample was collected
 Table	sample	batch	string				processing batch for sample (e.g. genotyping plate)
 Table	sample_set	sample_set_id	string	TRUE	TRUE		sample set identifier
@@ -64,10 +64,6 @@ Table	sequencing_file	chromosome	chromosome	TRUE
 enum	reported_sex	F					
 enum	reported_sex	M					
 enum	reported_sex	X					
-enum	tissue_source	UBERON:0000178					
-enum	tissue_source	UBERON:0000479					
-enum	tissue_source	UBERON:0001836					
-enum	tissue_source	UBERON:0006956					
 enum	file_type	README					
 enum	file_type	VCF					
 enum	file_type	VCF index					
