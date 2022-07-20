@@ -58,7 +58,6 @@ Table	sequencing_file	sequencing_file_id	string		TRUE	from: md5sum
 Table	sequencing_file	md5sum	string	TRUE			md5 checksum for the file
 Table	sequencing_file	sequencing_dataset_id	string	TRUE		> sequencing_dataset.sequencing_dataset_id	
 Table	sequencing_file	file_path	string	TRUE			absolute file path in cloud storage
-Table	sequencing_file	description	string	TRUE			description of file contents
 Table	sequencing_file	file_type	file_type	TRUE			
 Table	sequencing_file	chromosome	chromosome	TRUE			
 enum	reported_sex	F					
