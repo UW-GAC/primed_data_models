@@ -3,20 +3,22 @@ library(dplyr)
 library(tidyr)
 library(stringr)
 
-url <- "https://docs.google.com/spreadsheets/d/1lwVMGT-TQaWbMWvi3hdqWuEthZvaKGOImINAqXguPaM"
+url <- "https://docs.google.com/spreadsheets/d/1xfSQqRQIq6pGkJ5jzzv2QhetmX5boaEZoNECpDwXe5I"
 
 # table metadata
-meta <- read_sheet(url, sheet="Tables")
-meta_tsv <- meta %>%
-    mutate(entity="meta") %>%
-    select(entity, required=Required, table=Table)
+meta_tsv <- tibble(
+    entity="meta",
+    required=TRUE,
+    table=c("analysis", "file")
+)
 
 table_names <- meta_tsv$table
-tables <- lapply(table_names, function(x) read_sheet(url, sheet=x))
+tables <- lapply(table_names, function(x) read_sheet(url, sheet=x, skip=1))
 names(tables) <- table_names
 
 tsv_format <- function(t) {
     tables[[t]] %>%
+        filter(!is.na(`Data type`)) %>%
         mutate(entity="Table",
                table=t,
                pk=ifelse(paste0(t, "_id") == Column, TRUE, NA),
@@ -48,4 +50,4 @@ enum_tsv <- lapply(table_names, enum_format) %>%
 
 out <- bind_rows(out, enum_tsv, meta_tsv)
 
-readr::write_tsv(out, file="PRIMED_genotype_data_model_v0.tsv", na="", escape="none")
+readr::write_tsv(out, file="PRIMED_GSR_data_model_draft.tsv", na="", escape="none")

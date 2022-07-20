@@ -1,0 +1,101 @@
+entity	table	column	type	required	pk	ref	note
+Table	analysis	analysis_id	string	TRUE	TRUE		unique identifier for a gwas in primed
+Table	analysis	gwas_catalog_study_id	string				GWAS catalog study identifier for a GWAS downloaded from GWAS Catalogue
+Table	analysis	dbgap_analysis_accession	string				Analysis accession for a GWAS downloaded from dbGaP
+Table	analysis	pubmed_id	string				Pubmed ID identifier of the publication reporting the GWAS
+Table	analysis	first_author	string				First author on the listed Pubmed ID
+Table	analysis	citation	string				External link to the original publication source.
+Table	analysis	terms_and_licenses	string				Terms of use
+Table	analysis	reported_trait	string	TRUE			The author-reported trait (e.g. body mass index [BMI], or coronary artery disease) that the GWAS has been developed to predict.
+Table	analysis	outcome_type	outcome_type	TRUE			Type of the ouctome
+Table	analysis	trait_transformation	string	TRUE			Transformation applied to the outcome variable
+Table	analysis	term_id	string				Identifier for HPO term or other Ontology Term, includes CURIE (the prefix identifier for the ontology), e.g. "HP:xxxx" for HPO (Can also be MONDO terms, Orphanet IDs, OMIM IDs, Snomed IDs)
+Table	analysis	ontology	ontology				Ontology source of the term_id
+Table	analysis	mapped_trait	string				Experimental Factor Ontology (EFO) term the reported trait was mapped to
+Table	analysis	phenotype_definition_and_methods	string	TRUE			A description of how the phenotype was measured or defined (e.g. ICD codes used to identify cases/phenotypes in EHR data).
+Table	analysis	unit_of_phenotype_measurement	string	TRUE			The unit of measurement for the reported phenotype
+Table	analysis	reference_assembly	reference_assembly	TRUE			Reference genome assembly that the submitted data is mapped to
+Table	analysis	dbsnp_build_version	string				dbsnp build for the rsIDS included in GSR files
+Table	analysis	total_num_of_vars	integer	TRUE			Total number of variants submitted (across all chromosomes)
+Table	analysis	number_of_individuals	integer	TRUE			This field describes the number of individuals included in the study sample set
+Table	analysis	number_of_cases	integer				Number of cases. Required if trait is binary
+Table	analysis	number_of_controls	integer				Number of controls. Required if trait is binary
+Table	analysis	effective_sample_size	float	TRUE			Nsamples for quantitative traits; 4/(1/Ncases+1/Nctrls) for binary traits
+Table	analysis	percentage_of_female_participants	float				Percentage of female participants
+Table	analysis	age_of_study_participants	string	TRUE			A summary (e.g. mean, median, range) of study participants ages.
+Table	analysis	participant_follow_up_time	string				A summary of the follow-up time (mean/median, range/confidence intervals) for participants that are part of a prospective cohort/study design (used to measure disease incidence).
+Table	analysis	cohort	string	TRUE			A list of cohorts that collected the samples.
+Table	analysis	sample_or_cohort_information	string				Any additional description about the samples and what they were used for that is not captured by the structured categories (e.g. sub-cohort information).
+Table	analysis	population_descriptors	string	TRUE			
+Table	analysis	countries_of_recruitment	string	TRUE			Author reported countries of recruitment (if available).
+Table	analysis	countries_of_birth	string				Author reported countries of birth (if available).
+Table	analysis	primed_dataset_id	string				For GWAS that used a dataset in primed individual data model indicate its dataset_id
+Table	analysis	analysis_workspace_id	string				workspace identifier for the GWAS that was generated in PRIMED
+Table	analysis	analysis_method	string	TRUE			The name or description of the method or computational algorithm used for GWAS.
+Table	analysis	analysis_parameters	string	TRUE			A description of the relevant inputs and parameters relevant to the GWAS development method/process.
+Table	analysis	variant_MAF_filter	string				MAF value threshold filtering, if applied
+Table	analysis	variant_MAC_filter	string				MAC value threshold applied for filtering
+Table	analysis	imputation_quality_filter_criteria	string				
+Table	analysis	other_variant_qc_and_filters_applied	string				A description of variant quality filters applied in addition to MAC or MAF where applicable
+Table	analysis	imputation_reference_set	string				A description of the dataset used for imputation
+Table	analysis	genotyping_technology	string	TRUE			The genotyping technology used for detecting variants
+Table	analysis	genotyping_platform	string				
+Table	analysis	is_meta_analysis	boolean	TRUE			Is the submitted analysis a meta analysis
+Table	file	file_id	string		TRUE	from: md5sum	
+Table	file	md5sum	string	TRUE			A valid md5 checksum
+Table	file	analysis_id	string	TRUE		> analysis.analysis_id	unique identifier for a gwas in primed
+Table	file	num_vars	integer	TRUE			Count of variants in the GSR file
+Table	file	file_path	string	TRUE			File path in cloud storage
+Table	file	file_type	string	TRUE			Type of the file
+Table	file	chromosome	string	TRUE			chromosome included in the GSR data file
+enum	outcome_type	quantitative					
+enum	outcome_type	binary					
+enum	outcome_type	ordinal					
+enum	outcome_type	time_to_event					
+enum	outcome_type	count					
+enum	ontology	HPO					
+enum	ontology	MONDO					
+enum	ontology	OMIM					
+enum	ontology	ORPHANET					
+enum	ontology	SNOMED					
+enum	ontology	ICD10					
+enum	reference_assembly	GRCh38					
+enum	reference_assembly	GRCh37					
+enum	reference_assembly	NCBI36					
+enum	reference_assembly	NCBI35					
+enum	reference_assembly	NCBI34					
+enum	genotyping_technology	array					
+enum	genotyping_technology	WGS					
+enum	genotyping_technology	WES					
+enum	genotyping_technology	imputed_array					
+enum	genotyping_technology	imputed_WES(?)					
+enum	file_type	data					
+enum	file_type	data dictionary					
+enum	file_type	README					
+enum	chromosome	ALL					
+enum	chromosome	1					
+enum	chromosome	2					
+enum	chromosome	3					
+enum	chromosome	4					
+enum	chromosome	5					
+enum	chromosome	6					
+enum	chromosome	7					
+enum	chromosome	8					
+enum	chromosome	9					
+enum	chromosome	10					
+enum	chromosome	11					
+enum	chromosome	12					
+enum	chromosome	13					
+enum	chromosome	14					
+enum	chromosome	15					
+enum	chromosome	16					
+enum	chromosome	17					
+enum	chromosome	18					
+enum	chromosome	19					
+enum	chromosome	20					
+enum	chromosome	21					
+enum	chromosome	22					
+enum	chromosome	X					
+enum	chromosome	Y					
+meta	analysis			TRUE			
+meta	file			TRUE			
