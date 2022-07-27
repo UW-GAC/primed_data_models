@@ -26,7 +26,8 @@ tsv_format <- function(t) {
         select(entity, table,
                column=Column, type, required=Required,
                pk, ref=References,
-               note=Description)
+               note=Description) %>%
+        mutate(note=gsub('"', "'", note)) # replace double with single quote
 }
 
 out <- lapply(table_names, tsv_format) %>%

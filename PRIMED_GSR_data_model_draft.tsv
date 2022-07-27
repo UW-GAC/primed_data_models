@@ -1,19 +1,22 @@
 entity	table	column	type	required	pk	ref	note
-Table	analysis	analysis_id	string	TRUE	TRUE		unique identifier for a gwas in primed
+Table	analysis	analysis_id	string		TRUE		unique identifier for a gwas in primed
 Table	analysis	gwas_catalog_study_id	string				GWAS catalog study identifier for a GWAS downloaded from GWAS Catalogue
 Table	analysis	dbgap_analysis_accession	string				Analysis accession for a GWAS downloaded from dbGaP
 Table	analysis	pubmed_id	string				Pubmed ID identifier of the publication reporting the GWAS
 Table	analysis	first_author	string				First author on the listed Pubmed ID
 Table	analysis	citation	string				External link to the original publication source.
+Table	analysis	release_date	date				Date on which the GWAS was made released publicy (example on dbGaP or GWAS Catalog )
+Table	analysis	upload_date	date	TRUE			Date GSR was uploaded
 Table	analysis	terms_and_licenses	string				Terms of use
+Table	analysis	contributor_contact	string	TRUE			email of the uploader
 Table	analysis	reported_trait	string	TRUE			The author-reported trait (e.g. body mass index [BMI], or coronary artery disease) that the GWAS has been developed to predict.
-Table	analysis	outcome_type	outcome_type	TRUE			Type of the ouctome
+Table	analysis	outcome_type	outcome_type	TRUE			Type of the outcome
 Table	analysis	trait_transformation	string	TRUE			Transformation applied to the outcome variable
-Table	analysis	term_id	string				Identifier for HPO term or other Ontology Term, includes CURIE (the prefix identifier for the ontology), e.g. "HP:xxxx" for HPO (Can also be MONDO terms, Orphanet IDs, OMIM IDs, Snomed IDs)
+Table	analysis	term_id	string				Identifier for HPO term or other Ontology Term, includes CURIE (the prefix identifier for the ontology), e.g. 'HP:xxxx' for HPO (Can also be MONDO terms, Orphanet IDs, OMIM IDs, Snomed IDs)
 Table	analysis	ontology	ontology				Ontology source of the term_id
 Table	analysis	mapped_trait	string				Experimental Factor Ontology (EFO) term the reported trait was mapped to
 Table	analysis	phenotype_definition_and_methods	string	TRUE			A description of how the phenotype was measured or defined (e.g. ICD codes used to identify cases/phenotypes in EHR data).
-Table	analysis	unit_of_phenotype_measurement	string	TRUE			The unit of measurement for the reported phenotype
+Table	analysis	unit_of_phenotype_measurement	string	TRUE			The unit of measurement for the reported phenotype (before transformation)
 Table	analysis	reference_assembly	reference_assembly	TRUE			Reference genome assembly that the submitted data is mapped to
 Table	analysis	dbsnp_build_version	string				dbsnp build for the rsIDS included in GSR files
 Table	analysis	total_num_of_vars	integer	TRUE			Total number of variants submitted (across all chromosomes)
@@ -27,6 +30,7 @@ Table	analysis	participant_follow_up_time	string				A summary of the follow-up t
 Table	analysis	cohort	string	TRUE			A list of cohorts that collected the samples.
 Table	analysis	sample_or_cohort_information	string				Any additional description about the samples and what they were used for that is not captured by the structured categories (e.g. sub-cohort information).
 Table	analysis	population_descriptors	string	TRUE			
+Table	analysis	population_percent_of_total	string				( % of samples in the same order mapping to the values in the population_descriptors variable)
 Table	analysis	countries_of_recruitment	string	TRUE			Author reported countries of recruitment (if available).
 Table	analysis	countries_of_birth	string				Author reported countries of birth (if available).
 Table	analysis	primed_dataset_id	string				For GWAS that used a dataset in primed individual data model indicate its dataset_id
