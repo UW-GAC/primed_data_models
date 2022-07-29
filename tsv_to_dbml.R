@@ -2,6 +2,7 @@
 
 prefix <- "PRIMED_genotype_data_model_v0"
 prefix <- "PRIMED_GSR_data_model_draft"
+prefix <- "PRIMED_GSR_data_dictionary"
 
 AnvilDataModels::tsv_to_dbml(paste0(prefix, ".tsv"), 
                              paste0(prefix, ".dbml"))
