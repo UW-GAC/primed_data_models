@@ -1,0 +1,118 @@
+entity	table	column	type	required	pk	ref	note
+Table	analysis	analysis_id	string		TRUE		unique identifier for a gwas in primed
+Table	analysis	gsr_source	string	TRUE			Information about source of GSR data. Include additional details in README
+Table	analysis	gwas_catalog_study_id	string				Study accession identifier for GSR downloaded from GWAS Catalog
+Table	analysis	dbgap_analysis_accession	string				Analysis accession identifier for GSR downloaded from dbGaP
+Table	analysis	pubmed_id	string				Pubmed ID identifier of the publication reporting the GWAS
+Table	analysis	first_author	string				Last name and initials of the first author
+Table	analysis	link	string				External link to the publication
+Table	analysis	release_date	date				Date on which the GWAS was released publicy
+Table	analysis	consent_code	string	TRUE			consent abbreviation (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4721915/table/pgen.1005772.t001/?report=objectonly)
+Table	analysis	upload_date	date	TRUE			Date GSR was uploaded to PRIMED AnVIL workspace
+Table	analysis	contributor_contact	string	TRUE			email of the PRIMED contributor who can be contacted for data related questions
+Table	analysis	trait	string	TRUE			reported trait
+Table	analysis	trait_type	trait_type	TRUE			type of trait
+Table	analysis	trait_unit	string	TRUE			unit of measurement for the reported trait (before transformation)
+Table	analysis	trait_transformation	string	TRUE			transformation applied to the reported trait
+Table	analysis	trait_definition	string	TRUE			a brief description of how the trait was measured or defined; additional details can be provided in the README
+Table	analysis	covariates	string	TRUE			Covariates included in the association analysis for trait adjustment
+Table	analysis	concept_id	string	TRUE			concept_id for trait from OMOP concept table
+Table	analysis	mapped_trait	string				Experimental Factor Ontology (EFO) term the trait was mapped to
+Table	analysis	reference_assembly	reference_assembly	TRUE			Reference genome assembly that the submitted data is mapped to
+Table	analysis	dbsnp_build_version	string				dbSNP build for the rsIDS included in GSR files
+Table	analysis	n_variants	integer	TRUE			Total number of variants in the analysis results across all chromosomes
+Table	analysis	min_MAF_filter	float				minimum minor allele frequency filter
+Table	analysis	min_MAC_filter	integer				minimum minor allele count filter
+Table	analysis	genotyping_technology	genotyping_technology	TRUE			The genotyping technology used for detecting variants
+Table	analysis	genotyping_platform	string	TRUE			Genotyping platform description including manufacturer, array name, sequencer name
+Table	analysis	is_imputed	boolean	TRUE			Indicator of whether the analysis performed using imputed genotypes or dosages
+Table	analysis	imputation_reference_panel	imputation_reference_panel	TRUE			Reference panel use for imputation
+Table	analysis	imputation_reference_panel_detail	string	TRUE			Details of the imputation reference panel; e.g. version number or name of panel when imputation_reference_panel = 'Other'
+Table	analysis	min_Rsq_filter	float				minimum imputation Rsq value for filtering imputed variants
+Table	analysis	n_samples	integer	TRUE			Total sample size in the analysis
+Table	analysis	n_case	integer				Number of cases
+Table	analysis	n_ctrl	integer				Number of controls
+Table	analysis	eff_sample_size	float	TRUE			effective sample size = n_samp for quantitative traits  = 4/(1/n_case + 1/n_ctrl) for binary traits
+Table	analysis	proportion_female	float				proportion of female participants
+Table	analysis	age_mean	float				mean age of study participants
+Table	analysis	age_median	float				median age of study participants
+Table	analysis	age_min	float				minimum age of study participants
+Table	analysis	age_max	float				maximum age of study participants
+Table	analysis	case_age_mean	float				mean age of study cases
+Table	analysis	case_age_median	float				median age of study cases
+Table	analysis	case_age_min	float				minimum age of study cases
+Table	analysis	case_age_max	float				maximum age of study cases
+Table	analysis	ctrl_age_mean	float				mean age of study controls
+Table	analysis	ctrl_age_min	float				minimum age of study controls
+Table	analysis	ctrl_age_max	float				maximum age of study controls
+Table	analysis	cohorts	string	TRUE			A list of cohorts that collected the samples.
+Table	analysis	is_meta_analysis	boolean	TRUE			Is the analysis a meta-analysis?
+Table	analysis	population_descriptors	string	TRUE			
+Table	analysis	population_proportions	string				proportion of participants from each population in the same order mapping to the values in the population_descriptors variable
+Table	analysis	countries_of_recruitment	string	TRUE			Reported countries of recruitment
+Table	analysis	countries_of_birth	string				Reported countries of birth
+Table	analysis	analysis_method	string				The name or description of the method or computational algorithm used for GWAS.
+Table	analysis	analysis_software	string				The name of the software used for the GWAS
+Table	analysis	primed_dataset_id	string				For GWAS that used a dataset in primed individual data model indicate its dataset_id
+Table	analysis	analysis_workspace_id	string				workspace identifier for the GWAS that was generated in PRIMED
+Table	gsr_file	gsr_file_id	string		TRUE	from: md5sum	
+Table	gsr_file	md5sum	string	TRUE			A valid md5 checksum
+Table	gsr_file	analysis_id	string	TRUE		> analysis.analysis_id	unique identifier for a gwas in primed
+Table	gsr_file	file_path	string	TRUE			File path in cloud storage
+Table	gsr_file	file_type	string	TRUE			Type of the file
+Table	gsr_file	chromosome	string	TRUE			chromosome included in the GSR data file
+Table	gsr_file	n_variants	integer	TRUE			Count of variants in the GSR data file
+enum	trait_type	quantitative					
+enum	trait_type	binary					
+enum	trait_type	categorical					
+enum	trait_type	ordinal					
+enum	trait_type	time_to_event					
+enum	trait_type	count					
+enum	reference_assembly	GRCh38					
+enum	reference_assembly	GRCh37					
+enum	reference_assembly	NCBI36					
+enum	reference_assembly	NCBI35					
+enum	reference_assembly	NCBI34					
+enum	genotyping_technology	genome-wide array					
+enum	genotyping_technology	WGS					
+enum	genotyping_technology	exome array					
+enum	genotyping_technology	WES					
+enum	genotyping_technology	other array					
+enum	is_imputed	TRUE					
+enum	is_imputed	FALSE					
+enum	imputation_reference_panel	1000 Genomes					
+enum	imputation_reference_panel	HRC					
+enum	imputation_reference_panel	TOPMed					
+enum	imputation_reference_panel	Other					
+enum	imputation_reference_panel	Not Applicable					
+enum	file_type	data					
+enum	file_type	data dictionary					
+enum	file_type	README					
+enum	chromosome	ALL					
+enum	chromosome	1					
+enum	chromosome	2					
+enum	chromosome	3					
+enum	chromosome	4					
+enum	chromosome	5					
+enum	chromosome	6					
+enum	chromosome	7					
+enum	chromosome	8					
+enum	chromosome	9					
+enum	chromosome	10					
+enum	chromosome	11					
+enum	chromosome	12					
+enum	chromosome	13					
+enum	chromosome	14					
+enum	chromosome	15					
+enum	chromosome	16					
+enum	chromosome	17					
+enum	chromosome	18					
+enum	chromosome	19					
+enum	chromosome	20					
+enum	chromosome	21					
+enum	chromosome	22					
+enum	chromosome	X					
+enum	chromosome	Y					
+enum	chromosome	MT					
+meta	analysis			TRUE			
+meta	gsr_file			TRUE			

@@ -8,6 +8,7 @@ url <- "https://docs.google.com/spreadsheets/d/1xfSQqRQIq6pGkJ5jzzv2QhetmX5boaEZ
 dd <- read_sheet(url, sheet="GSR_files_DD", skip=1)
 
 tsv_format <- dd %>%
+    filter(!is.na(`Data type`)) %>%
     mutate(entity="Table",
            table="data",
            pk=NA, ref=NA,

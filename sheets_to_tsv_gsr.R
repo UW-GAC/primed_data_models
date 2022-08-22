@@ -9,7 +9,7 @@ url <- "https://docs.google.com/spreadsheets/d/1xfSQqRQIq6pGkJ5jzzv2QhetmX5boaEZ
 meta_tsv <- tibble(
     entity="meta",
     required=TRUE,
-    table=c("analysis", "file")
+    table=c("analysis", "gsr_file")
 )
 
 table_names <- meta_tsv$table
@@ -27,7 +27,9 @@ tsv_format <- function(t) {
                column=Column, type, required=Required,
                pk, ref=References,
                note=Description) %>%
-        mutate(note=gsub('"', "'", note)) # replace double with single quote
+        mutate(note=gsub('"', "'", note), # replace double with single quote
+               note=gsub('\n', ' ', note), # replace newline with space
+               ref=ifelse(grepl("omop_concept", ref), NA, ref)) # remove external table reference
 }
 
 out <- lapply(table_names, tsv_format) %>%
@@ -51,4 +53,4 @@ enum_tsv <- lapply(table_names, enum_format) %>%
 
 out <- bind_rows(out, enum_tsv, meta_tsv)
 
-readr::write_tsv(out, file="PRIMED_GSR_data_model_draft.tsv", na="", escape="none")
+readr::write_tsv(out, file="PRIMED_GSR_data_model.tsv", na="", escape="none")
