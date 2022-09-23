@@ -12,7 +12,7 @@ tsv_format <- dd %>%
     mutate(entity="Table",
            table="data",
            pk=NA, ref=NA,
-           required=ifelse(as.character(Required) == "TRUE", TRUE, NA),
+           required=Required,
            type=ifelse(`Data type` == "enumeration", Column, `Data type`)) %>%
     select(entity, table,
            column=Column, type, required,

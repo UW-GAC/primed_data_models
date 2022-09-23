@@ -18,15 +18,15 @@ Table	data	beta	float	TRUE			estimated effect size
 Table	data	se	float	TRUE			standard error of beta
 Table	data	beta_ci_lower	float				95% confidence interval lower bound for beta
 Table	data	beta_ci_upper	float				95% confidence interval upper bound for beta
-Table	data	odds_ratio	float				odds ratio for binary traits
+Table	data	odds_ratio	float	CONDITIONAL (trait_type = binary)			odds ratio for binary traits
 Table	data	OR_ci_lower	float				95% confidence interval lower bound for OR
 Table	data	OR_ci_upper	float				95% confidence interval upper bound for OR
-Table	data	direction_of_effect	direction_of_effect				direction of effect
+Table	data	direction_of_effect	direction_of_effect	CONDITIONAL (is_meta_analysis = TRUE)			direction of effect
 Table	data	n_samp	integer				sample size
 Table	data	n_case	integer				number of cases for binary traits
 Table	data	n_ctrl	integer				number of controls for binary traits
 Table	data	is_imputed	boolean	TRUE			logical for whether or not the variant is imputed
-Table	data	imputation_quality_score	float				imputation quality score for an imputed variant
+Table	data	imputation_quality_score	float	CONDITIONAL (is_imputed = TRUE)			imputation quality score for an imputed variant
 enum	chromosome	1					
 enum	chromosome	2					
 enum	chromosome	3					
