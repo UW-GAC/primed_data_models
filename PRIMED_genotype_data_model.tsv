@@ -21,6 +21,7 @@ Table	array_dataset	array_manufacturer	string	TRUE			name of array manufacturer 
 Table	array_dataset	array_name	string	TRUE			name of genotyping array (e.g. OmniExpress)
 Table	array_dataset	genotype_calling_software	string	TRUE			software and version used for genotype calling (e.g. GenomeStudio v2.0.5)
 Table	array_dataset	reference_assembly	string	TRUE			reference genome assembly that the submitted data is mapped to
+Table	array_dataset	dbgap_substudy_id	string				PHS ID for substudy
 Table	array_file	array_file_id	string		TRUE	from: md5sum	
 Table	array_file	md5sum	string	TRUE			md5 checksum for the file
 Table	array_file	array_dataset_id	string	TRUE		> array_dataset.array_dataset_id	
@@ -32,8 +33,10 @@ Table	imputation_dataset	source_dataset_id	string			> array_dataset.array_datase
 Table	imputation_dataset	source_genotypes	string				source of input data (e.g. array name, WES, targeted sequencing)
 Table	imputation_dataset	reference_panel	string	TRUE			reference panel with version (e.g. 1000G Phase 3, TOPMed version 2)
 Table	imputation_dataset	imputation_software	string	TRUE			software and version used for imputation (e.g. IMPUTE2 v2.3.2)
+Table	imputation_dataset	phasing_software	string	TRUE			software and version used for phasing (e.g. SHAPEIT v2.12)
 Table	imputation_dataset	quality_filter	string	TRUE			description of quality filter applied to data (e.g. info > 0.9)
 Table	imputation_dataset	reference_assembly	string	TRUE			reference genome assembly that the submitted data is mapped to
+Table	imputation_dataset	dbgap_substudy_id	string				PHS ID for substudy
 Table	imputation_file	imputation_file_id	string		TRUE	from: md5sum	
 Table	imputation_file	md5sum	string	TRUE			md5 checksum for the file
 Table	imputation_file	imputation_dataset_id	string	TRUE		> imputation_dataset.imputation_dataset_id	
@@ -54,6 +57,7 @@ Table	sequencing_dataset	seq_platform	string	TRUE			sequencing platform used (e.
 Table	sequencing_dataset	average_target_size	integer				average target size for DNA fragments
 Table	sequencing_dataset	average_target_depth	integer				average target sequencing depth
 Table	sequencing_dataset	seq_strategy	string				paired end or single end
+Table	sequencing_dataset	dbgap_substudy_id	string				PHS ID for substudy
 Table	sequencing_file	sequencing_file_id	string		TRUE	from: md5sum	
 Table	sequencing_file	md5sum	string	TRUE			md5 checksum for the file
 Table	sequencing_file	sequencing_dataset_id	string	TRUE		> sequencing_dataset.sequencing_dataset_id	
@@ -108,8 +112,8 @@ meta	subject			TRUE
 meta	sample			TRUE			
 meta	sample_set			TRUE			
 meta	array_dataset						
-meta	array_file						
+meta	array_file			CONDITIONAL (array_dataset)			
 meta	imputation_dataset						
-meta	imputation_file						
+meta	imputation_file			CONDITIONAL (imputation_dataset)			
 meta	sequencing_dataset						
-meta	sequencing_file						
+meta	sequencing_file			CONDITIONAL (sequencing_dataset)			

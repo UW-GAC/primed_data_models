@@ -5,7 +5,7 @@ library(stringr)
 
 url <- "https://docs.google.com/spreadsheets/d/1xfSQqRQIq6pGkJ5jzzv2QhetmX5boaEZoNECpDwXe5I"
 
-dd <- read_sheet(url, sheet="GSR_files_DD", skip=1)
+dd <- read_sheet(url, sheet="GSR_files_DD", skip=1, col_types="c")
 
 tsv_format <- dd %>%
     filter(!is.na(`Data type`)) %>%

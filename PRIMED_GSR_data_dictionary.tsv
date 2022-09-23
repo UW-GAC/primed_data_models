@@ -1,4 +1,5 @@
 entity	table	column	type	required	pk	ref	note
+Table	data	SNPID	string				chr:pos:ref:alt
 Table	data	chromosome	chromosome	TRUE			the chromosome that the variant is located on
 Table	data	position	integer	TRUE			the base pair location of the variant
 Table	data	rsID	string				rs Identifier
@@ -14,12 +15,14 @@ Table	data	mac	integer				minor allele count
 Table	data	p_value	float	TRUE			p-value
 Table	data	p_value_log10	float				negative log10 of p-value
 Table	data	beta	float	TRUE			estimated effect size
-Table	data	standard_error	float	TRUE			standard error of beta
+Table	data	se	float	TRUE			standard error of beta
+Table	data	beta_ci_lower	float				95% confidence interval lower bound for beta
+Table	data	beta_ci_upper	float				95% confidence interval upper bound for beta
 Table	data	odds_ratio	float				odds ratio for binary traits
-Table	data	ci_lower	float				lower confidence interval
-Table	data	ci_upper	float				upper confidence interval
+Table	data	OR_ci_lower	float				95% confidence interval lower bound for OR
+Table	data	OR_ci_upper	float				95% confidence interval upper bound for OR
 Table	data	direction_of_effect	direction_of_effect				direction of effect
-Table	data	n_samp	integer	TRUE			sample size
+Table	data	n_samp	integer				sample size
 Table	data	n_case	integer				number of cases for binary traits
 Table	data	n_ctrl	integer				number of controls for binary traits
 Table	data	is_imputed	boolean	TRUE			logical for whether or not the variant is imputed

@@ -8,12 +8,12 @@ url <- "https://docs.google.com/spreadsheets/d/1xfSQqRQIq6pGkJ5jzzv2QhetmX5boaEZ
 # table metadata
 meta_tsv <- tibble(
     entity="meta",
-    required=TRUE,
+    required="TRUE",
     table=c("analysis", "gsr_file")
 )
 
 table_names <- meta_tsv$table
-tables <- lapply(table_names, function(x) read_sheet(url, sheet=x, skip=1))
+tables <- lapply(table_names, function(x) read_sheet(url, sheet=x, skip=1, col_types="c"))
 names(tables) <- table_names
 
 tsv_format <- function(t) {

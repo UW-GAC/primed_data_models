@@ -26,12 +26,12 @@ Table	analysis	min_MAC_filter	integer				minimum minor allele count filter
 Table	analysis	genotyping_technology	genotyping_technology	TRUE			The genotyping technology used for detecting variants
 Table	analysis	genotyping_platform	string	TRUE			Genotyping platform description including manufacturer, array name, sequencer name
 Table	analysis	is_imputed	boolean	TRUE			Indicator of whether the analysis performed using imputed genotypes or dosages
-Table	analysis	imputation_reference_panel	imputation_reference_panel	TRUE			Reference panel use for imputation
-Table	analysis	imputation_reference_panel_detail	string	TRUE			Details of the imputation reference panel; e.g. version number or name of panel when imputation_reference_panel = 'Other'
-Table	analysis	min_Rsq_filter	float				minimum imputation Rsq value for filtering imputed variants
+Table	analysis	imputation_reference_panel	imputation_reference_panel	CONDITIONAL (is_imputed = TRUE)			Reference panel use for imputation
+Table	analysis	imputation_reference_panel_detail	string	CONDITIONAL (is_imputed = TRUE)			Details of the imputation reference panel; e.g. version number or name of panel when imputation_reference_panel = 'Other'
+Table	analysis	min_Rsq_filter	float	CONDITIONAL (is_imputed = TRUE)			minimum imputation Rsq value for filtering imputed variants
 Table	analysis	n_samples	integer	TRUE			Total sample size in the analysis
-Table	analysis	n_case	integer				Number of cases
-Table	analysis	n_ctrl	integer				Number of controls
+Table	analysis	n_case	integer	CONDITIONAL (trait_type = binary)			Number of cases
+Table	analysis	n_ctrl	integer	CONDITIONAL (trait_type = binary)			Number of controls
 Table	analysis	eff_sample_size	float	TRUE			effective sample size = n_samp for quantitative traits  = 4/(1/n_case + 1/n_ctrl) for binary traits
 Table	analysis	proportion_female	float				proportion of female participants
 Table	analysis	age_mean	float				mean age of study participants
@@ -51,7 +51,7 @@ Table	analysis	population_descriptors	string	TRUE
 Table	analysis	population_proportions	string				proportion of participants from each population in the same order mapping to the values in the population_descriptors variable
 Table	analysis	countries_of_recruitment	string	TRUE			Reported countries of recruitment
 Table	analysis	countries_of_birth	string				Reported countries of birth
-Table	analysis	analysis_method	string				The name or description of the method or computational algorithm used for GWAS.
+Table	analysis	analysis_method	string	TRUE			The name or description of the method or computational algorithm used for GWAS.
 Table	analysis	analysis_software	string				The name of the software used for the GWAS
 Table	analysis	primed_dataset_id	string				For GWAS that used a dataset in primed individual data model indicate its dataset_id
 Table	analysis	analysis_workspace_id	string				workspace identifier for the GWAS that was generated in PRIMED
@@ -84,7 +84,6 @@ enum	imputation_reference_panel	1000 Genomes
 enum	imputation_reference_panel	HRC					
 enum	imputation_reference_panel	TOPMed					
 enum	imputation_reference_panel	Other					
-enum	imputation_reference_panel	Not Applicable					
 enum	file_type	data					
 enum	file_type	data dictionary					
 enum	file_type	README					

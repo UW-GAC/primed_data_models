@@ -12,7 +12,7 @@ meta_tsv <- meta %>%
     select(entity, required=Required, table=Table)
 
 table_names <- meta_tsv$table
-tables <- lapply(table_names, function(x) read_sheet(url, sheet=x))
+tables <- lapply(table_names, function(x) read_sheet(url, sheet=x, col_types="c"))
 names(tables) <- table_names
 
 tsv_format <- function(t) {
@@ -49,4 +49,4 @@ enum_tsv <- lapply(table_names, enum_format) %>%
 
 out <- bind_rows(out, enum_tsv, meta_tsv)
 
-readr::write_tsv(out, file="PRIMED_genotype_data_model_v0.tsv", na="", escape="none")
+readr::write_tsv(out, file="PRIMED_genotype_data_model.tsv", na="", escape="none")
