@@ -1,18 +1,9 @@
-# option 1: list columns (enumerations or example) in the R code that will contain arrays from the "\n" break **preferred
-# option 2: for any column, split on new lines to make an array
-
-
 # library packages
 library(googlesheets4)
 library(dplyr)
 library(tidyr)
-library(stringr)
 library(jsonlite)
 
-
-
-# establish working directory
-setwd("C:/Users/grant/Documents/UW/1_Autumn 22/Research Assistant")
 
 
 
@@ -25,10 +16,13 @@ meta_tsv <- meta %>%
 
 
 
+
 # pull tables that will be converted to JSON
 table_names <- meta_tsv$table
 tables <- lapply(table_names, function(x){read_sheet(url, sheet = x, col_types = "c")})
 names(tables) <- table_names
+rm(list = c("table_names", "url"))
+
 
 
 
@@ -39,21 +33,44 @@ for (i in 1:length(tables)) {
 }
 names(meta) <- c("required", "name")
 meta <- meta[, c("name", "required")]
+rm(list = c("i"))
+
 
 
 
 # create list structure describing all of the tables and related variables
+# establish the table names
 tab_list <- apply(meta, 1, as.list)
 for (i in 1:length(tab_list)) {
-  # insert data frame describing variables in each table
-  tab_list[[i]] <- append(tab_list[[i]], list(data.frame(tables[[i]]))) # 
-  names(tab_list[[i]])[length(tab_list[[i]])] <- "Variables"
+  # manually remove null entries from the table list
+  tab_list[[i]] <- tab_list[[i]][sapply(tab_list[[i]], function(x){!all(is.na(x))})]
   
-  # coerce enumerations manually
-  enum <- sapply(unlist(tab_list[[i]]$Variables$enumerations), function(x){strsplit(x, split = "\n")})
-  enum <- unname(unlist(lapply(enum, function(x){ifelse(all(is.na(x)), NA, paste0('[', paste0(x, collapse = ', '), ']'))})))
-  tab_list[[i]]$Variables$enumerations <- enum
+  # make each row of the data frame a list and make a list of the rows
+  tab_list[[i]] <- append(tab_list[[i]], list(apply(tables[[i]], 1, as.list)))
+  
+  # label the key as "Variables"
+  var_loc <- length(tab_list[[i]])
+  names(tab_list[[i]])[var_loc] <- "Variables"
+  
+  # split "enumerations" and "examples" into vectors according to line breaks in the Google Sheets file
+  for (j in 1:nrow(tables[[i]])) {
+    
+        # coerce enumerations to a vector
+    make_enum_vec <- ifelse(is.na(tab_list[[i]][[var_loc]][[j]]$enumerations), NA,
+                       strsplit(unlist(tab_list[[i]][[var_loc]][[j]]$enumerations), split = "\n"))
+    tab_list[[i]][[var_loc]][[j]]$enumerations <- unlist(make_enum_vec)
+
+    # coerce examples to a vector
+    make_examp_vec <- ifelse(is.na(tab_list[[i]][[var_loc]][[j]]$examples), NA,
+                       strsplit(unlist(tab_list[[i]][[var_loc]][[j]]$examples), split = "\n"))
+    tab_list[[i]][[var_loc]][[j]]$examples <- unlist(make_examp_vec)
+
+    # manually remove null entries from the variable list
+    tab_list[[i]][[var_loc]][[j]] <- tab_list[[i]][[var_loc]][[j]][sapply(tab_list[[i]][[var_loc]][[j]], function(x){!all(is.na(x))})]
+  }
 }
+rm(list = c("make_enum_vec", "make_examp_vec", "meta", "meta_tsv", "tables", "i", "j", "var_loc"))
+
 
 
 
@@ -63,12 +80,14 @@ master <- list(
     # Overall File Details
     name = "Example data model",
     description = "Example data model for PRIMED",
-    version = "1.1",
+    version = "1.2",
     
     # Data Table Details
     tables = tab_list
   )
 )
+rm(list = c("tab_list"))
+
 
 
 
@@ -77,28 +96,26 @@ out <- toJSON(x = master,
               pretty = TRUE,
               auto_unbox = TRUE,
               unbox = TRUE)
-
-
-
-# remove outer brackets from the JSON file
-# per solution provided at https://stackoverflow.com/questions/50240935/removing-brackets-from-ends-of-geojson-in-r
-out <- substr(x = out, start = 2, stop = nchar(out) - 1)
+rm(list = c("master"))
 
 
 
 
 # unquote the logical parameters TRUE and FALSE
-out <- gsub(pattern = '\"TRUE\"',  replacement = 'true',  x = out)
-out <- gsub(pattern = '\"FALSE\"', replacement = 'false', x = out)
+out <- gsub(pattern = ': \"TRUE\"',  replacement = ': true',  x = out)
+out <- gsub(pattern = ': \"FALSE\"', replacement = ': false', x = out)
+
 
 
 
 # view the final version
-prettify(out)
+out
+
 
 
 
 # save the final version
 write(out, "PRIMED_genotype_data_model.json")
+
 
 
