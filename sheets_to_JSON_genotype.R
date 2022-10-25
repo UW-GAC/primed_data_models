@@ -55,7 +55,7 @@ for (i in 1:length(tab_list)) {
   # split "enumerations" and "examples" into vectors according to line breaks in the Google Sheets file
   for (j in 1:nrow(tables[[i]])) {
     
-        # coerce enumerations to a vector
+    # coerce enumerations to a vector
     make_enum_vec <- ifelse(is.na(tab_list[[i]][[var_loc]][[j]]$enumerations), NA,
                        strsplit(unlist(tab_list[[i]][[var_loc]][[j]]$enumerations), split = "\n"))
     tab_list[[i]][[var_loc]][[j]]$enumerations <- unlist(make_enum_vec)
