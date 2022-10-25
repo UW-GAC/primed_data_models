@@ -25,8 +25,11 @@ Table	data	direction_of_effect	direction_of_effect	CONDITIONAL (is_meta_analysis
 Table	data	n_samp	integer				sample size
 Table	data	n_case	integer				number of cases for binary traits
 Table	data	n_ctrl	integer				number of controls for binary traits
+Table	data	eff_sample_size	float				effective sample size = n_samp for quantitative traits = 4/(1/n_case + 1/n_ctrl) for binary traits
 Table	data	is_imputed	boolean	TRUE			logical for whether or not the variant is imputed
 Table	data	imputation_quality_score	float	CONDITIONAL (is_imputed = TRUE)			imputation quality score for an imputed variant
+Table	data	heterogeneity_p_value	float	CONDITIONAL (is_meta_analysis = TRUE)			
+Table	data	heterogeneity_I2	float	CONDITIONAL (is_meta_analysis = TRUE)			
 enum	chromosome	1					
 enum	chromosome	2					
 enum	chromosome	3					
