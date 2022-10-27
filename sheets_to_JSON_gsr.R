@@ -7,6 +7,20 @@ library(jsonlite)
 
 
 
+# if the Google Sheets uses multiple delimiters to identify a string split, this function will perform multiple splits.
+# the best option is probably to use consistent delimiters in Google Sheets for enumerations/examples
+vstrsplit <- function(x, vsplit, ...){
+  vsplit <- c("\n", "|", ",")
+  for (s in vsplit) {
+    x <- strsplit(x = x, split = s, fixed = TRUE)
+    x <- unlist(x)
+  }
+  return(x)
+}
+
+
+
+
 # read in the data
 url <- "https://docs.google.com/spreadsheets/d/1xfSQqRQIq6pGkJ5jzzv2QhetmX5boaEZoNECpDwXe5I"
 
@@ -19,7 +33,6 @@ meta_tsv <- tibble(
     required="TRUE",
     table=c("analysis", "gsr_file")
 )
-
 table_names <- meta_tsv$table
 tables <- lapply(table_names, function(x) read_sheet(url, sheet=x, skip=1, col_types="c"))
 names(tables) <- table_names
