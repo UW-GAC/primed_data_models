@@ -26,13 +26,12 @@ rm(list = c("table_names", "url"))
 
 
 
-# rename things as shown in the toy example
+# rename keys to be lower case, and replace slashes or spaces with underscores
 for (i in 1:length(tables)) {
-  names(tables[[i]]) <- c("required", "name", "description", "references", "data_type", "enumerations", "examples", "notes_comments")
-  tables[[i]] <- tables[[i]][, c("name", "description", "data_type", "references", "required", "enumerations", "examples", "notes_comments")]
+  names(tables[[i]]) <- tolower(names(tables[[i]]))
+  names(tables[[i]]) <- gsub(" |/", "_", names(tables[[i]]))
 }
-names(meta) <- c("required", "name")
-meta <- meta[, c("name", "required")]
+names(meta) <- tolower(names(meta))
 rm(list = c("i"))
 
 
@@ -50,7 +49,7 @@ for (i in 1:length(tab_list)) {
   
   # label the key as "Variables"
   var_loc <- length(tab_list[[i]])
-  names(tab_list[[i]])[var_loc] <- "Variables"
+  names(tab_list[[i]])[var_loc] <- "variables"
   
   # split "enumerations" and "examples" into vectors according to line breaks in the Google Sheets file
   for (j in 1:nrow(tables[[i]])) {
@@ -80,7 +79,7 @@ master <- list(
     # Overall File Details
     name = "Example data model",
     description = "Example data model for PRIMED",
-    version = "1.2",
+    version = "1.3",
     
     # Data Table Details
     tables = tab_list
