@@ -90,12 +90,12 @@ for (i in 1:length(tab_list)) {
     
     # coerce enumerations to a vector
     make_enum_vec <- ifelse(is.na(tab_list[[i]][[var_loc]][[j]]$enumerations), NA,
-                            strsplit(unlist(tab_list[[i]][[var_loc]][[j]]$enumerations), split = "\n"))
+                            strsplit(as.character(unlist(tab_list[[i]][[var_loc]][[j]]$enumerations)), split = "\n"))
     tab_list[[i]][[var_loc]][[j]]$enumerations <- unlist(make_enum_vec)
     
     # coerce examples to a vector
     make_examp_vec <- ifelse(is.na(tab_list[[i]][[var_loc]][[j]]$example), NA,
-                             strsplit(unlist(tab_list[[i]][[var_loc]][[j]]$example), split = "\n"))
+                             strsplit(as.character(unlist(tab_list[[i]][[var_loc]][[j]]$example)), split = "\n"))
     ##############################################################################
     # NOTE: this version uses "example" as the column name instead of "examples" #
     ##############################################################################
@@ -114,8 +114,8 @@ rm(list = c("make_enum_vec", "make_examp_vec", "meta_tsv", "tables", "i", "j", "
 master <- list(
   list(
     # Overall File Details
-    name = "Example data model",
-    description = "Example data model for PRIMED",
+    name = "PRIMED GSR Data Model",
+    description = "Insert description here...",
     version = "1.3",
     
     # Data Table Details

@@ -1,28 +1,28 @@
-# library packages
 library(googlesheets4)
 library(dplyr)
 library(tidyr)
-library(jsonlite)
+library(stringr)
+
+url <- "https://docs.google.com/spreadsheets/d/1xfSQqRQIq6pGkJ5jzzv2QhetmX5boaEZoNECpDwXe5I"
 
 
-
-
-# read in the data
-url <- "https://docs.google.com/spreadsheets/d/1lwVMGT-TQaWbMWvi3hdqWuEthZvaKGOImINAqXguPaM"
-meta <- read_sheet(url, sheet="Tables")
-meta_tsv <- meta %>%
-  mutate(entity="meta") %>%
-  select(entity, required=Required, table=Table)
-
-
-
-
-# pull tables that will be converted to JSON
+tables <- list(read_sheet(url, sheet="GSR_files_DD", skip=1, col_types="c"))
+meta_tsv <- tibble(
+  entity="meta",
+  required="TRUE",
+  table=c("gsr_files_dd")
+)
 table_names <- meta_tsv$table
-tables <- lapply(table_names, function(x){read_sheet(url, sheet = x, col_types = "c")})
 names(tables) <- table_names
 rm(list = c("table_names", "url"))
 
+
+
+
+# keep only non-empty rows
+for (i in 1:length(tables)) {
+  tables[[i]] <- tables[[i]][apply(tables[[i]], 1, function(x){sum(!is.na(x))}) != 0, ]
+}
 
 
 
@@ -31,7 +31,7 @@ for (i in 1:length(tables)) {
   names(tables[[i]]) <- tolower(names(tables[[i]]))
   names(tables[[i]]) <- gsub(" |/", "_", names(tables[[i]]))
 }
-names(meta) <- tolower(names(meta))
+names(meta_tsv) <- tolower(names(meta_tsv))
 rm(list = c("i"))
 
 
@@ -39,7 +39,7 @@ rm(list = c("i"))
 
 # create list structure describing all of the tables and related variables
 # establish the table names
-tab_list <- apply(meta, 1, as.list)
+tab_list <- apply(meta_tsv[, -1], 1, as.list)
 for (i in 1:length(tab_list)) {
   # manually remove null entries from the table list
   tab_list[[i]] <- tab_list[[i]][sapply(tab_list[[i]], function(x){!all(is.na(x))})]
@@ -56,19 +56,19 @@ for (i in 1:length(tab_list)) {
     
     # coerce enumerations to a vector
     make_enum_vec <- ifelse(is.na(tab_list[[i]][[var_loc]][[j]]$enumerations), NA,
-                       strsplit(as.character(unlist(tab_list[[i]][[var_loc]][[j]]$enumerations)), split = "\n"))
+                            strsplit(as.character(unlist(tab_list[[i]][[var_loc]][[j]]$enumerations)), split = "\n"))
     tab_list[[i]][[var_loc]][[j]]$enumerations <- unlist(make_enum_vec)
-
+    
     # coerce examples to a vector
     make_examp_vec <- ifelse(is.na(tab_list[[i]][[var_loc]][[j]]$examples), NA,
-                       strsplit(as.character(unlist(tab_list[[i]][[var_loc]][[j]]$examples)), split = "\n"))
+                             strsplit(as.character(unlist(tab_list[[i]][[var_loc]][[j]]$examples)), split = "\n"))
     tab_list[[i]][[var_loc]][[j]]$examples <- unlist(make_examp_vec)
-
+    
     # manually remove null entries from the variable list
     tab_list[[i]][[var_loc]][[j]] <- tab_list[[i]][[var_loc]][[j]][sapply(tab_list[[i]][[var_loc]][[j]], function(x){!all(is.na(x))})]
   }
 }
-rm(list = c("make_enum_vec", "make_examp_vec", "meta", "meta_tsv", "tables", "i", "j", "var_loc"))
+rm(list = c("make_enum_vec", "make_examp_vec", "meta_tsv", "tables", "i", "j", "var_loc"))
 
 
 
@@ -77,7 +77,7 @@ rm(list = c("make_enum_vec", "make_examp_vec", "meta", "meta_tsv", "tables", "i"
 master <- list(
   list(
     # Overall File Details
-    name = "PRIMED Genotype Data Model",
+    name = "PRIMED GSR Data Dictionary",
     description = "Insert description here...",
     version = "1.3",
     
@@ -114,7 +114,6 @@ out
 
 
 # save the final version
-write(out, "PRIMED_genotype_data_model.json")
-
+write(out, "PRIMED_GSR_data_dictionary.json")
 
 
