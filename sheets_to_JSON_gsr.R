@@ -7,22 +7,7 @@ library(jsonlite)
 
 
 
-# if the Google Sheets uses multiple delimiters to identify a string split, this function will perform multiple splits.
-# the best option is probably to use consistent delimiters in Google Sheets for enumerations/examples
-vstrsplit <- function(x, vsplit, ...){
-  vsplit <- c("\n", "|", ",")
-  for (s in vsplit) {
-    x <- strsplit(x = x, split = s, fixed = TRUE)
-    x <- unlist(x)
-  }
-  return(x)
-}
-rm(list = c("vstrsplit"))
-
-
-
-
-# read in the data
+# link to the data
 url <- "https://docs.google.com/spreadsheets/d/1xfSQqRQIq6pGkJ5jzzv2QhetmX5boaEZoNECpDwXe5I"
 
 
@@ -60,14 +45,39 @@ for (i in 2:nrow(tables[[1]])) {
 
 
 
+# assign new names to the columns in the Google Sheets file
+"categories" -> "Categories"
+"required" -> "Required"
+"column" -> "Column"
+"description" -> "Description"
+"references" -> "References"
+"data_type" -> "Data type"
+"enumerations" -> "Enumerations"
+"multi_value_delimeter" -> "Multi-value delimeter"
+"examples" -> "Examples"
+"notes_comments" -> "Notes/comments"
 
-# rename keys to be lower case, and replace slashes or spaces with underscores
+
+
+
+# manually check that names are in the correct order
+expected_names <- c("Categories", "Column", "Description", "Data type", "Required", "References",	"Enumerations", "Multi-value delimeter", "Examples", "Notes/comments", "CC", "CAPE", "CARDINAL", "D-PRISM", "EPIC-PRS", "FFAIRR-PRS",	"PREVENT",	"PRIMED-Cancer", "...8")
 for (i in 1:length(tables)) {
-  names(tables[[i]]) <- tolower(names(tables[[i]]))
-  names(tables[[i]]) <- gsub(" |/", "_", names(tables[[i]]))
+  # check if all table names are in the expected list
+  if (all(names(tables[[i]]) %in% expected_names)) {
+    # if so, re-order as according to the preferred ordering
+    tables[[i]] <- tables[[i]][, intersect(names(tables[[i]]), expected_names)]
+    # re-label the columns to the preferred notation
+    colnames(tables[[i]]) <- sapply(intersect(names(tables[[i]]), expected_names),
+                                    function(x){ifelse(exists(x), get(x), x)})
+  } else {
+    # otherwise, identify which columns were unexpected
+    unexpected_names <- names(tables[[i]])[(!(names(tables[[i]]) %in% expected_names))]
+    stop(paste0("the following columns in the Google Sheets file were not expected:\n       ",
+                paste0(1:length(unexpected_names), ". ", unexpected_names, collapse = "\n       ")))
+  }
 }
-names(meta_tsv) <- tolower(names(meta_tsv))
-rm(list = c("i"))
+rm(list = c("i", "expected_names", expected_names[sapply(expected_names, exists)]))
 
 
 
