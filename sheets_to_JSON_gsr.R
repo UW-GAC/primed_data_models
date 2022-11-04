@@ -17,6 +17,7 @@ vstrsplit <- function(x, vsplit, ...){
   }
   return(x)
 }
+rm(list = c("vstrsplit"))
 
 
 
@@ -71,42 +72,15 @@ rm(list = c("i"))
 
 
 
-# create list structure describing all of the tables and related variables
-# establish the table names
-tab_list <- apply(meta_tsv[, -1], 1, as.list)
-for (i in 1:length(tab_list)) {
-  # manually remove null entries from the table list
-  tab_list[[i]] <- tab_list[[i]][sapply(tab_list[[i]], function(x){!all(is.na(x))})]
-  
-  # make each row of the data frame a list and make a list of the rows
-  tab_list[[i]] <- append(tab_list[[i]], list(apply(tables[[i]], 1, as.list)))
-  
-  # label the key as "Variables"
-  var_loc <- length(tab_list[[i]])
-  names(tab_list[[i]])[var_loc] <- "variables"
-  
-  # split "enumerations" and "examples" into vectors according to line breaks in the Google Sheets file
-  for (j in 1:nrow(tables[[i]])) {
-    
-    # coerce enumerations to a vector
-    make_enum_vec <- ifelse(is.na(tab_list[[i]][[var_loc]][[j]]$enumerations), NA,
-                            strsplit(as.character(unlist(tab_list[[i]][[var_loc]][[j]]$enumerations)), split = "\n"))
-    tab_list[[i]][[var_loc]][[j]]$enumerations <- unlist(make_enum_vec)
-    
-    # coerce examples to a vector
-    make_examp_vec <- ifelse(is.na(tab_list[[i]][[var_loc]][[j]]$example), NA,
-                             strsplit(as.character(unlist(tab_list[[i]][[var_loc]][[j]]$example)), split = "\n"))
-    ##############################################################################
-    # NOTE: this version uses "example" as the column name instead of "examples" #
-    ##############################################################################
-    tab_list[[i]][[var_loc]][[j]]$example <- unlist(make_examp_vec)
-    
-    # manually remove null entries from the variable list
-    tab_list[[i]][[var_loc]][[j]] <- tab_list[[i]][[var_loc]][[j]][sapply(tab_list[[i]][[var_loc]][[j]], function(x){!all(is.na(x))})]
-  }
-}
-rm(list = c("make_enum_vec", "make_examp_vec", "meta_tsv", "tables", "i", "j", "var_loc"))
-
+# call in the sheets_to_list function that accepts two arguments:
+# 1) the list describing which tables are in the Google Sheets file
+# 2) the list of data tables corresponding to the first argument
+source("sheets_to_list.R")
+tab_list <- sheets_to_list(apply(meta_tsv[, -1], 1, as.list), tables)
+rm(list = c("meta_tsv", "tables", "sheets_to_list"))
+##############################################################################
+# NOTE: this version uses "example" as the column name instead of "examples" #
+##############################################################################
 
 
 
