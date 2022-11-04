@@ -88,9 +88,7 @@ rm(list = c("i", "expected_names", expected_names[sapply(expected_names, exists)
 source("sheets_to_list.R")
 tab_list <- sheets_to_list(apply(meta_tsv[, -1], 1, as.list), tables)
 rm(list = c("meta_tsv", "tables", "sheets_to_list"))
-##############################################################################
-# NOTE: this version uses "example" as the column name instead of "examples" #
-##############################################################################
+
 
 
 
