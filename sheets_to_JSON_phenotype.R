@@ -13,13 +13,12 @@ url <- "https://docs.google.com/spreadsheets/d/16_WvgGyUsQlnNmrZbJqqPlP2vMc9USDQ
 
 
 # table metadata
-meta_tsv <- tibble(
-  entity="meta",
+meta <- tibble(
   required=TRUE,
   table=c("subject", "cohort_data", "cohort_metadata", "pop_descriptors", "omop_person", "omop_measurement", "omop_concept")
 )
 
-table_names <- meta_tsv$table
+table_names <- meta$table
 tables <- lapply(table_names, function(x) read_sheet(url, sheet=x, skip=1))
 names(tables) <- table_names
 rm(list = c("table_names", "url"))
@@ -74,8 +73,8 @@ rm(list = c("i", "expected_names", expected_names[sapply(expected_names, exists)
 # 1) the list describing which tables are in the Google Sheets file
 # 2) the list of data tables corresponding to the first argument
 source("sheets_to_list.R")
-tab_list <- sheets_to_list(apply(meta_tsv[, -1], 1, as.list), tables)
-rm(list = c("meta", "meta_tsv", "tables", "sheets_to_list"))
+tab_list <- sheets_to_list(apply(meta, 1, as.list), tables)
+rm(list = c("meta", "tables", "sheets_to_list"))
 
 
 

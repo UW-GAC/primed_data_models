@@ -9,16 +9,14 @@ library(jsonlite)
 
 # read in the data
 url <- "https://docs.google.com/spreadsheets/d/1lwVMGT-TQaWbMWvi3hdqWuEthZvaKGOImINAqXguPaM"
-meta <- read_sheet(url, sheet="Tables")
-meta_tsv <- meta %>%
-  mutate(entity="meta") %>%
-  select(entity, required=Required, table=Table)
+meta <- read_sheet(url, sheet="Tables") %>%
+  select(required=Required, table=Table)
 
 
 
 
 # pull tables that will be converted to JSON
-table_names <- meta_tsv$table
+table_names <- meta$table
 tables <- lapply(table_names, function(x){read_sheet(url, sheet = x, col_types = "c")})
 names(tables) <- table_names
 rm(list = c("table_names", "url"))
@@ -67,7 +65,7 @@ rm(list = c("i", "expected_names", expected_names[sapply(expected_names, exists)
 # 2) the list of data tables corresponding to the first argument
 source("sheets_to_list.R")
 tab_list <- sheets_to_list(apply(meta, 1, as.list), tables)
-rm(list = c("meta", "meta_tsv", "tables", "sheets_to_list"))
+rm(list = c("meta", "tables", "sheets_to_list"))
 
 
 
