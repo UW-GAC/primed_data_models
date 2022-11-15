@@ -18,35 +18,18 @@ names(tables) <- table_names
 rm(list = c("table_names", "url"))
 
 
-# assign new names to the columns in the Google Sheets file
-"column" -> "Column"
-"description" -> "Description"
-"data_type" -> "Data type"
-"required" -> "Required"
-"references" -> "References"
-"enumerations" -> "Enumerations"
-"examples" -> "Examples"
-"notes_comments" -> "Notes/comments"
-
-
-# manually check that names are in the correct order
-expected_names <- c("Column", "Description", "Data type", "Required", "References", "Enumerations", "Examples", "Notes/comments")
+# rename and reorder columns
 for (i in 1:length(tables)) {
-  # check if all table names are in the expected list
-  if (all(names(tables[[i]]) %in% expected_names)) {
-    # if so, re-order as according to the preferred ordering
-    tables[[i]] <- tables[[i]][, intersect(names(tables[[i]]), expected_names)]
-    # re-label the columns to the preferred notation
-    colnames(tables[[i]]) <- sapply(intersect(names(tables[[i]]), expected_names),
-                                    function(x){ifelse(exists(x), get(x), x)})
-  } else {
-    # otherwise, identify which columns were unexpected
-    unexpected_names <- names(tables[[i]])[(!(names(tables[[i]]) %in% expected_names))]
-    stop(paste0("the following columns in the Google Sheets file were not expected:\n       ",
-                paste0(1:length(unexpected_names), ". ", unexpected_names, collapse = "\n       ")))
-  }
+    tables[[i]] <- tables[[i]] %>%
+        select(column = Column, 
+               required = Required,
+               description = Description, 
+               data_type = `Data type`, 
+               references = References, 
+               enumerations = Enumerations, 
+               examples = Examples, 
+               notes = `Notes/comments`)
 }
-rm(list = c("i", "expected_names", expected_names[sapply(expected_names, exists)]))
 
 
 # call in the sheets_to_list function that accepts two arguments:
