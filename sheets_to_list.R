@@ -8,9 +8,9 @@ sheets_to_list <- function(tab_list, tables) {
     # make each row of the data frame a list and make a list of the rows
     tab_list[[i]] <- append(tab_list[[i]], list(apply(tables[[i]], 1, as.list)))
     
-    # label the key as "Variables"
+    # label the key as "Columns"
     var_loc <- length(tab_list[[i]])
-    names(tab_list[[i]])[var_loc] <- "variables"
+    names(tab_list[[i]])[var_loc] <- "columns"
     
     # split "enumerations" and "examples" into vectors according to line breaks in the Google Sheets file
     for (j in 1:nrow(tables[[i]])) {
