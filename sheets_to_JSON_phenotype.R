@@ -3,13 +3,8 @@ library(dplyr)
 library(tidyr)
 library(stringr)
 
-
-
-
 # link to the data
 url <- "https://docs.google.com/spreadsheets/d/16_WvgGyUsQlnNmrZbJqqPlP2vMc9USDQYGAVU3u7JH4/edit#gid=1543372699"
-
-
 
 
 # table metadata
@@ -24,14 +19,10 @@ names(tables) <- table_names
 rm(list = c("table_names", "url"))
 
 
-
-
 # keep only non-empty rows
 for (i in 1:length(tables)) {
   tables[[i]] <- tables[[i]][apply(tables[[i]], 1, function(x){sum(!is.na(x))}) != 0, ]
 }
-
-
 
 
 # assign new names to the columns in the Google Sheets file
@@ -43,8 +34,6 @@ for (i in 1:length(tables)) {
 "enumerations" -> "Enumerations"
 "examples" -> "Examples"
 "notes_comments" -> "Notes/comments"
-
-
 
 
 # manually check that names are in the correct order
@@ -67,16 +56,12 @@ for (i in 1:length(tables)) {
 rm(list = c("i", "expected_names", expected_names[sapply(expected_names, exists)]))
 
 
-
-
 # call in the sheets_to_list function that accepts two arguments:
 # 1) the list describing which tables are in the Google Sheets file
 # 2) the list of data tables corresponding to the first argument
 source("sheets_to_list.R")
 tab_list <- sheets_to_list(apply(meta, 1, as.list), tables)
 rm(list = c("meta", "tables", "sheets_to_list"))
-
-
 
 
 # initialize leading text
@@ -94,8 +79,6 @@ master <- list(
 rm(list = c("tab_list"))
 
 
-
-
 # compile master file in JSON format
 out <- toJSON(x = master,
               pretty = TRUE,
@@ -104,23 +87,14 @@ out <- toJSON(x = master,
 rm(list = c("master"))
 
 
-
-
 # unquote the logical parameters TRUE and FALSE
 out <- gsub(pattern = ': \"TRUE\"',  replacement = ': true',  x = out)
 out <- gsub(pattern = ': \"FALSE\"', replacement = ': false', x = out)
-
-
 
 
 # view the final version
 out
 
 
-
-
 # save the final version
 write(out, "PRIMED_phenotype_data_model.json")
-
-
-
