@@ -8,7 +8,7 @@ library(jsonlite)
 # read in the data
 url <- "https://docs.google.com/spreadsheets/d/1lwVMGT-TQaWbMWvi3hdqWuEthZvaKGOImINAqXguPaM"
 meta <- read_sheet(url, sheet="Tables") %>%
-  select(required=Required, table=Table)
+  select(table=Table, required=Required)
 
 
 # pull tables that will be converted to JSON

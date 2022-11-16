@@ -11,8 +11,8 @@ url <- "https://docs.google.com/spreadsheets/d/1xfSQqRQIq6pGkJ5jzzv2QhetmX5boaEZ
 # table metadata
 tables <- list(read_sheet(url, sheet="GSR_files_DD", skip=1, col_types="c"))
 meta <- tibble(
-  required="TRUE",
-  table=c("gsr_files_dd")
+    table=c("gsr_files_dd"),
+    required="TRUE"
 )
 table_names <- meta$table
 names(tables) <- table_names

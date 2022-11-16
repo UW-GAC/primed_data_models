@@ -10,8 +10,8 @@ url <- "https://docs.google.com/spreadsheets/d/16_WvgGyUsQlnNmrZbJqqPlP2vMc9USDQ
 
 # table metadata
 meta <- tibble(
-  required=TRUE,
-  table=c("subject", "cohort_data", "cohort_metadata", "pop_descriptors", "omop_person", "omop_measurement", "omop_concept")
+  table=c("subject", "cohort_data", "cohort_metadata", "pop_descriptors", "omop_person", "omop_measurement", "omop_concept"),
+  required=TRUE
 )
 
 table_names <- meta$table
