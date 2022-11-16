@@ -46,8 +46,8 @@ master <- list(
   list(
     # Overall File Details
     name = "PRIMED GSR Data Dictionary",
-    description = "Insert description here...",
-    version = "1.3",
+    description = "Data dictionary for Genomic Summary Results in the PRIMED consortium",
+    version = "0.1.2",
     
     # Data Table Details
     tables = tab_list

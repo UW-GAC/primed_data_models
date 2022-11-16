@@ -45,8 +45,8 @@ master <- list(
   list(
     # Overall File Details
     name = "PRIMED Genotype Data Model",
-    description = "Insert description here...",
-    version = "1.3",
+    description = "Data model for genotype data in the PRIMED consortium",
+    version = "0.1.2",
     
     # Data Table Details
     tables = tab_list
