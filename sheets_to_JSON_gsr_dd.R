@@ -43,7 +43,6 @@ rm(list = c("meta", "tables", "sheets_to_list"))
 
 # initialize leading text
 master <- list(
-  list(
     # Overall File Details
     name = "PRIMED GSR Data Dictionary",
     description = "Data dictionary for Genomic Summary Results in the PRIMED consortium",
@@ -51,7 +50,6 @@ master <- list(
     
     # Data Table Details
     tables = tab_list
-  )
 )
 rm(list = c("tab_list"))
 
