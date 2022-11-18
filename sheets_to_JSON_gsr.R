@@ -23,10 +23,12 @@ rm(list = c("table_names", "url"))
 # rename and reorder columns
 for (i in 1:length(tables)) {
     tmp <- tables[[i]] %>%
-        filter(!is.na(`Data type`)) # keep only valid rows
+        filter(!is.na(`Data type`)) %>% # keep only valid rows
+        mutate(primary_key = ifelse(paste0(names(tables)[i], "_id") == Column, TRUE, NA))
     if ("Multi-value delimeter" %in% names(tmp)) {
         tables[[i]] <- tmp %>%
             select(column = Column, 
+               primary_key,
                required = Required,
                description = Description, 
                data_type = `Data type`, 
@@ -38,6 +40,7 @@ for (i in 1:length(tables)) {
     } else {
         tables[[i]] <- tmp %>%
             select(column = Column, 
+               primary_key,
                required = Required,
                description = Description, 
                data_type = `Data type`, 

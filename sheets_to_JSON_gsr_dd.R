@@ -23,7 +23,9 @@ rm(list = c("table_names", "url"))
 for (i in 1:length(tables)) {
     tables[[i]] <- tables[[i]] %>%
         filter(!is.na(`Data type`)) %>% # keep only valid rows
+        mutate(primary_key = ifelse(paste0(names(tables)[i], "_id") == Column, TRUE, NA)) %>%
         select(column = Column, 
+               primary_key,
                required = Required,
                description = Description, 
                data_type = `Data type`, 

@@ -21,7 +21,9 @@ rm(list = c("table_names", "url"))
 # rename and reorder columns
 for (i in 1:length(tables)) {
     tables[[i]] <- tables[[i]] %>%
+        mutate(primary_key = ifelse(paste0(names(tables)[i], "_id") == Column, TRUE, NA)) %>%
         select(column = Column, 
+               primary_key,
                required = Required,
                description = Description, 
                data_type = `Data type`, 
