@@ -24,7 +24,12 @@ rm(list = c("table_names", "url"))
 for (i in 1:length(tables)) {
     tmp <- tables[[i]] %>%
         filter(!is.na(`Data type`)) %>% # keep only valid rows
-        mutate(primary_key = ifelse(paste0(names(tables)[i], "_id") == Column, TRUE, NA))
+        mutate(primary_key = ifelse(paste0(names(tables)[i], "_id") == Column, TRUE, NA)) %>%
+        mutate(Description=gsub('"', "'", Description), # replace double with single quote
+               Description=gsub('\n', ' ', Description), # replace newline with space
+               `Notes/comments`=gsub('"', "'", `Notes/comments`), # replace double with single quote
+               `Notes/comments`=gsub('\n', ' ', `Notes/comments`), # replace newline with space
+               References=ifelse(grepl("omop_concept", References), NA, References)) # remove external table reference
     if ("Multi-value delimeter" %in% names(tmp)) {
         tables[[i]] <- tmp %>%
             select(column = Column, 

@@ -189,7 +189,7 @@
           "description": "any descriptor used to describe individual",
           "data_type": "string",
           "examples": "Black | Asian | Not Hispanic",
-          "notes": "delimited list (delim is \"|\"). race and ethnicity info are in the omop-person table"
+          "notes": "delimited list (delim is '|'). race and ethnicity info are in the omop-person table"
         },
         {
           "column": "descriptor_type",
@@ -197,7 +197,7 @@
           "description": "type of descriptor used to describe individual",
           "data_type": "string",
           "examples": "Race | Race | Ethnicity",
-          "notes": "delimited list same length as population_descriptor (delim is \"|\")"
+          "notes": "delimited list same length as population_descriptor (delim is '|')"
         },
         {
           "column": "country_of_recruitment",

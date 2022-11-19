@@ -33,7 +33,9 @@ for (i in 1:length(tables)) {
                references = References, 
                enumerations = Enumerations, 
                examples = Examples, 
-               notes = `Notes/comments`)
+               notes = `Notes/comments`) %>%
+        mutate(description=gsub('"', "'", description),
+               notes=gsub('"', "'", notes)) # replace double with single quotes
 }
 
 
