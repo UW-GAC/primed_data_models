@@ -1,0 +1,447 @@
+{
+  "name": "PRIMED Genotype Data Model",
+  "description": "Data model for genotype data in the PRIMED consortium",
+  "version": "0.1.2",
+  "tables": [
+    {
+      "table": "subject",
+      "required": true,
+      "columns": [
+        {
+          "column": "subject_id",
+          "primary_key": true,
+          "required": true,
+          "description": "subject/participant Identifier within project",
+          "data_type": "string"
+        },
+        {
+          "column": "dbgap_subject_id",
+          "description": "subject identifier used by dbGaP (if available)",
+          "data_type": "string"
+        },
+        {
+          "column": "consent_code",
+          "required": true,
+          "description": "consent abbreviation (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4721915/table/pgen.1005772.t001/?report=objectonly)",
+          "data_type": "string"
+        },
+        {
+          "column": "study_nickname",
+          "required": true,
+          "description": "short name for study as defined by CC",
+          "data_type": "string"
+        },
+        {
+          "column": "dbgap_submission",
+          "description": "flag if subject has been submitted to dbGaP",
+          "data_type": "boolean",
+          "examples": ["TRUE", "FALSE"]
+        },
+        {
+          "column": "dbgap_study_id",
+          "description": "PHS ID for study",
+          "data_type": "string"
+        },
+        {
+          "column": "reported_sex",
+          "required": true,
+          "description": "reported sex",
+          "data_type": "enumeration",
+          "enumerations": ["F", "M", "X"]
+        }
+      ]
+    },
+    {
+      "table": "sample",
+      "required": true,
+      "columns": [
+        {
+          "column": "sample_id",
+          "primary_key": true,
+          "required": true,
+          "description": "sample identifier",
+          "data_type": "string"
+        },
+        {
+          "column": "subject_id",
+          "required": true,
+          "data_type": "string",
+          "references": "> subject.subject_id"
+        },
+        {
+          "column": "dbgap_sample_id",
+          "description": "sample identifier used by dbGaP (if available)",
+          "data_type": "string"
+        },
+        {
+          "column": "tissue_source",
+          "required": true,
+          "description": "tissue type of sample (UBERON concepts)",
+          "data_type": "string",
+          "examples": ["UBERON:0000178 (whole blood)", "UBERON:0000479 (tissue)", "UBERON:0001836 (saliva)", "UBERON:0006956 (buccal mucosa)"]
+        },
+        {
+          "column": "age_at_sample_collection",
+          "description": "age of subject when sample was collected",
+          "data_type": "float"
+        },
+        {
+          "column": "batch",
+          "description": "processing batch for sample (e.g. genotyping plate)",
+          "data_type": "string"
+        }
+      ]
+    },
+    {
+      "table": "sample_set",
+      "required": true,
+      "columns": [
+        {
+          "column": "sample_set_id",
+          "primary_key": true,
+          "required": true,
+          "description": "sample set identifier",
+          "data_type": "string"
+        },
+        {
+          "column": "sample_id",
+          "required": true,
+          "data_type": "string",
+          "references": "> sample.sample_id"
+        }
+      ]
+    },
+    {
+      "table": "array_dataset",
+      "columns": [
+        {
+          "column": "array_dataset_id",
+          "primary_key": true,
+          "data_type": "string",
+          "references": "from: sample_set_id, genotyping_center, array_manufacturer, array_name, genotype_calling_software, reference_assembly",
+          "notes": "AnVIL requires entity id with naming convention <table_name>_id"
+        },
+        {
+          "column": "sample_set_id",
+          "required": true,
+          "data_type": "string",
+          "references": "> sample_set.sample_set_id"
+        },
+        {
+          "column": "genotyping_center",
+          "required": true,
+          "description": "name of genotyping center",
+          "data_type": "string"
+        },
+        {
+          "column": "array_manufacturer",
+          "required": true,
+          "description": "name of array manufacturer (e.g. Illumina, Affymetrix)",
+          "data_type": "string"
+        },
+        {
+          "column": "array_name",
+          "required": true,
+          "description": "name of genotyping array (e.g. OmniExpress)",
+          "data_type": "string"
+        },
+        {
+          "column": "genotype_calling_software",
+          "required": true,
+          "description": "software and version used for genotype calling (e.g. GenomeStudio v2.0.5)",
+          "data_type": "string"
+        },
+        {
+          "column": "reference_assembly",
+          "required": true,
+          "description": "reference genome assembly that the submitted data is mapped to",
+          "data_type": "string"
+        },
+        {
+          "column": "dbgap_substudy_id",
+          "description": "PHS ID for substudy",
+          "data_type": "string"
+        }
+      ]
+    },
+    {
+      "table": "array_file",
+      "required": "CONDITIONAL (array_dataset)",
+      "columns": [
+        {
+          "column": "array_file_id",
+          "primary_key": true,
+          "data_type": "string",
+          "references": "from: md5sum",
+          "notes": "AnVIL requires entity id with naming convention <table_name>_id"
+        },
+        {
+          "column": "md5sum",
+          "required": true,
+          "description": "md5 checksum for the file",
+          "data_type": "string"
+        },
+        {
+          "column": "array_dataset_id",
+          "required": true,
+          "data_type": "string",
+          "references": "> array_dataset.array_dataset_id"
+        },
+        {
+          "column": "file_path",
+          "required": true,
+          "description": "absolute file path in cloud storage",
+          "data_type": "string"
+        },
+        {
+          "column": "file_type",
+          "required": true,
+          "data_type": "enumeration",
+          "enumerations": ["README", "VCF", "VCF index", "PLINK bed", "PLINK bim", "PLINK fam", "quality metrics", "data dictionary"]
+        }
+      ]
+    },
+    {
+      "table": "imputation_dataset",
+      "columns": [
+        {
+          "column": "imputation_dataset_id",
+          "primary_key": true,
+          "data_type": "string",
+          "references": "from: sample_set_id, reference_panel, imputation_software, reference_assembly",
+          "notes": "AnVIL requires entity id with naming convention <table_name>_id"
+        },
+        {
+          "column": "sample_set_id",
+          "required": true,
+          "data_type": "string",
+          "references": "> sample_set.sample_set_id"
+        },
+        {
+          "column": "source_dataset_id",
+          "description": "if source data is in PRIMED, provide array_dataset_id",
+          "data_type": "string",
+          "references": "> array_dataset.array_dataset_id"
+        },
+        {
+          "column": "source_genotypes",
+          "description": "source of input data (e.g. array name, WES, targeted sequencing)",
+          "data_type": "string"
+        },
+        {
+          "column": "reference_panel",
+          "required": true,
+          "description": "reference panel with version (e.g. 1000G Phase 3, TOPMed version 2)",
+          "data_type": "string"
+        },
+        {
+          "column": "imputation_software",
+          "required": true,
+          "description": "software and version used for imputation (e.g. IMPUTE2 v2.3.2)",
+          "data_type": "string"
+        },
+        {
+          "column": "phasing_software",
+          "required": true,
+          "description": "software and version used for phasing (e.g. SHAPEIT v2.12)",
+          "data_type": "string"
+        },
+        {
+          "column": "quality_filter",
+          "required": true,
+          "description": "description of quality filter applied to data (e.g. info > 0.9)",
+          "data_type": "string"
+        },
+        {
+          "column": "reference_assembly",
+          "required": true,
+          "description": "reference genome assembly that the submitted data is mapped to",
+          "data_type": "string"
+        },
+        {
+          "column": "dbgap_substudy_id",
+          "description": "PHS ID for substudy",
+          "data_type": "string"
+        }
+      ]
+    },
+    {
+      "table": "imputation_file",
+      "required": "CONDITIONAL (imputation_dataset)",
+      "columns": [
+        {
+          "column": "imputation_file_id",
+          "primary_key": true,
+          "data_type": "string",
+          "references": "from: md5sum",
+          "notes": "AnVIL requires entity id with naming convention <table_name>_id"
+        },
+        {
+          "column": "md5sum",
+          "required": true,
+          "description": "md5 checksum for the file",
+          "data_type": "string"
+        },
+        {
+          "column": "imputation_dataset_id",
+          "required": true,
+          "data_type": "string",
+          "references": "> imputation_dataset.imputation_dataset_id"
+        },
+        {
+          "column": "file_path",
+          "required": true,
+          "description": "absolute file path in cloud storage",
+          "data_type": "string"
+        },
+        {
+          "column": "file_type",
+          "required": true,
+          "data_type": "enumeration",
+          "enumerations": ["README", "VCF", "VCF index", "PLINK bed", "PLINK bim", "PLINK fam", "quality metrics", "data dictionary"]
+        },
+        {
+          "column": "chromosome",
+          "required": true,
+          "data_type": "enumeration",
+          "enumerations": ["ALL", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "X", "Y"],
+          "notes": "Leave blank where does not apply (e.g. README)"
+        }
+      ]
+    },
+    {
+      "table": "sequencing_dataset",
+      "columns": [
+        {
+          "column": "sequencing_dataset_id",
+          "primary_key": true,
+          "data_type": "string",
+          "references": "from: sample_set_id, seq_center, reference_assembly, alignment_method, sequencing_assay, seq_platform",
+          "notes": "AnVIL requires entity id with naming convention <table_name>_id"
+        },
+        {
+          "column": "sample_set_id",
+          "required": true,
+          "data_type": "string",
+          "references": "> sample_set.sample_set_id"
+        },
+        {
+          "column": "seq_center",
+          "required": true,
+          "description": "name of sequencing center",
+          "data_type": "string"
+        },
+        {
+          "column": "reference_assembly",
+          "required": true,
+          "description": "reference genome assembly that the submitted data is mapped to",
+          "data_type": "enumeration",
+          "enumerations": ["GRCh38", "GRCh37", "NCBI36", "NCBI35", "NCBI34"]
+        },
+        {
+          "column": "alignment_method",
+          "required": true,
+          "description": "alignment method used (e.g. BWA-MEM)",
+          "data_type": "string"
+        },
+        {
+          "column": "functional_equivalence_standard",
+          "description": "CCDG example: https://github.com/CCDG/Pipeline-Standardization/blob/master/PipelineStandard.md",
+          "data_type": "string"
+        },
+        {
+          "column": "sequencing_assay",
+          "required": true,
+          "description": "type of sequencing assay performed (e.g. WGS, WES)",
+          "data_type": "enumeration",
+          "enumerations": ["WGS", "WES", "targeted"]
+        },
+        {
+          "column": "exome_capture_platform",
+          "description": "exome capture platform (if applicable)",
+          "data_type": "string"
+        },
+        {
+          "column": "capture_region_bed_filename",
+          "description": "name of capture region bed file (if applicable)",
+          "data_type": "string"
+        },
+        {
+          "column": "sequencer_id",
+          "description": "machine identifier for sequencer",
+          "data_type": "string"
+        },
+        {
+          "column": "seq_platform",
+          "required": true,
+          "description": "sequencing platform used (e.g. Illumina HiSeq X)",
+          "data_type": "string"
+        },
+        {
+          "column": "average_target_size",
+          "description": "average target size for DNA fragments",
+          "data_type": "integer"
+        },
+        {
+          "column": "average_target_depth",
+          "description": "average target sequencing depth",
+          "data_type": "integer"
+        },
+        {
+          "column": "seq_strategy",
+          "description": "paired end or single end",
+          "data_type": "string"
+        },
+        {
+          "column": "dbgap_substudy_id",
+          "description": "PHS ID for substudy",
+          "data_type": "string"
+        }
+      ]
+    },
+    {
+      "table": "sequencing_file",
+      "required": "CONDITIONAL (sequencing_dataset)",
+      "columns": [
+        {
+          "column": "sequencing_file_id",
+          "primary_key": true,
+          "data_type": "string",
+          "references": "from: md5sum",
+          "notes": "AnVIL requires entity id with naming convention <table_name>_id"
+        },
+        {
+          "column": "md5sum",
+          "required": true,
+          "description": "md5 checksum for the file",
+          "data_type": "string"
+        },
+        {
+          "column": "sequencing_dataset_id",
+          "required": true,
+          "data_type": "string",
+          "references": "> sequencing_dataset.sequencing_dataset_id"
+        },
+        {
+          "column": "file_path",
+          "required": true,
+          "description": "absolute file path in cloud storage",
+          "data_type": "string"
+        },
+        {
+          "column": "file_type",
+          "required": true,
+          "data_type": "enumeration",
+          "enumerations": ["README", "VCF", "VCF index", "PLINK bed", "PLINK bim", "PLINK fam", "quality metrics", "data dictionary"]
+        },
+        {
+          "column": "chromosome",
+          "required": true,
+          "data_type": "enumeration",
+          "enumerations": ["ALL", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "X", "Y"],
+          "notes": "Leave blank where does not apply (e.g. README)"
+        }
+      ]
+    }
+  ]
+}

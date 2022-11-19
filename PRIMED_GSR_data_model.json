@@ -1,0 +1,439 @@
+{
+  "name": "PRIMED GSR Data Model",
+  "description": "Data model for Genomic Summary Results in the PRIMED consortium",
+  "version": "0.1.2",
+  "tables": [
+    {
+      "table": "analysis",
+      "required": true,
+      "columns": [
+        {
+          "column": "analysis_id",
+          "primary_key": true,
+          "description": "unique identifier for a gwas in primed",
+          "data_type": "string",
+          "notes": "PRIMED upload workflow would generate this"
+        },
+        {
+          "column": "gsr_source",
+          "required": true,
+          "description": "Information about source of GSR data. Include additional details in README",
+          "data_type": "string",
+          "examples": ["GWAS Catalog", "dbGaP", "Colorado Biobank ", "PRIMED"],
+          "notes": "free text short label; useful for unreleased GSR"
+        },
+        {
+          "column": "gwas_catalog_study_id",
+          "description": "Study accession identifier for GSR downloaded from GWAS Catalog",
+          "data_type": "string",
+          "examples": "GCST90029118",
+          "notes": "identifier in GCSTXXXXXX format"
+        },
+        {
+          "column": "dbgap_analysis_accession",
+          "description": "Analysis accession identifier for GSR downloaded from dbGaP",
+          "data_type": "string",
+          "examples": "pha003690.1",
+          "notes": "identifier in phaXXXXXX.v format"
+        },
+        {
+          "column": "pubmed_id",
+          "description": "Pubmed ID identifier of the publication reporting the GWAS",
+          "data_type": "string",
+          "examples": "33568819",
+          "notes": "PMID identifier"
+        },
+        {
+          "column": "first_author",
+          "description": "Last name and initials of the first author",
+          "data_type": "string"
+        },
+        {
+          "column": "link",
+          "description": "External link to the publication",
+          "data_type": "string",
+          "notes": "URL of publication"
+        },
+        {
+          "column": "release_date",
+          "description": "Date on which the GWAS was released publicy",
+          "data_type": "date",
+          "notes": "e.g. on dbGaP or GWAS Catalog"
+        },
+        {
+          "column": "consent_code",
+          "required": true,
+          "description": "consent abbreviation (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4721915/table/pgen.1005772.t001/?report=objectonly)",
+          "data_type": "string",
+          "notes": "NRES is the code for no restrictions on data use (i.e. open access)"
+        },
+        {
+          "column": "upload_date",
+          "required": true,
+          "description": "Date GSR was uploaded to PRIMED AnVIL workspace",
+          "data_type": "date",
+          "notes": "PRIMED upload workflow would generate this"
+        },
+        {
+          "column": "contributor_contact",
+          "required": true,
+          "description": "email of the PRIMED contributor who can be contacted for data related questions",
+          "data_type": "string",
+          "notes": "recommended by WG. helpful when GSR is not publicly released and is from a Biobank or some other source"
+        },
+        {
+          "column": "trait",
+          "required": true,
+          "description": "reported trait",
+          "data_type": "string",
+          "examples": ["body mass index (BMI)", "coronary artery disease", "LDL"],
+          "notes": "free text trait name"
+        },
+        {
+          "column": "trait_type",
+          "required": true,
+          "description": "type of trait",
+          "data_type": "enumeration",
+          "enumerations": ["quantitative", "binary", "categorical", "ordinal", "time_to_event", "count"],
+          "notes": "determines which columns we need to check for in the data file"
+        },
+        {
+          "column": "trait_unit",
+          "required": true,
+          "description": "unit of measurement for the reported trait (before transformation)",
+          "data_type": "string",
+          "notes": "Report unit as something like \"binary\",  \"indicator\", or \"categorical\"  for non-quantitative traits"
+        },
+        {
+          "column": "trait_transformation",
+          "required": true,
+          "description": "transformation applied to the reported trait",
+          "data_type": "string",
+          "examples": "none, log, inverse normal, winsorization, standardization, other",
+          "notes": "put \"none\" if no transformation applied"
+        },
+        {
+          "column": "trait_definition",
+          "required": true,
+          "description": "a brief description of how the trait was measured or defined; additional details can be provided in the README",
+          "data_type": "string",
+          "notes": "e.g. ICD codes used to identify cases/phenotypes in EHR data"
+        },
+        {
+          "column": "covariates",
+          "required": true,
+          "description": "Covariates included in the association analysis for trait adjustment",
+          "data_type": "string",
+          "multi_value_delimeter": "|",
+          "examples": "age | sex | ancestry PCs",
+          "notes": "put \"none\" if no covariates"
+        },
+        {
+          "column": "concept_id",
+          "required": true,
+          "description": "concept_id for trait from OMOP concept table",
+          "data_type": "string",
+          "references": "> omop_concept.concept_id",
+          "notes": "discuss in PRIMED phenotype WG"
+        },
+        {
+          "column": "mapped_trait",
+          "description": "Experimental Factor Ontology (EFO) term the trait was mapped to",
+          "data_type": "string",
+          "notes": "mapped_trait value used in GWAS Catalog"
+        },
+        {
+          "column": "reference_assembly",
+          "required": true,
+          "description": "Reference genome assembly that the submitted data is mapped to",
+          "data_type": "enumeration",
+          "enumerations": ["GRCh38", "GRCh37", "NCBI36", "NCBI35", "NCBI34"],
+          "examples": "GRCh38"
+        },
+        {
+          "column": "dbsnp_build_version",
+          "description": "dbSNP build for the rsIDS included in GSR files",
+          "data_type": "string"
+        },
+        {
+          "column": "n_variants",
+          "required": true,
+          "description": "Total number of variants in the analysis results across all chromosomes",
+          "data_type": "integer",
+          "examples": "1000000",
+          "notes": "This will be used for a QC step to check data integrity of submitted data"
+        },
+        {
+          "column": "min_MAF_filter",
+          "description": "minimum minor allele frequency filter",
+          "data_type": "float",
+          "examples": "0.01"
+        },
+        {
+          "column": "min_MAC_filter",
+          "description": "minimum minor allele count filter",
+          "data_type": "integer",
+          "examples": "20"
+        },
+        {
+          "column": "genotyping_technology",
+          "required": true,
+          "description": "The genotyping technology used for detecting variants",
+          "data_type": "enumeration",
+          "enumerations": ["genome-wide array", "WGS", "exome array", "WES", "other array"],
+          "multi_value_delimeter": "|"
+        },
+        {
+          "column": "genotyping_platform",
+          "required": true,
+          "description": "Genotyping platform description including manufacturer, array name, sequencer name",
+          "data_type": "string",
+          "multi_value_delimeter": "|",
+          "examples": ["Illumina GSA", "Illumina Omni-2.5", "Illumina HiSeq", "Affymetrix"],
+          "notes": "put \"unavailable\" if unknown"
+        },
+        {
+          "column": "is_imputed",
+          "required": true,
+          "description": "Indicator of whether the analysis performed using imputed genotypes or dosages",
+          "data_type": "boolean",
+          "enumerations": ["TRUE", "FALSE"],
+          "examples": true
+        },
+        {
+          "column": "imputation_reference_panel",
+          "required": "CONDITIONAL (is_imputed = TRUE)",
+          "description": "Reference panel use for imputation",
+          "data_type": "enumeration",
+          "enumerations": ["1000 Genomes", "HRC", "TOPMed", "Other"],
+          "examples": "TOPMed",
+          "notes": "Put \"Other\" if not one of the common reference panels listed. Can include further information in imputation_reference_panel_detail or README"
+        },
+        {
+          "column": "imputation_reference_panel_detail",
+          "required": "CONDITIONAL (is_imputed = TRUE)",
+          "description": "Details of the imputation reference panel; e.g. version number or name of panel when imputation_reference_panel = \"Other\"",
+          "data_type": "string",
+          "examples": "TOPMed r2",
+          "notes": "version number or name of \"other\" include N/A"
+        },
+        {
+          "column": "min_Rsq_filter",
+          "required": "CONDITIONAL (is_imputed = TRUE)",
+          "description": "minimum imputation Rsq value for filtering imputed variants",
+          "data_type": "float",
+          "examples": "0.3",
+          "notes": "If no filter, enter value of 0"
+        },
+        {
+          "column": "n_samp",
+          "required": true,
+          "description": "Total sample size in the analysis",
+          "data_type": "integer",
+          "notes": "When different markers have different sample sizes, e.g, due to missing genotypes, use max sample size across markers"
+        },
+        {
+          "column": "n_case",
+          "required": "CONDITIONAL (trait_type = binary)",
+          "description": "Number of cases",
+          "data_type": "integer",
+          "notes": "When different markers have different sample sizes, e.g, due to missing genotypes, use max number of cases across markers"
+        },
+        {
+          "column": "n_ctrl",
+          "required": "CONDITIONAL (trait_type = binary)",
+          "description": "Number of controls",
+          "data_type": "integer",
+          "notes": "When different markers have different sample sizes, e.g, due to missing genotypes, use max number of controls across markers"
+        },
+        {
+          "column": "eff_sample_size",
+          "required": true,
+          "description": "effective sample size\n= n_samp for quantitative traits \n= 4/(1/n_case + 1/n_ctrl) for binary traits",
+          "data_type": "float",
+          "notes": "When different markers have different sample sizes, e.g, due to missing genotypes, use max sample size across markers"
+        },
+        {
+          "column": "proportion_female",
+          "description": "proportion of female participants",
+          "data_type": "float",
+          "examples": "0.64"
+        },
+        {
+          "column": "age_mean",
+          "description": "mean age of study participants",
+          "data_type": "float"
+        },
+        {
+          "column": "age_median",
+          "description": "median age of study participants",
+          "data_type": "float"
+        },
+        {
+          "column": "age_min",
+          "description": "minimum age of study participants",
+          "data_type": "float"
+        },
+        {
+          "column": "age_max",
+          "description": "maximum age of study participants",
+          "data_type": "float"
+        },
+        {
+          "column": "case_age_mean",
+          "description": "mean age of study cases",
+          "data_type": "float"
+        },
+        {
+          "column": "case_age_median",
+          "description": "median age of study cases",
+          "data_type": "float"
+        },
+        {
+          "column": "case_age_min",
+          "description": "minimum age of study cases",
+          "data_type": "float"
+        },
+        {
+          "column": "case_age_max",
+          "description": "maximum age of study cases",
+          "data_type": "float"
+        },
+        {
+          "column": "ctrl_age_mean",
+          "description": "mean age of study controls",
+          "data_type": "float"
+        },
+        {
+          "column": "ctrl_age_min",
+          "description": "minimum age of study controls",
+          "data_type": "float"
+        },
+        {
+          "column": "ctrl_age_max",
+          "description": "maximum age of study controls",
+          "data_type": "float"
+        },
+        {
+          "column": "cohorts",
+          "required": true,
+          "description": "A list of cohorts that collected the samples.",
+          "data_type": "string",
+          "multi_value_delimeter": "|"
+        },
+        {
+          "column": "is_meta_analysis",
+          "required": true,
+          "description": "Is the analysis a meta-analysis?",
+          "data_type": "boolean",
+          "examples": ["TRUE", "FALSE"],
+          "notes": "to do QC checks and ensure required feilds for meta-analysis are submitted in GSR files"
+        },
+        {
+          "column": "population_descriptors",
+          "required": true,
+          "data_type": "string",
+          "multi_value_delimeter": "|",
+          "examples": "Chinese Americans | European Americans | African Americans"
+        },
+        {
+          "column": "population_proportions",
+          "description": "proportion of participants from each population in the same order mapping to the values in the population_descriptors variable",
+          "data_type": "string",
+          "multi_value_delimeter": "|",
+          "examples": "0.7 | 0.1 | 0.2"
+        },
+        {
+          "column": "countries_of_recruitment",
+          "required": true,
+          "description": "Reported countries of recruitment",
+          "data_type": "string",
+          "multi_value_delimeter": "|",
+          "examples": "Ghana | Kenya | Nigeria"
+        },
+        {
+          "column": "countries_of_birth",
+          "description": "Reported countries of birth",
+          "data_type": "string",
+          "multi_value_delimeter": "|",
+          "examples": "Ghana | Kenya | Nigeria"
+        },
+        {
+          "column": "analysis_method",
+          "required": true,
+          "description": "The name or description of the method or computational algorithm used for GWAS.",
+          "data_type": "string",
+          "multi_value_delimeter": "|",
+          "examples": ["linear regression", "logistic regression", "LMM", "GLMM", "meta-analysis"]
+        },
+        {
+          "column": "analysis_software",
+          "description": "The name of the software used for the GWAS",
+          "data_type": "string",
+          "multi_value_delimeter": "|",
+          "examples": ["GCTA", "PLINK", "GENESIS", "SAIGE"]
+        }
+      ]
+    },
+    {
+      "table": "gsr_file",
+      "required": true,
+      "columns": [
+        {
+          "column": "gsr_file_id",
+          "primary_key": true,
+          "data_type": "string",
+          "references": "from: md5sum",
+          "notes": "AnVIL requires entity id with naming convention <table_name>_id"
+        },
+        {
+          "column": "md5sum",
+          "required": true,
+          "description": "A valid md5 checksum",
+          "data_type": "string",
+          "examples": "49ea8cf53801c7f1e2f11336fb8a29c8",
+          "notes": "(32-digit hexadecimal number)"
+        },
+        {
+          "column": "analysis_id",
+          "required": true,
+          "description": "unique identifier for a gwas in primed",
+          "data_type": "string",
+          "references": "> analysis.analysis_id",
+          "notes": "AnVIL upload workflow would generate this"
+        },
+        {
+          "column": "file_path",
+          "required": true,
+          "description": "File path in cloud storage",
+          "data_type": "string"
+        },
+        {
+          "column": "file_type",
+          "required": true,
+          "description": "Type of the file",
+          "data_type": "string",
+          "enumerations": ["data", "data dictionary", "README"],
+          "examples": "data"
+        },
+        {
+          "column": "chromosome",
+          "required": true,
+          "description": "chromosome included in the GSR data file",
+          "data_type": "string",
+          "enumerations": ["ALL", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "X", "Y", "MT"],
+          "examples": "2",
+          "notes": "\"NA\" ( for DD or README files)"
+        },
+        {
+          "column": "n_variants",
+          "required": true,
+          "description": "Count of variants in the GSR data file",
+          "data_type": "integer",
+          "examples": "15281216",
+          "notes": "\"NA\" ( for DD or README files)"
+        }
+      ]
+    }
+  ]
+}
