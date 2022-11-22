@@ -5,8 +5,13 @@ library(tidyr)
 library(jsonlite)
 
 
-# read in the data
 url <- "https://docs.google.com/spreadsheets/d/1lwVMGT-TQaWbMWvi3hdqWuEthZvaKGOImINAqXguPaM"
+model_name <- "PRIMED Genotype Data Model"
+model_description <- "Data model for genotype data in the PRIMED consortium"
+model_version <- "0.1.2"
+
+
+# read in the data
 meta <- read_sheet(url, sheet="Tables") %>%
   select(table=Table, required=Required)
 
@@ -47,9 +52,9 @@ rm(list = c("meta", "tables", "sheets_to_list"))
 # initialize leading text
 master <- list(
     # Overall File Details
-    name = "PRIMED Genotype Data Model",
-    description = "Data model for genotype data in the PRIMED consortium",
-    version = "0.1.2",
+    name = model_name,
+    description = model_description,
+    version = model_version,
     
     # Data Table Details
     tables = tab_list

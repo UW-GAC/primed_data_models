@@ -6,6 +6,9 @@ library(stringr)
 
 # link to the data
 url <- "https://docs.google.com/spreadsheets/d/16_WvgGyUsQlnNmrZbJqqPlP2vMc9USDQYGAVU3u7JH4/edit#gid=1543372699"
+model_name <- "PRIMED Phenotype Data Model"
+model_description <- "Data model for phenotype data in the PRIMED consortium"
+model_version <-"0"
 
 
 # table metadata
@@ -50,9 +53,9 @@ rm(list = c("meta", "tables", "sheets_to_list"))
 # initialize leading text
 master <- list(
     # Overall File Details
-    name = "PRIMED Phenotype Data Model",
-    description = "Data model for phenotype data in the PRIMED consortium",
-    version = "0",
+    name = model_name,
+    description = model_description,
+    version = model_version,
     
     # Data Table Details
     tables = tab_list

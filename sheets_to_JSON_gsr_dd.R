@@ -6,6 +6,9 @@ library(stringr)
 
 # link to the data
 url <- "https://docs.google.com/spreadsheets/d/1xfSQqRQIq6pGkJ5jzzv2QhetmX5boaEZoNECpDwXe5I"
+model_name <- "PRIMED GSR Data Dictionary"
+model_description <- "Data dictionary for Genomic Summary Results in the PRIMED consortium"
+model_version <- "0.1.2"
 
 
 # table metadata
@@ -48,9 +51,9 @@ rm(list = c("meta", "tables", "sheets_to_list"))
 # initialize leading text
 master <- list(
     # Overall File Details
-    name = "PRIMED GSR Data Dictionary",
-    description = "Data dictionary for Genomic Summary Results in the PRIMED consortium",
-    version = "0.1.2",
+    name = model_name,
+    description = model_description,
+    version = model_version,
     
     # Data Table Details
     tables = tab_list
