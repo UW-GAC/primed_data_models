@@ -9,7 +9,7 @@ library(jsonlite)
 url <- "https://docs.google.com/spreadsheets/d/1xfSQqRQIq6pGkJ5jzzv2QhetmX5boaEZoNECpDwXe5I"
 model_name <- "PRIMED GSR Data Model"
 model_description <- "Data model for Genomic Summary Results in the PRIMED consortium"
-model_version <- "0.1.2"
+model_version <- "0.1.3"
 
 
 # table metadata
@@ -67,7 +67,7 @@ rm(list = c("tmp"))
 source("sheets_to_list.R")
 tab_list <- sheets_to_list(apply(meta, 1, as.list), tables)
 rm(list = c("meta", "tables", "sheets_to_list"))
-q
+
 
 # initialize leading text
 master <- list(

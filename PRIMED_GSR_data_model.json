@@ -1,7 +1,7 @@
 {
   "name": "PRIMED GSR Data Model",
   "description": "Data model for Genomic Summary Results in the PRIMED consortium",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "tables": [
     {
       "table": "analysis",
@@ -217,9 +217,9 @@
           "notes": "version number or name of 'other' include N/A"
         },
         {
-          "column": "min_Rsq_filter",
+          "column": "imputation_quality_filter",
           "required": "CONDITIONAL (is_imputed = TRUE)",
-          "description": "minimum imputation Rsq value for filtering imputed variants",
+          "description": "minimum imputation quality value (e.g. Rsq, info) for filtering imputed variants",
           "data_type": "float",
           "examples": "0.3",
           "notes": "If no filter, enter value of 0"
@@ -246,7 +246,7 @@
           "notes": "When different markers have different sample sizes, e.g, due to missing genotypes, use max number of controls across markers"
         },
         {
-          "column": "eff_sample_size",
+          "column": "n_effective",
           "required": true,
           "description": "effective sample size = n_samp for quantitative traits  = 4/(1/n_case + 1/n_ctrl) for binary traits",
           "data_type": "float",

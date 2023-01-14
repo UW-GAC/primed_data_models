@@ -8,7 +8,7 @@ library(stringr)
 url <- "https://docs.google.com/spreadsheets/d/1xfSQqRQIq6pGkJ5jzzv2QhetmX5boaEZoNECpDwXe5I"
 model_name <- "PRIMED GSR Data Dictionary"
 model_description <- "Data dictionary for Genomic Summary Results in the PRIMED consortium"
-model_version <- "0.1.2"
+model_version <- "0.1.3"
 
 
 # table metadata
