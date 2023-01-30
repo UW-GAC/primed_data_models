@@ -1,7 +1,7 @@
 {
   "name": "PRIMED GSR Data Dictionary",
   "description": "Data dictionary for Genomic Summary Results in the PRIMED consortium",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "tables": [
     {
       "table": "gsr_files_dd",
@@ -40,7 +40,7 @@
           "required": true,
           "description": "DNA strand designation",
           "data_type": "enumeration",
-          "enumerations": ["-", "+"],
+          "enumerations": ["-", "+", "forward", "reverse"],
           "examples": "-"
         },
         {
@@ -213,7 +213,6 @@
         },
         {
           "column": "heterogeneity_I2",
-          "required": "CONDITIONAL (is_meta_analysis = TRUE)",
           "description": "heterogeneity I^2 statistic value",
           "data_type": "float"
         }
