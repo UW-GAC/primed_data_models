@@ -12,10 +12,10 @@ model_version <-"0"
 
 
 # table metadata
-meta <- tibble(
-  table=c("subject", "cohort_data", "cohort_metadata", "pop_descriptors", "omop_person", "omop_measurement", "omop_concept"),
-  required=TRUE
-)
+meta <- read_sheet(url, sheet="table descriptions") %>%
+    select(table=`Sheet name`) %>%
+    filter(!grepl("^example", table)) %>%
+    mutate(required=FALSE)
 
 table_names <- meta$table
 tables <- lapply(table_names, function(x) read_sheet(url, sheet=x, skip=1))
@@ -25,20 +25,37 @@ rm(list = c("table_names", "url"))
 
 # rename and reorder columns
 for (i in 1:length(tables)) {
-    tables[[i]] <- tables[[i]] %>%
+    tmp <- tables[[i]] %>%
         filter(!is.na(`Data type`)) %>% # keep only valid rows
         mutate(primary_key = ifelse(paste0(names(tables)[i], "_id") == Column, TRUE, NA)) %>%
-        select(column = Column, 
-               primary_key,
-               required = Required,
-               description = Description, 
-               data_type = `Data type`, 
-               references = References, 
-               enumerations = Enumerations, 
-               examples = Examples, 
-               notes = `Notes/comments`) %>%
-        mutate(description=gsub('"', "'", description),
-               notes=gsub('"', "'", notes)) # replace double with single quotes
+        mutate(Description=gsub('"', "'", Description), # replace double with single quote
+               Description=gsub('\n', ' ', Description), # replace newline with space
+               `Notes/comments`=gsub('"', "'", `Notes/comments`), # replace double with single quote
+               `Notes/comments`=gsub('\n', ' ', `Notes/comments`)) # replace newline with space
+    if ("Multi-value delimiter" %in% names(tmp)) {
+        tables[[i]] <- tmp %>%
+            select(column = Column, 
+                   primary_key,
+                   required = Required,
+                   description = Description, 
+                   data_type = `Data type`, 
+                   references = References, 
+                   enumerations = Enumerations, 
+                   multi_value_delimiter = `Multi-value delimiter`,
+                   examples = Examples, 
+                   notes = `Notes/comments`)
+    } else {
+        tables[[i]] <- tmp %>%
+            select(column = Column, 
+                   primary_key,
+                   required = Required,
+                   description = Description, 
+                   data_type = `Data type`, 
+                   references = References, 
+                   enumerations = Enumerations, 
+                   examples = Examples, 
+                   notes = `Notes/comments`)
+    }
 }
 
 

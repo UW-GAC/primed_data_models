@@ -5,7 +5,7 @@
   "tables": [
     {
       "table": "subject",
-      "required": true,
+      "required": false,
       "columns": [
         {
           "column": "subject_id",
@@ -26,7 +26,7 @@
           "data_type": "string"
         },
         {
-          "column": "study",
+          "column": "study_nickname",
           "required": true,
           "description": "short name for study as defined by CC",
           "data_type": "string"
@@ -58,7 +58,7 @@
     },
     {
       "table": "cohort_data",
-      "required": true,
+      "required": false,
       "columns": [
         {
           "column": "<unique_table_name>_id",
@@ -112,7 +112,7 @@
     },
     {
       "table": "cohort_metadata",
-      "required": true,
+      "required": false,
       "columns": [
         {
           "column": "table_name_id",
@@ -173,8 +173,8 @@
       ]
     },
     {
-      "table": "pop_descriptors",
-      "required": true,
+      "table": "population_descriptors",
+      "required": false,
       "columns": [
         {
           "column": "subject_id",
@@ -188,6 +188,7 @@
           "required": true,
           "description": "any descriptor used to describe individual",
           "data_type": "string",
+          "multi_value_delimiter": "|",
           "examples": "Black | Asian | Not Hispanic",
           "notes": "delimited list (delim is '|'). race and ethnicity info are in the omop-person table"
         },
@@ -196,6 +197,7 @@
           "required": true,
           "description": "type of descriptor used to describe individual",
           "data_type": "string",
+          "multi_value_delimiter": "|",
           "examples": "Race | Race | Ethnicity",
           "notes": "delimited list same length as population_descriptor (delim is '|')"
         },
@@ -212,15 +214,42 @@
       ]
     },
     {
-      "table": "omop_person",
-      "required": true,
+      "table": "population_descriptors_dataset",
+      "required": false,
+      "columns": [
+        {
+          "column": "study_nickname",
+          "required": true,
+          "description": "short name for study",
+          "data_type": "string",
+          "examples": "HPFS"
+        },
+        {
+          "column": "pop_desc_data_file_path",
+          "required": true,
+          "description": "file path to data file in cloud storage",
+          "data_type": "string",
+          "examples": "gs://blah/blah/HPFS_PopDesc_Data_20220625.txt"
+        },
+        {
+          "column": "pop_desc_dd_file_path",
+          "required": true,
+          "description": "file path to data dictionary in cloud storage",
+          "data_type": "string",
+          "examples": "gs://blah/blah/HPFS_PopDesc_DD_20220625.txt",
+          "notes": "Recommended columns for the data dictionary: var_name description values (delimited list) - if values are encoded, list them here (e.g. 1;2;3;4;5;6;7;8;999) labels (delimited list) - if values are encoded, list their meanings here (e.g. Southern European/Mediterranean;Scandanavian;Other Caucasian;African American;Hispanic;Asian;Native American;Other;Missing) source (e.g. 1992 questionnaire)"
+        }
+      ]
+    },
+    {
+      "table": "person",
+      "required": false,
       "columns": [
         {
           "column": "person_id",
+          "primary_key": true,
           "required": true,
-          "data_type": "integer",
-          "references": "> subject.subject_id",
-          "notes": "overlap with subject table"
+          "data_type": "integer"
         },
         {
           "column": "gender_concept_id",
@@ -230,20 +259,22 @@
         },
         {
           "column": "year_of_birth",
-          "required": true,
           "data_type": "integer"
         },
         {
           "column": "month_of_birth",
-          "data_type": "integer"
+          "data_type": "integer",
+          "notes": "Remove. Does not meet data privacy requirements"
         },
         {
           "column": "day_of_birth",
-          "data_type": "integer"
+          "data_type": "integer",
+          "notes": "Remove. Does not meet data privacy requirements"
         },
         {
           "column": "birth_datetime",
-          "data_type": "date"
+          "data_type": "date",
+          "notes": "Remove. Does not meet data privacy requirements"
         },
         {
           "column": "race_concept_id",
@@ -300,8 +331,8 @@
       ]
     },
     {
-      "table": "omop_measurement",
-      "required": true,
+      "table": "measurement",
+      "required": false,
       "columns": [
         {
           "column": "person_id",
@@ -313,6 +344,7 @@
         },
         {
           "column": "measurement_id",
+          "primary_key": true,
           "required": true,
           "description": "unique id for each measurement",
           "data_type": "integer"
@@ -328,12 +360,14 @@
           "column": "measurement_date",
           "required": true,
           "description": "date of measurement",
-          "data_type": "date"
+          "data_type": "date",
+          "notes": "year is okay, but not date. would need year of birth to make any calculations on age. may be best to convert to age_at_measurement."
         },
         {
           "column": "measurement_datetime",
           "description": "date and time of measurement",
-          "data_type": "date"
+          "data_type": "date",
+          "notes": "remove"
         },
         {
           "column": "measurement_type_concept_id",
@@ -373,10 +407,12 @@
         {
           "column": "provider_id",
           "description": "FK for provider responsible for initiating or obtaining measurement",
-          "data_type": "integer"
+          "data_type": "integer",
+          "notes": "what exactly is this and can this be considered identifying information"
         },
         {
           "column": "visit_occurrence_id",
+          "required": true,
           "description": "FK for visit at which measurement was obtained",
           "data_type": "string",
           "notes": "overlap with cohort data table"
@@ -394,11 +430,12 @@
       ]
     },
     {
-      "table": "omop_concept",
-      "required": true,
+      "table": "concept",
+      "required": false,
       "columns": [
         {
           "column": "concept_id",
+          "primary_key": true,
           "required": true,
           "data_type": "string",
           "examples": "313127"
