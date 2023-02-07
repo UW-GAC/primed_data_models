@@ -33,7 +33,7 @@ for (i in 1:length(tables)) {
                `Notes/comments`=gsub('"', "'", `Notes/comments`), # replace double with single quote
                `Notes/comments`=gsub('\n', ' ', `Notes/comments`), # replace newline with space
                References=ifelse(grepl("omop_concept", References), NA, References)) # remove external table reference
-    if ("Multi-value delimeter" %in% names(tmp)) {
+    if ("Multi-value delimiter" %in% names(tmp)) {
         tables[[i]] <- tmp %>%
             select(column = Column, 
                primary_key,
@@ -42,7 +42,7 @@ for (i in 1:length(tables)) {
                data_type = `Data type`, 
                references = References, 
                enumerations = Enumerations, 
-               multi_value_delimeter = `Multi-value delimeter`,
+               multi_value_delimiter = `Multi-value delimiter`,
                examples = Examples, 
                notes = `Notes/comments`)
     } else {

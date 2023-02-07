@@ -124,7 +124,7 @@
           "required": true,
           "description": "Covariates included in the association analysis for trait adjustment",
           "data_type": "string",
-          "multi_value_delimeter": "|",
+          "multi_value_delimiter": "|",
           "examples": "age | sex | ancestry PCs",
           "notes": "put 'none' if no covariates"
         },
@@ -180,14 +180,14 @@
           "description": "The genotyping technology used for detecting variants",
           "data_type": "enumeration",
           "enumerations": ["genome-wide array", "WGS", "exome array", "WES", "other array"],
-          "multi_value_delimeter": "|"
+          "multi_value_delimiter": "|"
         },
         {
           "column": "genotyping_platform",
           "required": true,
           "description": "Genotyping platform description including manufacturer, array name, sequencer name",
           "data_type": "string",
-          "multi_value_delimeter": "|",
+          "multi_value_delimiter": "|",
           "examples": ["Illumina GSA", "Illumina Omni-2.5", "Illumina HiSeq", "Affymetrix"],
           "notes": "put 'unavailable' if unknown"
         },
@@ -318,7 +318,7 @@
           "required": true,
           "description": "A list of cohorts that collected the samples.",
           "data_type": "string",
-          "multi_value_delimeter": "|"
+          "multi_value_delimiter": "|"
         },
         {
           "column": "is_meta_analysis",
@@ -332,14 +332,14 @@
           "column": "population_descriptors",
           "required": true,
           "data_type": "string",
-          "multi_value_delimeter": "|",
+          "multi_value_delimiter": "|",
           "examples": "Chinese Americans | European Americans | African Americans"
         },
         {
           "column": "population_proportions",
           "description": "proportion of participants from each population in the same order mapping to the values in the population_descriptors variable",
           "data_type": "string",
-          "multi_value_delimeter": "|",
+          "multi_value_delimiter": "|",
           "examples": "0.7 | 0.1 | 0.2"
         },
         {
@@ -347,14 +347,14 @@
           "required": true,
           "description": "Reported countries of recruitment",
           "data_type": "string",
-          "multi_value_delimeter": "|",
+          "multi_value_delimiter": "|",
           "examples": "Ghana | Kenya | Nigeria"
         },
         {
           "column": "countries_of_birth",
           "description": "Reported countries of birth",
           "data_type": "string",
-          "multi_value_delimeter": "|",
+          "multi_value_delimiter": "|",
           "examples": "Ghana | Kenya | Nigeria"
         },
         {
@@ -362,14 +362,14 @@
           "required": true,
           "description": "The name or description of the method or computational algorithm used for GWAS.",
           "data_type": "string",
-          "multi_value_delimeter": "|",
+          "multi_value_delimiter": "|",
           "examples": ["linear regression", "logistic regression", "LMM", "GLMM", "meta-analysis"]
         },
         {
           "column": "analysis_software",
           "description": "The name of the software used for the GWAS",
           "data_type": "string",
-          "multi_value_delimeter": "|",
+          "multi_value_delimiter": "|",
           "examples": ["GCTA", "PLINK", "GENESIS", "SAIGE"]
         }
       ]
