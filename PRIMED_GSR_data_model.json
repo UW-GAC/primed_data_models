@@ -1,7 +1,7 @@
 {
   "name": "PRIMED GSR Data Model",
   "description": "Data model for Genomic Summary Results in the PRIMED consortium",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "tables": [
     {
       "table": "analysis",
@@ -21,6 +21,12 @@
           "data_type": "string",
           "examples": ["GWAS Catalog", "dbGaP", "Colorado Biobank ", "PRIMED"],
           "notes": "free text short label; useful for unreleased GSR"
+        },
+        {
+          "column": "gsr_source_url",
+          "description": "URL of source (if applicable)",
+          "data_type": "string",
+          "examples": "https://pan.ukbb.broadinstitute.org/"
         },
         {
           "column": "gwas_catalog_study_id",
@@ -49,7 +55,7 @@
           "data_type": "string"
         },
         {
-          "column": "link",
+          "column": "publication_url",
           "description": "External link to the publication",
           "data_type": "string",
           "notes": "URL of publication"
@@ -279,37 +285,42 @@
           "data_type": "float"
         },
         {
-          "column": "case_age_mean",
+          "column": "age_mean_case",
           "description": "mean age of study cases",
           "data_type": "float"
         },
         {
-          "column": "case_age_median",
+          "column": "age_median_case",
           "description": "median age of study cases",
           "data_type": "float"
         },
         {
-          "column": "case_age_min",
+          "column": "age_min_case",
           "description": "minimum age of study cases",
           "data_type": "float"
         },
         {
-          "column": "case_age_max",
+          "column": "age_max_case",
           "description": "maximum age of study cases",
           "data_type": "float"
         },
         {
-          "column": "ctrl_age_mean",
+          "column": "age_mean_ctrl",
           "description": "mean age of study controls",
           "data_type": "float"
         },
         {
-          "column": "ctrl_age_min",
+          "column": "age_median_ctrl",
+          "description": "median age of study controls",
+          "data_type": "float"
+        },
+        {
+          "column": "age_min_ctrl",
           "description": "minimum age of study controls",
           "data_type": "float"
         },
         {
-          "column": "ctrl_age_max",
+          "column": "age_max_ctrl",
           "description": "maximum age of study controls",
           "data_type": "float"
         },
