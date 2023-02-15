@@ -4,13 +4,20 @@
   "version": "0",
   "tables": [
     {
-      "table": "population_descriptors",
+      "table": "population_descriptor",
       "required": false,
       "columns": [
         {
+          "column": "population_descriptor_id",
+          "primary_key": true,
+          "data_type": "string",
+          "references": "from: subject_id, population_descriptor, descriptor_type"
+        },
+        {
           "column": "subject_id",
           "required": true,
-          "data_type": "string"
+          "data_type": "string",
+          "notes": "overlap with omop-person"
         },
         {
           "column": "population_descriptor",
@@ -43,9 +50,15 @@
       ]
     },
     {
-      "table": "population_descriptors_dataset",
+      "table": "population_descriptor_dataset",
       "required": false,
       "columns": [
+        {
+          "column": "population_descriptor_dataset_id",
+          "primary_key": true,
+          "data_type": "string",
+          "references": "from: pop_desc_data_file_path"
+        },
         {
           "column": "study_nickname",
           "required": true,
