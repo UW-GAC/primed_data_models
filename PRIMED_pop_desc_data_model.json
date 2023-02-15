@@ -1,0 +1,76 @@
+{
+  "name": "PRIMED Phenotype Data Model",
+  "description": "Data model for phenotype data in the PRIMED consortium",
+  "version": "0",
+  "tables": [
+    {
+      "table": "population_descriptors",
+      "required": false,
+      "columns": [
+        {
+          "column": "subject_id",
+          "required": true,
+          "data_type": "string",
+          "references": "> subject.subject_id",
+          "notes": "overlap with omop-person"
+        },
+        {
+          "column": "population_descriptor",
+          "required": true,
+          "description": "any descriptor used to describe individual",
+          "data_type": "string",
+          "multi_value_delimiter": "|",
+          "examples": "Black | Asian | Not Hispanic",
+          "notes": "delimited list (delim is '|'). race and ethnicity info are in the omop-person table"
+        },
+        {
+          "column": "descriptor_type",
+          "required": true,
+          "description": "type of descriptor used to describe individual",
+          "data_type": "string",
+          "multi_value_delimiter": "|",
+          "examples": "Race | Race | Ethnicity",
+          "notes": "delimited list same length as population_descriptor (delim is '|')"
+        },
+        {
+          "column": "country_of_recruitment",
+          "data_type": "string",
+          "examples": "USA"
+        },
+        {
+          "column": "country_of_birth",
+          "data_type": "string",
+          "examples": "USA"
+        }
+      ]
+    },
+    {
+      "table": "population_descriptors_dataset",
+      "required": false,
+      "columns": [
+        {
+          "column": "study_nickname",
+          "required": true,
+          "description": "short name for study",
+          "data_type": "string",
+          "examples": "HPFS"
+        },
+        {
+          "column": "pop_desc_data_file_path",
+          "required": true,
+          "description": "file path to data file in cloud storage",
+          "data_type": "string",
+          "examples": "gs://blah/blah/HPFS_PopDesc_Data_20220625.txt"
+        },
+        {
+          "column": "pop_desc_dd_file_path",
+          "required": true,
+          "description": "file path to data dictionary in cloud storage",
+          "data_type": "string",
+          "examples": "gs://blah/blah/HPFS_PopDesc_DD_20220625.txt",
+          "notes": "Recommended columns for the data dictionary: var_name description values (delimited list) - if values are encoded, list them here (e.g. 1;2;3;4;5;6;7;8;999) labels (delimited list) - if values are encoded, list their meanings here (e.g. Southern European/Mediterranean;Scandanavian;Other Caucasian;African American;Hispanic;Asian;Native American;Other;Missing) source (e.g. 1992 questionnaire)"
+        }
+      ]
+    }
+  ]
+}
