@@ -10,9 +10,7 @@
         {
           "column": "subject_id",
           "required": true,
-          "data_type": "string",
-          "references": "> subject.subject_id",
-          "notes": "overlap with omop-person"
+          "data_type": "string"
         },
         {
           "column": "population_descriptor",
