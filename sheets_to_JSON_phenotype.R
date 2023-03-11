@@ -2,20 +2,19 @@ library(googlesheets4)
 library(dplyr)
 library(tidyr)
 library(stringr)
+library(jsonlite)
 
 
 # link to the data
-url <- "https://docs.google.com/spreadsheets/d/16_WvgGyUsQlnNmrZbJqqPlP2vMc9USDQYGAVU3u7JH4/edit#gid=1543372699"
+url <- "https://docs.google.com/spreadsheets/d/12BBZrBaAaCmF2gGvKTtCLtuSHbj8DgdGfvwATkIo9NU"
 model_name <- "PRIMED Phenotype Data Model"
 model_description <- "Data model for phenotype data in the PRIMED consortium"
-model_version <-"0"
+model_version <-"0.1.1"
 
 
 # table metadata
-meta <- read_sheet(url, sheet="table descriptions") %>%
-    select(table=`Sheet name`) %>%
-    filter(!grepl("^example", table)) %>%
-    mutate(required=FALSE)
+meta <- read_sheet(url, sheet="Description", skip=1) %>%
+    select(table=Table, required=Required)
 
 table_names <- meta$table
 tables <- lapply(table_names, function(x) read_sheet(url, sheet=x, skip=1))
