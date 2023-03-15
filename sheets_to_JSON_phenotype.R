@@ -27,7 +27,8 @@ for (i in 1:length(tables)) {
     tmp <- tables[[i]] %>%
         filter(!is.na(`Data type`)) %>% # keep only valid rows
         mutate(primary_key = ifelse(paste0(names(tables)[i], "_id") == Column, TRUE, NA)) %>%
-        mutate(Description=gsub('"', "'", Description), # replace double with single quote
+        mutate(Required=as.logical(Required), # non-T/F values will be NA
+               Description=gsub('"', "'", Description), # replace double with single quote
                Description=gsub('\n', ' ', Description), # replace newline with space
                `Notes/comments`=gsub('"', "'", `Notes/comments`), # replace double with single quote
                `Notes/comments`=gsub('\n', ' ', `Notes/comments`)) # replace newline with space
