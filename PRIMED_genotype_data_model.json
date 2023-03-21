@@ -1,7 +1,7 @@
 {
   "name": "PRIMED Genotype Data Model",
   "description": "Data model for genotype data in the PRIMED consortium",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "tables": [
     {
       "table": "subject",
@@ -29,6 +29,11 @@
           "column": "study_nickname",
           "required": true,
           "description": "short name for study as defined by CC",
+          "data_type": "string"
+        },
+        {
+          "column": "study_cohort",
+          "description": "a distinct subgroup within a study often related to study design",
           "data_type": "string"
         },
         {
@@ -155,7 +160,8 @@
           "column": "reference_assembly",
           "required": true,
           "description": "reference genome assembly that the submitted data is mapped to",
-          "data_type": "string"
+          "data_type": "enumeration",
+          "enumerations": ["GRCh38", "GRCh37", "NCBI36", "NCBI35", "NCBI34"]
         },
         {
           "column": "dbgap_substudy_id",
@@ -197,7 +203,7 @@
           "column": "file_type",
           "required": true,
           "data_type": "enumeration",
-          "enumerations": ["README", "VCF", "VCF index", "PLINK bed", "PLINK bim", "PLINK fam", "quality metrics", "data dictionary"]
+          "enumerations": ["README", "VCF", "VCF index", "PLINK bed", "PLINK bim", "PLINK fam", "PLINK2 pgen", "PLINK2 psam", "PLINK2 pvar", "quality metrics", "data dictionary"]
         }
       ]
     },
@@ -256,7 +262,8 @@
           "column": "reference_assembly",
           "required": true,
           "description": "reference genome assembly that the submitted data is mapped to",
-          "data_type": "string"
+          "data_type": "enumeration",
+          "enumerations": ["GRCh38", "GRCh37", "NCBI36", "NCBI35", "NCBI34"]
         },
         {
           "column": "dbgap_substudy_id",
@@ -298,7 +305,7 @@
           "column": "file_type",
           "required": true,
           "data_type": "enumeration",
-          "enumerations": ["README", "VCF", "VCF index", "PLINK bed", "PLINK bim", "PLINK fam", "quality metrics", "data dictionary"]
+          "enumerations": ["README", "VCF", "VCF index", "PLINK bed", "PLINK bim", "PLINK fam", "PLINK2 pgen", "PLINK2 psam", "PLINK2 pvar", "quality metrics", "data dictionary"]
         },
         {
           "column": "chromosome",
@@ -432,7 +439,107 @@
           "column": "file_type",
           "required": true,
           "data_type": "enumeration",
-          "enumerations": ["README", "VCF", "VCF index", "PLINK bed", "PLINK bim", "PLINK fam", "quality metrics", "data dictionary"]
+          "enumerations": ["README", "VCF", "VCF index", "PLINK bed", "PLINK bim", "PLINK fam", "PLINK2 pgen", "PLINK2 psam", "PLINK2 pvar", "quality metrics", "data dictionary"]
+        },
+        {
+          "column": "chromosome",
+          "required": true,
+          "data_type": "enumeration",
+          "enumerations": ["ALL", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "X", "Y"],
+          "notes": "Leave blank where does not apply (e.g. README)"
+        }
+      ]
+    },
+    {
+      "table": "simulation_dataset",
+      "columns": [
+        {
+          "column": "simulation_dataset_id",
+          "primary_key": true,
+          "data_type": "string",
+          "references": "from: sample_set_id, source_genotypes_simulation_software, simulation_parameters, reference_assembly",
+          "notes": "AnVIL requires entity id with naming convention <table_name>_id"
+        },
+        {
+          "column": "sample_set_id",
+          "required": true,
+          "data_type": "string",
+          "references": "> sample_set.sample_set_id"
+        },
+        {
+          "column": "source_data",
+          "required": true,
+          "description": "source of input data",
+          "data_type": "string",
+          "examples": "1000 Genomes phase 3"
+        },
+        {
+          "column": "simulation_software",
+          "required": true,
+          "description": "software and version used for simulation",
+          "data_type": "string",
+          "examples": "HAPGEN2"
+        },
+        {
+          "column": "simulation_parameters",
+          "required": true,
+          "description": "description of parameters used for simulation",
+          "data_type": "string"
+        },
+        {
+          "column": "simulation_workflow",
+          "description": "URL for AnVIL workflow that ran the simulation",
+          "data_type": "string",
+          "examples": "https://anvil.terra.bio/#workspaces/primed-dev/PRIMED_admix-kit_workflow_devel/job_history/b5118c31-9495-4e9b-b77c-7c6532f2f6fb"
+        },
+        {
+          "column": "reference_assembly",
+          "required": true,
+          "description": "reference genome assembly that the submitted data is mapped to",
+          "data_type": "enumeration",
+          "enumerations": ["GRCh38", "GRCh37", "NCBI36", "NCBI35", "NCBI34"]
+        },
+        {
+          "column": "n_variants",
+          "description": "total number of simulated variants",
+          "data_type": "integer"
+        }
+      ]
+    },
+    {
+      "table": "simulation_file",
+      "required": "CONDITIONAL (simulation_dataset)",
+      "columns": [
+        {
+          "column": "simulation_file_id",
+          "primary_key": true,
+          "data_type": "string",
+          "references": "from: md5sum",
+          "notes": "AnVIL requires entity id with naming convention <table_name>_id"
+        },
+        {
+          "column": "md5sum",
+          "required": true,
+          "description": "md5 checksum for the file",
+          "data_type": "string"
+        },
+        {
+          "column": "simulation_dataset_id",
+          "required": true,
+          "data_type": "string",
+          "references": "> simulation_dataset.simulation_dataset_id"
+        },
+        {
+          "column": "file_path",
+          "required": true,
+          "description": "absolute file path in cloud storage",
+          "data_type": "string"
+        },
+        {
+          "column": "file_type",
+          "required": true,
+          "data_type": "enumeration",
+          "enumerations": ["README", "VCF", "VCF index", "PLINK bed", "PLINK bim", "PLINK fam", "PLINK2 pgen", "PLINK2 psam", "PLINK2 pvar", "quality metrics", "data dictionary", "variant info"]
         },
         {
           "column": "chromosome",
