@@ -457,7 +457,7 @@
           "column": "simulation_dataset_id",
           "primary_key": true,
           "data_type": "string",
-          "references": "from: sample_set_id, source_genotypes_simulation_software, simulation_parameters, reference_assembly",
+          "references": "from: sample_set_id, source_data, simulation_software, simulation_parameters, reference_assembly",
           "notes": "AnVIL requires entity id with naming convention <table_name>_id"
         },
         {
