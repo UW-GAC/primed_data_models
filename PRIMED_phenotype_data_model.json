@@ -1,7 +1,7 @@
 {
   "name": "PRIMED Phenotype Data Model",
   "description": "Data model for phenotype data in the PRIMED consortium",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "tables": [
     {
       "table": "subject",
@@ -76,19 +76,19 @@
         {
           "column": "population_descriptor",
           "required": true,
-          "description": "any descriptor used to describe individual",
-          "data_type": "string",
-          "multi_value_delimiter": "|",
-          "examples": "Black | Asian | Not Hispanic",
-          "notes": "delimited list (delim is '|'). race and ethnicity info are in the omop-person table"
-        },
-        {
-          "column": "descriptor_type",
-          "required": true,
-          "description": "type of descriptor used to describe individual",
+          "description": "a concept or classification scheme that categorizes people into groups (or “populations”) according to a perceived characteristic or dimension of interest",
           "data_type": "string",
           "multi_value_delimiter": "|",
           "examples": "Race | Race | Ethnicity",
+          "notes": "delimited list (delim is '|'). race and ethnicity info are in the omop-person table"
+        },
+        {
+          "column": "group_label",
+          "required": true,
+          "description": "name given to a population that describes or classifies it according to the dimension along which it was identified",
+          "data_type": "string",
+          "multi_value_delimiter": "|",
+          "examples": "Black | Asian | Not Hispanic",
           "notes": "delimited list same length as population_descriptor (delim is '|')"
         },
         {
