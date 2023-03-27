@@ -83,7 +83,7 @@
           "notes": "delimited list (delim is '|'). race and ethnicity info are in the omop-person table"
         },
         {
-          "column": "group_label",
+          "column": "population_label",
           "required": true,
           "description": "name given to a population that describes or classifies it according to the dimension along which it was identified",
           "data_type": "string",
