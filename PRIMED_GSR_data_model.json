@@ -1,7 +1,7 @@
 {
   "name": "PRIMED GSR Data Model",
   "description": "Data model for Genomic Summary Results in the PRIMED consortium",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "tables": [
     {
       "table": "analysis",
@@ -334,21 +334,28 @@
         {
           "column": "is_meta_analysis",
           "required": true,
-          "description": "Is the analysis a meta-analysis?",
+          "description": "Is the analysis a meta-analysis? Include additional details (e.g. what groups comprised the meta-analysis) in README",
           "data_type": "boolean",
-          "examples": ["TRUE", "FALSE"],
-          "notes": "to do QC checks and ensure required feilds for meta-analysis are submitted in GSR files"
+          "examples": ["TRUE", "FALSE"]
         },
         {
-          "column": "population_descriptors",
+          "column": "population_descriptor",
           "required": true,
+          "description": "the concept or classification scheme used to categorize people into populations for this analysis",
+          "data_type": "string",
+          "examples": "reported ancestry"
+        },
+        {
+          "column": "population_labels",
+          "required": true,
+          "description": "name given to a population that describes or classifies it according to the dimension along which it was identified",
           "data_type": "string",
           "multi_value_delimiter": "|",
           "examples": "Chinese Americans | European Americans | African Americans"
         },
         {
           "column": "population_proportions",
-          "description": "proportion of participants from each population in the same order mapping to the values in the population_descriptors variable",
+          "description": "proportion of participants from each population in the same order mapping to the values in the population_labels variable",
           "data_type": "string",
           "multi_value_delimiter": "|",
           "examples": "0.7 | 0.1 | 0.2"
