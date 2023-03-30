@@ -52,7 +52,8 @@
           "required": true,
           "description": "reported sex",
           "data_type": "enumeration",
-          "enumerations": ["F", "M", "X"]
+          "enumerations": ["Female", "Male", "Other"],
+          "notes": "use 'NA' for unknown"
         }
       ]
     },
