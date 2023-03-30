@@ -1,7 +1,7 @@
 {
   "name": "PRIMED Genotype Data Model",
   "description": "Data model for genotype data in the PRIMED consortium",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "tables": [
     {
       "table": "subject",
@@ -52,7 +52,8 @@
           "required": true,
           "description": "reported sex",
           "data_type": "enumeration",
-          "enumerations": ["F", "M", "X"]
+          "enumerations": ["Female", "Male", "Other"],
+          "notes": "use 'NA' for unknown"
         }
       ]
     },
@@ -439,7 +440,7 @@
           "column": "file_type",
           "required": true,
           "data_type": "enumeration",
-          "enumerations": ["README", "VCF", "VCF index", "PLINK bed", "PLINK bim", "PLINK fam", "PLINK2 pgen", "PLINK2 psam", "PLINK2 pvar", "quality metrics", "data dictionary"]
+          "enumerations": ["README", "VCF", "VCF index", "PLINK bed", "PLINK bim", "PLINK fam", "PLINK2 pgen", "PLINK2 psam", "PLINK2 pvar", "quality metrics", "data dictionary", "supporting_file"]
         },
         {
           "column": "chromosome",

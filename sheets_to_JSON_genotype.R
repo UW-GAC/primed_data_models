@@ -8,7 +8,7 @@ library(jsonlite)
 url <- "https://docs.google.com/spreadsheets/d/1lwVMGT-TQaWbMWvi3hdqWuEthZvaKGOImINAqXguPaM"
 model_name <- "PRIMED Genotype Data Model"
 model_description <- "Data model for genotype data in the PRIMED consortium"
-model_version <- "0.2.0"
+model_version <- "0.2.1"
 
 
 # read in the data
