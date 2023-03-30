@@ -153,7 +153,7 @@
           "description": "the PRIMED subject id",
           "data_type": "string",
           "references": "> subject.subject_id",
-          "notes": "references subject_id in participant table"
+          "notes": "references subject_id in subject table"
         },
         {
           "column": "age_at_observation",
@@ -213,6 +213,26 @@
           "data_type": "enumeration",
           "enumerations": ["0", "1"],
           "examples": "0"
+        }
+      ]
+    },
+    {
+      "table": "pheno_simulation",
+      "columns": [
+        {
+          "column": "pheno_simulation_id",
+          "primary_key": true,
+          "required": true,
+          "data_type": "string",
+          "notes": "must be unique"
+        },
+        {
+          "column": "subject_id",
+          "required": true,
+          "description": "the PRIMED subject id",
+          "data_type": "string",
+          "references": "> subject.subject_id",
+          "notes": "references subject_id in subject table"
         }
       ]
     }
