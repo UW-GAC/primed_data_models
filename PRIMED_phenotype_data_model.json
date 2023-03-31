@@ -65,7 +65,7 @@
           "column": "population_descriptor_id",
           "primary_key": true,
           "data_type": "string",
-          "references": "from: subject_id, population_descriptor, descriptor_type"
+          "references": "from: subject_id, population_descriptor, population_label"
         },
         {
           "column": "subject_id",
