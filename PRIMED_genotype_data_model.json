@@ -204,7 +204,7 @@
           "column": "file_type",
           "required": true,
           "data_type": "enumeration",
-          "enumerations": ["README", "VCF", "VCF index", "PLINK bed", "PLINK bim", "PLINK fam", "PLINK2 pgen", "PLINK2 psam", "PLINK2 pvar", "quality metrics", "data dictionary", "supporting_file"]
+          "enumerations": ["README", "VCF", "VCF index", "PLINK bed", "PLINK bim", "PLINK fam", "PLINK2 pgen", "PLINK2 psam", "PLINK2 pvar", "quality metrics", "data dictionary", "supporting file"]
         }
       ]
     },
@@ -306,7 +306,7 @@
           "column": "file_type",
           "required": true,
           "data_type": "enumeration",
-          "enumerations": ["README", "VCF", "VCF index", "PLINK bed", "PLINK bim", "PLINK fam", "PLINK2 pgen", "PLINK2 psam", "PLINK2 pvar", "quality metrics", "data dictionary", "supporting_file"]
+          "enumerations": ["README", "VCF", "VCF index", "PLINK bed", "PLINK bim", "PLINK fam", "PLINK2 pgen", "PLINK2 psam", "PLINK2 pvar", "quality metrics", "data dictionary", "supporting file"]
         },
         {
           "column": "chromosome",
@@ -440,7 +440,7 @@
           "column": "file_type",
           "required": true,
           "data_type": "enumeration",
-          "enumerations": ["README", "VCF", "VCF index", "PLINK bed", "PLINK bim", "PLINK fam", "PLINK2 pgen", "PLINK2 psam", "PLINK2 pvar", "quality metrics", "data dictionary", "supporting_file"]
+          "enumerations": ["README", "VCF", "VCF index", "PLINK bed", "PLINK bim", "PLINK fam", "PLINK2 pgen", "PLINK2 psam", "PLINK2 pvar", "quality metrics", "data dictionary", "supporting file"]
         },
         {
           "column": "chromosome",
