@@ -1,7 +1,7 @@
 {
   "name": "PRIMED Phenotype Data Model",
   "description": "Data model for phenotype data in the PRIMED consortium",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "tables": [
     {
       "table": "subject",
@@ -222,6 +222,26 @@
       "columns": [
         {
           "column": "pheno_simulation_id",
+          "primary_key": true,
+          "required": true,
+          "data_type": "string",
+          "notes": "must be unique"
+        },
+        {
+          "column": "subject_id",
+          "required": true,
+          "description": "the PRIMED subject id",
+          "data_type": "string",
+          "references": "> subject.subject_id",
+          "notes": "references subject_id in subject table"
+        }
+      ]
+    },
+    {
+      "table": "pheno_unharmonized",
+      "columns": [
+        {
+          "column": "pheno_unharmonized_id",
           "primary_key": true,
           "required": true,
           "data_type": "string",
