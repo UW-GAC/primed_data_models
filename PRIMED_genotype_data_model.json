@@ -32,11 +32,6 @@
           "data_type": "string"
         },
         {
-          "column": "study_cohort",
-          "description": "a distinct subgroup within a study often related to study design",
-          "data_type": "string"
-        },
-        {
           "column": "dbgap_submission",
           "description": "flag if subject has been submitted to dbGaP",
           "data_type": "boolean",
