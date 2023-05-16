@@ -1,7 +1,7 @@
 {
   "name": "PRIMED Genotype Data Model",
   "description": "Data model for genotype data in the PRIMED consortium",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "tables": [
     {
       "table": "subject",
@@ -510,7 +510,7 @@
           "column": "simulation_file_id",
           "primary_key": true,
           "data_type": "string",
-          "references": "from: md5sum",
+          "references": "from: file_path",
           "notes": "AnVIL requires entity id with naming convention <table_name>_id"
         },
         {
