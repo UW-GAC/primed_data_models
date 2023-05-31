@@ -1,7 +1,7 @@
 {
   "name": "PRIMED Genotype Data Model",
   "description": "Data model for genotype data in the PRIMED consortium",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "tables": [
     {
       "table": "subject",
@@ -23,13 +23,15 @@
           "column": "consent_code",
           "required": true,
           "description": "consent abbreviation (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4721915/table/pgen.1005772.t001/?report=objectonly)",
-          "data_type": "string"
+          "data_type": "string",
+          "examples": ["GRU", "HMB-IRB"]
         },
         {
           "column": "study_nickname",
           "required": true,
           "description": "short name for study as defined by CC",
-          "data_type": "string"
+          "data_type": "string",
+          "examples": ["UKBB", "JHS", "ARIC"]
         },
         {
           "column": "dbgap_submission",
@@ -47,8 +49,7 @@
           "required": true,
           "description": "reported sex",
           "data_type": "enumeration",
-          "enumerations": ["Female", "Male", "Other"],
-          "notes": "use 'NA' for unknown"
+          "enumerations": ["Female", "Male", "Other", "Unknown"]
         }
       ]
     },
@@ -79,7 +80,7 @@
           "required": true,
           "description": "tissue type of sample (UBERON concepts)",
           "data_type": "string",
-          "examples": ["UBERON:0000178 (whole blood)", "UBERON:0000479 (tissue)", "UBERON:0001836 (saliva)", "UBERON:0006956 (buccal mucosa)"]
+          "examples": ["UBERON:0000178 (whole blood)", "UBERON:0000479 (tissue)", "UBERON:0001836 (saliva)", "UBERON:0006956 (buccal mucosa)", "Unknown"]
         },
         {
           "column": "age_at_sample_collection",
@@ -88,8 +89,9 @@
         },
         {
           "column": "batch",
-          "description": "processing batch for sample (e.g. genotyping plate)",
-          "data_type": "string"
+          "description": "processing batch for sample",
+          "data_type": "string",
+          "examples": "genotyping plate"
         }
       ]
     },
@@ -137,20 +139,23 @@
         {
           "column": "array_manufacturer",
           "required": true,
-          "description": "name of array manufacturer (e.g. Illumina, Affymetrix)",
-          "data_type": "string"
+          "description": "name of array manufacturer",
+          "data_type": "string",
+          "examples": ["Illumina", "Affymetrix"]
         },
         {
           "column": "array_name",
           "required": true,
-          "description": "name of genotyping array (e.g. OmniExpress)",
-          "data_type": "string"
+          "description": "name of genotyping array",
+          "data_type": "string",
+          "examples": "OmniExpress"
         },
         {
           "column": "genotype_calling_software",
           "required": true,
-          "description": "software and version used for genotype calling (e.g. GenomeStudio v2.0.5)",
-          "data_type": "string"
+          "description": "software and version used for genotype calling",
+          "data_type": "string",
+          "examples": "GenomeStudio v2.0.5"
         },
         {
           "column": "reference_assembly",
@@ -227,32 +232,37 @@
         },
         {
           "column": "source_genotypes",
-          "description": "source of input data (e.g. array name, WES, targeted sequencing)",
-          "data_type": "string"
+          "description": "source of input data",
+          "data_type": "string",
+          "examples": ["array name", "WES", "targeted sequencing"]
         },
         {
           "column": "reference_panel",
           "required": true,
-          "description": "reference panel with version (e.g. 1000G Phase 3, TOPMed version 2)",
-          "data_type": "string"
+          "description": "reference panel with version",
+          "data_type": "string",
+          "examples": ["1000G Phase 3", "TOPMed version 2"]
         },
         {
           "column": "imputation_software",
           "required": true,
-          "description": "software and version used for imputation (e.g. IMPUTE2 v2.3.2)",
-          "data_type": "string"
+          "description": "software and version used for imputation",
+          "data_type": "string",
+          "examples": "IMPUTE2 v2.3.2"
         },
         {
           "column": "phasing_software",
           "required": true,
-          "description": "software and version used for phasing (e.g. SHAPEIT v2.12)",
-          "data_type": "string"
+          "description": "software and version used for phasing",
+          "data_type": "string",
+          "examples": "SHAPEIT v2.12"
         },
         {
           "column": "quality_filter",
           "required": true,
-          "description": "description of quality filter applied to data (e.g. info > 0.9)",
-          "data_type": "string"
+          "description": "description of quality filter applied to data",
+          "data_type": "string",
+          "examples": "info > 0.9"
         },
         {
           "column": "reference_assembly",
@@ -307,8 +317,8 @@
           "column": "chromosome",
           "required": true,
           "data_type": "enumeration",
-          "enumerations": ["ALL", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "X", "Y"],
-          "notes": "Leave blank where does not apply (e.g. README)"
+          "enumerations": ["ALL", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "X", "Y", "None"],
+          "notes": "Use 'None' where chromosome does not apply (e.g. README)"
         }
       ]
     },
@@ -344,8 +354,9 @@
         {
           "column": "alignment_method",
           "required": true,
-          "description": "alignment method used (e.g. BWA-MEM)",
-          "data_type": "string"
+          "description": "alignment method used",
+          "data_type": "string",
+          "examples": "BWA-MEM"
         },
         {
           "column": "functional_equivalence_standard",
@@ -355,7 +366,7 @@
         {
           "column": "sequencing_assay",
           "required": true,
-          "description": "type of sequencing assay performed (e.g. WGS, WES)",
+          "description": "type of sequencing assay performed",
           "data_type": "enumeration",
           "enumerations": ["WGS", "WES", "targeted"]
         },
@@ -377,8 +388,9 @@
         {
           "column": "seq_platform",
           "required": true,
-          "description": "sequencing platform used (e.g. Illumina HiSeq X)",
-          "data_type": "string"
+          "description": "sequencing platform used",
+          "data_type": "string",
+          "examples": "Illumina HiSeq X"
         },
         {
           "column": "average_target_size",
@@ -441,8 +453,8 @@
           "column": "chromosome",
           "required": true,
           "data_type": "enumeration",
-          "enumerations": ["ALL", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "X", "Y"],
-          "notes": "Leave blank where does not apply (e.g. README)"
+          "enumerations": ["ALL", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "X", "Y", "None"],
+          "notes": "Use 'None' where chromosome does not apply (e.g. README)"
         }
       ]
     },
@@ -541,8 +553,8 @@
           "column": "chromosome",
           "required": true,
           "data_type": "enumeration",
-          "enumerations": ["ALL", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "X", "Y"],
-          "notes": "Leave blank where does not apply (e.g. README)"
+          "enumerations": ["ALL", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "X", "Y", "None"],
+          "notes": "Use 'None' where chromosome does not apply (e.g. README)"
         }
       ]
     }
