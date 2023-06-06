@@ -440,14 +440,14 @@
           "data_type": "enumeration",
           "enumerations": ["ALL", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "X", "Y", "MT", "None"],
           "examples": "2",
-          "notes": "'None' for DD or README files"
+          "notes": "'None' for data dictionary or README files"
         },
         {
           "column": "n_variants",
           "description": "Count of variants in the GSR data file",
           "data_type": "integer",
           "examples": "15281216",
-          "notes": "'NA' for DD or README files"
+          "notes": "Leave blank for data dictionary or README files"
         }
       ]
     }
