@@ -23,13 +23,15 @@
           "column": "consent_code",
           "required": true,
           "description": "consent abbreviation (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4721915/table/pgen.1005772.t001/?report=objectonly)",
-          "data_type": "string"
+          "data_type": "string",
+          "examples": ["GRU", "HMB-IRB"]
         },
         {
           "column": "study_nickname",
           "required": true,
           "description": "short name for study as defined by CC",
-          "data_type": "string"
+          "data_type": "string",
+          "examples": ["UKBB", "JHS", "ARIC"]
         },
         {
           "column": "dbgap_submission",
@@ -47,8 +49,7 @@
           "required": true,
           "description": "reported sex",
           "data_type": "enumeration",
-          "enumerations": ["Female", "Male", "Other"],
-          "notes": "use 'NA' for unknown"
+          "enumerations": ["Female", "Male", "Other", "Unknown"]
         }
       ]
     },
@@ -135,11 +136,13 @@
         },
         {
           "column": "n_subjects",
+          "required": true,
           "description": "Number of unique subjects in file",
           "data_type": "integer"
         },
         {
           "column": "n_rows",
+          "required": true,
           "description": "Number of rows in file (may be > n_subjects for longitudinal data)",
           "data_type": "integer"
         }
@@ -230,6 +233,13 @@
           "notes": "AnVIL requires entity id with naming convention <table_name>_id"
         },
         {
+          "column": "description",
+          "required": true,
+          "description": "description of data in file",
+          "data_type": "string",
+          "examples": ["unformatted population descriptors", "study design variables", "simulated phenotypes", "unharmonized disease indicators", "unharmonized quantitative measurements"]
+        },
+        {
           "column": "md5sum",
           "required": true,
           "description": "md5 checksum for the file in file_path",
@@ -248,11 +258,16 @@
           "data_type": "string"
         },
         {
-          "column": "description",
+          "column": "n_subjects",
           "required": true,
-          "description": "description of data in file",
-          "data_type": "string",
-          "examples": ["unformatted population descriptors", "study design variables", "simulated phenotypes", "unharmonized disease indicators", "unharmonized quantitative measurements"]
+          "description": "Number of unique subjects in file",
+          "data_type": "integer"
+        },
+        {
+          "column": "n_rows",
+          "required": true,
+          "description": "Number of rows in file (may be > n_subjects for longitudinal data)",
+          "data_type": "integer"
         }
       ]
     }
