@@ -6,10 +6,11 @@ library(jsonlite)
 
 
 # link to the data
-url <- "https://docs.google.com/spreadsheets/d/12BBZrBaAaCmF2gGvKTtCLtuSHbj8DgdGfvwATkIo9NU"
+#url <- "https://docs.google.com/spreadsheets/d/12BBZrBaAaCmF2gGvKTtCLtuSHbj8DgdGfvwATkIo9NU"
+url <- "https://docs.google.com/spreadsheets/d/1kpWz-6QfjMPVtm62fQwm4hoxzXhR0dnKxVt02fbx9ks"
 model_name <- "PRIMED Phenotype Data Model"
 model_description <- "Data model for phenotype data in the PRIMED consortium"
-model_version <-"0.1.4"
+model_version <-"0.2.0"
 
 
 # table metadata
@@ -26,12 +27,18 @@ rm(list = c("table_names", "url"))
 for (i in 1:length(tables)) {
     tmp <- tables[[i]] %>%
         filter(!is.na(`Data type`)) %>% # keep only valid rows
-        mutate(primary_key = ifelse(paste0(names(tables)[i], "_id") == Column, TRUE, NA)) %>%
         mutate(Required=as.logical(Required), # non-T/F values will be NA
                Description=gsub('"', "'", Description), # replace double with single quote
                Description=gsub('\n', ' ', Description), # replace newline with space
                `Notes/comments`=gsub('"', "'", `Notes/comments`), # replace double with single quote
                `Notes/comments`=gsub('\n', ' ', `Notes/comments`)) # replace newline with space
+    if ("Primary key" %in% names(tmp)) {
+        tmp <- tmp %>%
+            rename(primary_key = `Primary key`)
+    } else {
+        tmp <- tmp %>%
+            mutate(primary_key = ifelse(paste0(names(tables)[i], "_id") == Column, TRUE, NA))
+    }
     if ("Multi-value delimiter" %in% names(tmp)) {
         tables[[i]] <- tmp %>%
             select(column = Column, 
