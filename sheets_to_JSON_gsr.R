@@ -9,7 +9,7 @@ library(jsonlite)
 url <- "https://docs.google.com/spreadsheets/d/1xfSQqRQIq6pGkJ5jzzv2QhetmX5boaEZoNECpDwXe5I"
 model_name <- "PRIMED GSR Data Model"
 model_description <- "Data model for Genomic Summary Results in the PRIMED consortium"
-model_version <- "0.2.2"
+model_version <- "1.0"
 
 
 # table metadata

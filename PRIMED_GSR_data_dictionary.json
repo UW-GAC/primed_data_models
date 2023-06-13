@@ -1,7 +1,7 @@
 {
   "name": "PRIMED GSR Data Dictionary",
   "description": "Data dictionary for Genomic Summary Results in the PRIMED consortium",
-  "version": "0.2.0",
+  "version": "1.0",
   "tables": [
     {
       "table": "gsr_files_dd",

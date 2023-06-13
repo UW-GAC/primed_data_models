@@ -1,7 +1,7 @@
 {
   "name": "PRIMED GSR Data Model",
   "description": "Data model for Genomic Summary Results in the PRIMED consortium",
-  "version": "0.2.2",
+  "version": "1.0",
   "tables": [
     {
       "table": "analysis",

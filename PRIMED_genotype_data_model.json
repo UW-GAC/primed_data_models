@@ -1,7 +1,7 @@
 {
   "name": "PRIMED Genotype Data Model",
   "description": "Data model for genotype data in the PRIMED consortium",
-  "version": "0.2.4",
+  "version": "1.0",
   "tables": [
     {
       "table": "subject",
