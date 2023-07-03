@@ -14,8 +14,8 @@ model_version <- "1.0"
 
 # table metadata
 meta <- tibble(
-    table=c("analysis", "gsr_file"),
-    required="TRUE"
+    table=c("analysis", "gsr_file", "gsr_files_dd"),
+    required=c("TRUE", "TRUE", "FALSE")
 )
 table_names <- meta$table
 tables <- lapply(table_names, function(x) read_sheet(url, sheet=x, skip=1, col_types="c"))
