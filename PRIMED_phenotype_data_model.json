@@ -25,7 +25,7 @@
           "required": true,
           "description": "consent abbreviation (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4721915/table/pgen.1005772.t001/?report=objectonly)",
           "data_type": "string",
-          "examples": ["GRU", "HMB-IRB"]
+          "examples": ["GRU", "HMB-IRB", "DS-CVD"]
         },
         {
           "column": "study_nickname",
@@ -827,16 +827,16 @@
         {
           "column": "t1d_1",
           "description": "indicator of Type 1 Diabetes",
-          "data_type": "binary",
+          "data_type": "enumeration",
           "enumerations": ["0", "1"],
-          "notes": "0 = 'no' 1 = 'yes'"
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
         },
         {
           "column": "t2d_1",
           "description": "indicator of Type 2 Diabetes",
-          "data_type": "binary",
+          "data_type": "enumeration",
           "enumerations": ["0", "1"],
-          "notes": "0 = 'no' 1 = 'yes'"
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
         }
       ]
     }
