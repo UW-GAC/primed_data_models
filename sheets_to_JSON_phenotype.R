@@ -9,17 +9,28 @@ library(jsonlite)
 url <- "https://docs.google.com/spreadsheets/d/1kpWz-6QfjMPVtm62fQwm4hoxzXhR0dnKxVt02fbx9ks"
 model_name <- "PRIMED Phenotype Data Model"
 model_description <- "Data model for phenotype data in the PRIMED consortium"
-model_version <-"1.0"
+model_version <-"1.1"
 
 
 # table metadata
 meta <- read_sheet(url, sheet="Description", skip=1) %>%
-    select(table=Table, required=Required)
+    select(table=Table, required=Required, url=Link)
 
-table_names <- meta$table
-tables <- lapply(table_names, function(x) read_sheet(url, sheet=x, skip=1))
-names(tables) <- table_names
-rm(list = c("table_names", "url"))
+#table_names <- meta$table
+#tables <- lapply(table_names, function(x) read_sheet(url, sheet=x, skip=1))
+#names(tables) <- table_names
+
+table_info <- meta %>% select(table_name=table, table_url=url)
+tables <- list()
+for(i in 1:dim(table_info)[1]){
+    url <- table_info$table_url[i]
+    sheet_name <- table_info$table_name[i]
+    tmp <- read_sheet(url, sheet=sheet_name, skip=1)
+    tables[[i]] <- tmp
+}
+names(tables) <- table_info$table_name
+
+rm(list = c("table_info", "url"))
 
 
 # rename and reorder columns
