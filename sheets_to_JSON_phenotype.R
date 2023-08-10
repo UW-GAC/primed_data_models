@@ -9,7 +9,7 @@ library(jsonlite)
 url <- "https://docs.google.com/spreadsheets/d/1kpWz-6QfjMPVtm62fQwm4hoxzXhR0dnKxVt02fbx9ks"
 model_name <- "PRIMED Phenotype Data Model"
 model_description <- "Data model for phenotype data in the PRIMED consortium"
-model_version <-"1.1"
+model_version <-"1.2"
 
 
 # table metadata
