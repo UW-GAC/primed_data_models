@@ -20,7 +20,7 @@ jobs:
           r-version: "4.2.3"
 
       - name: Install dependencies
-        uses: r-lib/actions/setup-r-dependencies@v3
+        uses: r-lib/actions/setup-r-dependencies@v2
         with:
           cache-version: 1
         env:
