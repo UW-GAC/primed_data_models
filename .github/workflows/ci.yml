@@ -24,5 +24,6 @@ jobs:
           install.packages("remotes")
           remotes::install_github("UW-GAC/AnvilDataModels")
         shell: Rscript {0}
+        # The GITHUB_PAT env variable is required for remotes to install from github.
         env:
           GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
