@@ -22,5 +22,5 @@ jobs:
       - name: Install dependencies
         run: |
           install.packages("remotes")
-          remotes::install_github("AnvilDataModels")
+          remotes::install_github("UW-GAC/AnvilDataModels")
         shell: Rscript {0}
