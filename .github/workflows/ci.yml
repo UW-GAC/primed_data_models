@@ -20,10 +20,9 @@ jobs:
           r-version: "4.2.3"
 
       - name: Install dependencies
-        run: |
-          install.packages("remotes")
-          remotes::install_github("UW-GAC/AnvilDataModels")
-        shell: Rscript {0}
-        # The GITHUB_PAT env variable is required for remotes to install from github.
+        uses: r-lib/actions/setup-r-dependencies@v3
+        with:
+          cache-version: 1
+          packages: github::UW-GAC/AnvilDataModels, any::sessionInfo
         env:
           GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
