@@ -24,3 +24,5 @@ jobs:
           install.packages("remotes")
           remotes::install_github("UW-GAC/AnvilDataModels")
         shell: Rscript {0}
+        env:
+          GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
