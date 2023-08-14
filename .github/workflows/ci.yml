@@ -8,6 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        data_model_file: [ 'PRIMED_phenotype_data_model.json' ]
     name: Check data model
     steps:
 
@@ -27,7 +30,7 @@ jobs:
         env:
           GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Check model file
+      - name: Check ${{ matrix.data_model_file }} file
         run: |
-          AnvilDataModels::json_to_dm("PRIMED_phenotype_data_model.json")
+          AnvilDataModels::json_to_dm("${{ matrix.data_model_file }}")
         shell: Rscript {0}
