@@ -1,7 +1,7 @@
 {
   "name": "PRIMED Genotype Data Model",
   "description": "Data model for genotype data in the PRIMED consortium",
-  "version": "1.0",
+  "version": "1.2",
   "tables": [
     {
       "table": "subject",
@@ -116,6 +116,7 @@
     },
     {
       "table": "array_dataset",
+      "required": "CONDITIONAL (array_file)",
       "columns": [
         {
           "column": "array_dataset_id",
@@ -173,7 +174,6 @@
     },
     {
       "table": "array_file",
-      "required": "CONDITIONAL (array_dataset)",
       "columns": [
         {
           "column": "array_file_id",
@@ -210,6 +210,7 @@
     },
     {
       "table": "imputation_dataset",
+      "required": "CONDITIONAL (imputation_file)",
       "columns": [
         {
           "column": "imputation_dataset_id",
@@ -280,7 +281,6 @@
     },
     {
       "table": "imputation_file",
-      "required": "CONDITIONAL (imputation_dataset)",
       "columns": [
         {
           "column": "imputation_file_id",
@@ -324,6 +324,7 @@
     },
     {
       "table": "sequencing_dataset",
+      "required": "CONDITIONAL (sequencing_file)",
       "columns": [
         {
           "column": "sequencing_dataset_id",
@@ -416,7 +417,6 @@
     },
     {
       "table": "sequencing_file",
-      "required": "CONDITIONAL (sequencing_dataset)",
       "columns": [
         {
           "column": "sequencing_file_id",
@@ -460,6 +460,7 @@
     },
     {
       "table": "simulation_dataset",
+      "required": "CONDITIONAL (simulation_file)",
       "columns": [
         {
           "column": "simulation_dataset_id",
@@ -516,7 +517,6 @@
     },
     {
       "table": "simulation_file",
-      "required": "CONDITIONAL (simulation_dataset)",
       "columns": [
         {
           "column": "simulation_file_id",
