@@ -23,6 +23,6 @@ jobs:
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
           cache-version: 1
-          packages: github::UW-GAC/AnvilDataModels, any::sessionInfo
+          packages: github::UW-GAC/AnvilDataModels, any::sessioninfo
         env:
           GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
