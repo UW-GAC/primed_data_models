@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: Check phenotype model
+    name: Check data model
     steps:
 
       - name: Checkout repository
@@ -26,3 +26,8 @@ jobs:
           packages: github::UW-GAC/AnvilDataModels, any::sessioninfo
         env:
           GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check model file
+        run: |
+          AnvilDataModels::json_to_dm("PRIMED_phenotype_data_model.json")
+        shell: Rscript {0}
