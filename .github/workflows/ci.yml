@@ -10,7 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        data_model_file: [ 'PRIMED_phenotype_data_model.json' ]
+        data_model_file: [
+          'PRIMED_phenotype_data_model.json',
+          'PRIMED_genotype_data_model.json',
+          'PRIMED_GSR_data_model.json'
+        ]
     name: Check data model
     steps:
 
