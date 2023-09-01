@@ -874,30 +874,16 @@
         {
           "column": "cad_1",
           "description": "any incident or prevalent coronary artery disease event",
-          "data_type": "binary",
+          "data_type": "enumeration",
           "enumerations": ["0", "1"],
           "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
         },
         {
           "column": "cad_ehr_1",
           "description": "ehr-defined variable",
-          "data_type": "binary",
+          "data_type": "enumeration",
           "enumerations": ["0", "1"],
           "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
-        },
-        {
-          "column": "chd_1",
-          "description": "any incident or prevalent coronary heart disease event",
-          "data_type": "binary",
-          "enumerations": ["0", "1"],
-          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
-        },
-        {
-          "column": "prevalent_or_incident_1",
-          "description": "indicator of prevalent or incident event",
-          "data_type": "categorical",
-          "enumerations": ["prevalent", "incident"],
-          "notes": "Missing values can either be left blank or set to NA"
         }
       ]
     }
