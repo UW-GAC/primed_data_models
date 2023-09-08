@@ -9,12 +9,12 @@ library(jsonlite)
 url <- "https://docs.google.com/spreadsheets/d/1kpWz-6QfjMPVtm62fQwm4hoxzXhR0dnKxVt02fbx9ks"
 model_name <- "PRIMED Phenotype Data Model"
 model_description <- "Data model for phenotype data in the PRIMED consortium"
-model_version <-"1.2"
-
+model_version <-"1.3"
 
 # table metadata
 meta <- read_sheet(url, sheet="Description", skip=1) %>%
-    select(table=Table, required=Required, url=Link)
+    select(table=Table, required=Required, url=Link) %>%
+    filter(!is.na(url)) # only keep tables with links
 
 #table_names <- meta$table
 #tables <- lapply(table_names, function(x) read_sheet(url, sheet=x, skip=1))
@@ -42,6 +42,11 @@ for (i in 1:length(tables)) {
                Description=gsub('\n', ' ', Description), # replace newline with space
                `Notes/comments`=gsub('"', "'", `Notes/comments`), # replace double with single quote
                `Notes/comments`=gsub('\n', ' ', `Notes/comments`)) # replace newline with space
+    
+    
+    nofix <- c("pilot", "subject", "population_descriptor", 
+                   "phenotype_harmonized", "phenotype_unharmonized")
+    if (names(tables)[i] %in% nofix) { # temporary
     if ("Primary key" %in% names(tmp)) {
         tmp <- tmp %>%
             rename(primary_key = `Primary key`)
@@ -49,6 +54,12 @@ for (i in 1:length(tables)) {
         tmp <- tmp %>%
             mutate(primary_key = ifelse(paste0(names(tables)[i], "_id") == Column, TRUE, NA))
     }
+    } else { # temporary
+        tmp <- tmp %>%
+            mutate(primary_key = ifelse(Column %in% c("subject_id", "age_at_obs"), TRUE, NA))
+        tmp <- tmp[-1,] # remove auto-generated primary key
+    }
+    
     if ("Multi-value delimiter" %in% names(tmp)) {
         tables[[i]] <- tmp %>%
             select(column = Column, 
