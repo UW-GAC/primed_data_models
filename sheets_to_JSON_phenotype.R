@@ -43,21 +43,12 @@ for (i in 1:length(tables)) {
                `Notes/comments`=gsub('"', "'", `Notes/comments`), # replace double with single quote
                `Notes/comments`=gsub('\n', ' ', `Notes/comments`)) # replace newline with space
     
-    
-    nofix <- c("pilot", "subject", "population_descriptor", 
-                   "phenotype_harmonized", "phenotype_unharmonized")
-    if (names(tables)[i] %in% nofix) { # temporary
     if ("Primary key" %in% names(tmp)) {
         tmp <- tmp %>%
             rename(primary_key = `Primary key`)
     } else {
         tmp <- tmp %>%
             mutate(primary_key = ifelse(paste0(names(tables)[i], "_id") == Column, TRUE, NA))
-    }
-    } else { # temporary
-        tmp <- tmp %>%
-            mutate(primary_key = ifelse(Column %in% c("subject_id", "age_at_obs"), TRUE, NA))
-        tmp <- tmp[-1,] # remove auto-generated primary key
     }
     
     if ("Multi-value delimiter" %in% names(tmp)) {
