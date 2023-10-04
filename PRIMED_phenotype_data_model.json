@@ -1,7 +1,7 @@
 {
   "name": "PRIMED Phenotype Data Model",
   "description": "Data model for phenotype data in the PRIMED consortium",
-  "version": "1.3",
+  "version": "1.4",
   "tables": [
     {
       "table": "subject",
@@ -57,6 +57,7 @@
     {
       "table": "population_descriptor",
       "url": "https://docs.google.com/spreadsheets/d/1kpWz-6QfjMPVtm62fQwm4hoxzXhR0dnKxVt02fbx9ks/edit#gid=1733510035",
+      "version": "1.0",
       "columns": [
         {
           "column": "population_descriptor_id",
@@ -203,6 +204,7 @@
     {
       "table": "pilot",
       "url": "https://docs.google.com/spreadsheets/d/1bo_I8_yOx0sXK9UcNAJ8b8DoKe8O3W4S9zzZG-y0thM/edit#gid=0",
+      "version": "1.0",
       "columns": [
         {
           "column": "subject_id",
@@ -278,6 +280,7 @@
     {
       "table": "cmqt_flags",
       "url": "https://docs.google.com/spreadsheets/d/1vQE4gHvKQUOLPaRt1bpLLfNUFp2st9qOl56zD57gob0/edit#gid=0",
+      "version": "1.0",
       "columns": [
         {
           "column": "subject_id",
@@ -422,6 +425,7 @@
     {
       "table": "cmqt_anthropometry",
       "url": "https://docs.google.com/spreadsheets/d/1vQE4gHvKQUOLPaRt1bpLLfNUFp2st9qOl56zD57gob0/edit#gid=1206657525",
+      "version": "1.0",
       "columns": [
         {
           "column": "subject_id",
@@ -475,6 +479,7 @@
     {
       "table": "cmqt_blood_pressure",
       "url": "https://docs.google.com/spreadsheets/d/1vQE4gHvKQUOLPaRt1bpLLfNUFp2st9qOl56zD57gob0/edit#gid=455811479",
+      "version": "1.0",
       "columns": [
         {
           "column": "subject_id",
@@ -511,12 +516,19 @@
           "description": "Resting diastolic blood pressure from the upper arm in a clinical setting",
           "data_type": "float",
           "examples": "80"
+        },
+        {
+          "column": "hypertension_1",
+          "description": "<description>",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"]
         }
       ]
     },
     {
       "table": "cmqt_lipids",
       "url": "https://docs.google.com/spreadsheets/d/1vQE4gHvKQUOLPaRt1bpLLfNUFp2st9qOl56zD57gob0/edit#gid=1052869785",
+      "version": "1.0",
       "columns": [
         {
           "column": "subject_id",
@@ -576,6 +588,7 @@
     {
       "table": "cmqt_hematology",
       "url": "https://docs.google.com/spreadsheets/d/1vQE4gHvKQUOLPaRt1bpLLfNUFp2st9qOl56zD57gob0/edit#gid=1535206686",
+      "version": "1.0",
       "columns": [
         {
           "column": "subject_id",
@@ -681,6 +694,7 @@
     {
       "table": "cmqt_glycemic",
       "url": "https://docs.google.com/spreadsheets/d/1vQE4gHvKQUOLPaRt1bpLLfNUFp2st9qOl56zD57gob0/edit#gid=2078107573",
+      "version": "1.0",
       "columns": [
         {
           "column": "subject_id",
@@ -731,6 +745,7 @@
     {
       "table": "cmqt_kidney_function",
       "url": "https://docs.google.com/spreadsheets/d/1vQE4gHvKQUOLPaRt1bpLLfNUFp2st9qOl56zD57gob0/edit#gid=746527944",
+      "version": "1.0",
       "columns": [
         {
           "column": "subject_id",
@@ -771,6 +786,7 @@
     {
       "table": "diabetes_diabetes",
       "url": "https://docs.google.com/spreadsheets/d/1vQE4gHvKQUOLPaRt1bpLLfNUFp2st9qOl56zD57gob0/edit#gid=1891810958",
+      "version": "1.0",
       "columns": [
         {
           "column": "subject_id",
@@ -815,6 +831,7 @@
     {
       "table": "cvd_cad",
       "url": "https://docs.google.com/spreadsheets/d/1gchIrBIPt2s_3uVEloUK1c1Rst6IxnbBm7Zwps2k31I/edit#gid=253559161",
+      "version": "1.0",
       "columns": [
         {
           "column": "subject_id",
