@@ -519,9 +519,10 @@
         },
         {
           "column": "hypertension_1",
-          "description": "<description>",
+          "description": "Indicator of whether or not a participant has a combined systolic and diastolic reading of greater than or equal to 140/90mmHg",
           "data_type": "enumeration",
-          "enumerations": ["0", "1"]
+          "enumerations": ["0", "1"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
         }
       ]
     },
@@ -870,6 +871,469 @@
           "data_type": "enumeration",
           "enumerations": ["0", "1"],
           "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        }
+      ]
+    },
+    {
+      "table": "cancer_breast",
+      "url": "https://docs.google.com/spreadsheets/d/1Gfj_EoPuYWhiNk7AaR6DOPjeTC7Nn06sF8qcoMGQ9KM/edit#gid=0",
+      "columns": [
+        {
+          "column": "subject_id",
+          "primary_key": true,
+          "required": true,
+          "description": "the PRIMED subject id",
+          "data_type": "string",
+          "references": "> subject.subject_id",
+          "notes": "references subject_id in participant table"
+        },
+        {
+          "column": "age_at_obs",
+          "primary_key": true,
+          "required": true,
+          "description": "the age at which the observation or measurement for the phenotype(s) were taken",
+          "data_type": "float",
+          "examples": "56.2"
+        },
+        {
+          "column": "visit",
+          "description": "indicator of visit or time of observation",
+          "data_type": "string",
+          "examples": ["visit_2", "baseline", "median"],
+          "notes": "this can be any value that is used consistently within the study"
+        },
+        {
+          "column": "breast_cancer_status_1",
+          "description": "whether or not the participant had breast cancer",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "age_at_diagnosis_1",
+          "description": "age at which participant was diagnosed with breast cancer",
+          "data_type": "float",
+          "notes": "may be the same as age_at_obs or not"
+        },
+        {
+          "column": "year_at_diagnosis_1",
+          "description": "year participant was diagnosed",
+          "data_type": "float",
+          "examples": "1999"
+        },
+        {
+          "column": "breast_cancer_type_1",
+          "description": "breast cancer type upon diagnosis",
+          "data_type": "enumeration",
+          "enumerations": ["unilateral", "bilateral"]
+        },
+        {
+          "column": "cancer_behavior_1",
+          "description": "behavior of the tumor",
+          "data_type": "enumeration",
+          "enumerations": ["benign", "borderline", "in_situ", "invasive"],
+          "notes": "Missing values can be left blank or set to NA"
+        },
+        {
+          "column": "her2_1",
+          "description": "human epidermal growth factor receptor 2",
+          "data_type": "enumeration",
+          "enumerations": ["positive", "negative", "unknown"]
+        },
+        {
+          "column": "pr_1",
+          "description": "progesterone receptor breast cancer cells",
+          "data_type": "enumeration",
+          "enumerations": ["positive", "negative", "unknown"]
+        },
+        {
+          "column": "er_1",
+          "description": "estrogen receptor breast cancer cells",
+          "data_type": "enumeration",
+          "enumerations": ["positive", "negative", "unknown"]
+        },
+        {
+          "column": "T_stage_clinical_1",
+          "description": "staging per diagnosis or biopsy. Note that this refers to T stage measuring tumor size.",
+          "data_type": "enumeration",
+          "enumerations": ["stage 1", "stage 2", "stage 3", "stage 4", "unstaged", "unknown"]
+        },
+        {
+          "column": "T_stage_pathological_1",
+          "description": "staging per diagnosis or biopsy. Note that this refers to T stage measuring tumor size.",
+          "data_type": "enumeration",
+          "enumerations": ["stage 1", "stage 2", "stage 3", "stage 4", "unstaged", "unknown"]
+        },
+        {
+          "column": "T_stage_uknown_1",
+          "description": "staging (clinical, pathological) is uknown",
+          "data_type": "enumeration",
+          "enumerations": ["stage 1", "stage 2", "stage 3", "stage 4", "unstaged", "unknown"]
+        },
+        {
+          "column": "T_stage_clinical_2",
+          "description": "staging per diagnosis or biopsy. Note that this refers to the general T stage and should be used if numeric T stage is not available.",
+          "data_type": "enumeration",
+          "enumerations": ["localized", "regional", "distant", "in_situ", "unknown", "unstaged"],
+          "notes": "numeric stage is preferred, if available. missing values can either be left blank or set to NA"
+        },
+        {
+          "column": "T_stage_pathological_2",
+          "description": "staging per diagnosis or biopsy. Note that this refers to the general T stage and should be used if numeric T stage is not available.",
+          "data_type": "enumeration",
+          "enumerations": ["localized", "regional", "distant", "in_situ", "unknown", "unstaged"],
+          "notes": "numeric stage is preferred, if available. missing values can either be left blank or set to NA"
+        },
+        {
+          "column": "T_stage_unknown_2",
+          "description": "staging (clinical, pathological) is uknown",
+          "data_type": "enumeration",
+          "enumerations": ["localized", "regional", "distant", "in_situ", "unknown", "unstaged"],
+          "notes": "numeric stage is preferred, if available. missing values can either be left blank or set to NA"
+        },
+        {
+          "column": "nodal_involvement_1",
+          "description": "regional lymph nodes (N)",
+          "data_type": "enumeration",
+          "enumerations": ["NX", "N0", "N1", "N2", "N3"]
+        },
+        {
+          "column": "distant_metastasis_1",
+          "description": "distant metastasis (M)",
+          "data_type": "enumeration",
+          "enumerations": ["MX", "M0", "M1"]
+        },
+        {
+          "column": "stage_system",
+          "description": "definition of staging system used (e.g., SEER, AJCC) and time period (e.g., year), if applicable",
+          "data_type": "string",
+          "examples": ["AJCC 2003", "SEER 1999"],
+          "notes": "missing values can either be left blank or set to NA"
+        },
+        {
+          "column": "grade_clinical_1",
+          "description": "grading per diagnosis or biopsy",
+          "data_type": "enumeration",
+          "enumerations": ["grade 1", "grade 2", "grade 3"],
+          "notes": "missing values can either be left blank or set to NA"
+        },
+        {
+          "column": "grade_pathological_1",
+          "description": "grading per surgical pathology",
+          "data_type": "enumeration",
+          "enumerations": ["grade 1", "grade 2", "grade 3"],
+          "notes": "missing values can either be left blank or set to NA"
+        },
+        {
+          "column": "grade_unknown_1",
+          "description": "grading determination unknown",
+          "data_type": "enumeration",
+          "enumerations": ["grade 1", "grade 2", "grade 3"],
+          "notes": "missing values can either be left blank or set to NA"
+        },
+        {
+          "column": "screening_history_1",
+          "description": "whether or not participant underwent screening for breast cancer",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "recurrence_1",
+          "description": "whether or not a recurrence occurred",
+          "data_type": "enumeration",
+          "enumerations": ["recurrence_primary", "recurrence_second_primary", "unknown", "none"]
+        },
+        {
+          "column": "surgery_1",
+          "description": "whether or not participant received surgery",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "radiotherapy_1",
+          "description": "whether or not participant received radiotherapy",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "chemotherapy_1",
+          "description": "whether or not participant received chemotherapy",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "hormone_therapy_1",
+          "description": "whether or not participant received hormone therapy. Includes oopherectomy, hysterectomy",
+          "data_type": "enumeration",
+          "enumerations": ["pharmaceutical", "surgical", "both", "none", "unknown"],
+          "notes": "Indicate hormone therapy type in the analyst comments"
+        },
+        {
+          "column": "NSAID_1",
+          "description": "use of non-steroidal anti-inflammatory drugs",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "age_at_natural_menopause_1",
+          "description": "age at which natural menopause occurred",
+          "data_type": "float",
+          "notes": "NA if menopause has not occurred"
+        },
+        {
+          "column": "post_menopausal_hormone_use_1",
+          "description": "whether or not hormone use occurred post menopause (not cancer-related use)",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "parity_1",
+          "description": "the number of pregnancies carried for at least 20 weeks",
+          "data_type": "integer"
+        },
+        {
+          "column": "age_at_first_birth_1",
+          "description": "age at which the first birth occurred",
+          "data_type": "float"
+        },
+        {
+          "column": "age_at_menarche_1",
+          "description": "age at which menarche occurred",
+          "data_type": "float"
+        },
+        {
+          "column": "deceased_1",
+          "description": "indication of whether individual is deceased",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "cause_of_death_breast_cancer_1",
+          "description": "indication of whether cause of death was due to breast cancer or other cause",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "0 = 'no, cause of death not due to breast cancer' 1 = 'yes, cause of death due to breast cancer' Missing values indicate unknown cause of death not deceased and can either be left blank or set to NA."
+        },
+        {
+          "column": "age_at_death_1",
+          "description": "age at death of individual",
+          "data_type": "float",
+          "notes": "Set to missing (either blank or NA) if individual is not deceased"
+        }
+      ]
+    },
+    {
+      "table": "cancer_prostate",
+      "url": "https://docs.google.com/spreadsheets/d/1Gfj_EoPuYWhiNk7AaR6DOPjeTC7Nn06sF8qcoMGQ9KM/edit#gid=1811888649",
+      "columns": [
+        {
+          "column": "subject_id",
+          "primary_key": true,
+          "required": true,
+          "description": "the PRIMED subject id",
+          "data_type": "string",
+          "references": "> subject.subject_id",
+          "notes": "references subject_id in participant table"
+        },
+        {
+          "column": "age_at_obs",
+          "primary_key": true,
+          "required": true,
+          "description": "the age at which the observation or measurement for the phenotype(s) were taken",
+          "data_type": "float",
+          "examples": "56.2"
+        },
+        {
+          "column": "visit",
+          "description": "indicator of visit or time of observation",
+          "data_type": "string",
+          "examples": ["visit_2", "baseline", "median"],
+          "notes": "this can be any value that is used consistently within the study"
+        },
+        {
+          "column": "prostate_cancer_status_1",
+          "description": "whether or not the participant had prostate cancer",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "age_at_diagnosis_1",
+          "description": "age at which participant was diagnosed with prostate cancer",
+          "data_type": "float",
+          "notes": "may be the same as age_at_obs or not"
+        },
+        {
+          "column": "year_at_diagnosis",
+          "description": "year participant was diagnosed",
+          "data_type": "float",
+          "examples": "1999"
+        },
+        {
+          "column": "cancer_behavior_1",
+          "description": "behavior of the tumor",
+          "data_type": "enumeration",
+          "enumerations": ["benign", "borderline", "in_situ", "invasive"],
+          "notes": "Missing values can be left blank or set to NA"
+        },
+        {
+          "column": "T_stage_clinical_1",
+          "description": "staging per diagnosis or biopsy. Note that this refers to T stage measuring tumor size.",
+          "data_type": "enumeration",
+          "enumerations": ["stage 1", "stage 2", "stage 3", "stage 4", "unstaged", "unknown"]
+        },
+        {
+          "column": "T_stage_pathological_1",
+          "description": "staging per diagnosis or biopsy. Note that this refers to T stage measuring tumor size.",
+          "data_type": "enumeration",
+          "enumerations": ["stage 1", "stage 2", "stage 3", "stage 4", "unstaged", "unknown"]
+        },
+        {
+          "column": "T_stage_uknown_1",
+          "description": "staging (clinical, pathological) is uknown",
+          "data_type": "enumeration",
+          "enumerations": ["stage 1", "stage 2", "stage 3", "stage 4", "unstaged", "unknown"]
+        },
+        {
+          "column": "T_stage_clinical_2",
+          "description": "staging per diagnosis or biopsy. Note that this refers to the general T stage and should be used if numeric T stage is not available.",
+          "data_type": "enumeration",
+          "enumerations": ["localized", "regional", "distant", "in_situ", "unknown", "unstaged"],
+          "notes": "numeric stage is preferred, if available. missing values can either be left blank or set to NA"
+        },
+        {
+          "column": "T_stage_pathological_2",
+          "description": "staging per diagnosis or biopsy. Note that this refers to the general T stage and should be used if numeric T stage is not available.",
+          "data_type": "enumeration",
+          "enumerations": ["localized", "regional", "distant", "in_situ", "unknown", "unstaged"],
+          "notes": "numeric stage is preferred, if available. missing values can either be left blank or set to NA"
+        },
+        {
+          "column": "T_stage_unknown_2",
+          "description": "staging (clinical, pathological) is uknown",
+          "data_type": "enumeration",
+          "enumerations": ["localized", "regional", "distant", "in_situ", "unknown", "unstaged"],
+          "notes": "numeric stage is preferred, if available. missing values can either be left blank or set to NA"
+        },
+        {
+          "column": "nodal_involvement_1",
+          "description": "regional lymph nodes (N)",
+          "data_type": "enumeration",
+          "enumerations": ["NX", "N0", "N1", "N2", "N3"]
+        },
+        {
+          "column": "distant_metastasis_1",
+          "description": "distant metastasis (M)",
+          "data_type": "enumeration",
+          "enumerations": ["MX", "M0", "M1"]
+        },
+        {
+          "column": "stage_system",
+          "description": "definition of staging system (e.g., SEER, AJCC) and time period (e.g., year), if applicable",
+          "data_type": "string",
+          "examples": ["AJCC 2003", "SEER 1999"],
+          "notes": "missing values can either be left blank or set to NA"
+        },
+        {
+          "column": "gleason_score_clinical_1",
+          "description": "grading per diagnosis or biopsy",
+          "data_type": "enumeration",
+          "enumerations": ["2", "3", "4", "5", "6", "7", "8", "9", "10"],
+          "notes": "missing values can either be left blank or set to NA"
+        },
+        {
+          "column": "gleason_score_pathological_1",
+          "description": "grading per surgical pathology",
+          "data_type": "enumeration",
+          "enumerations": ["2", "3", "4", "5", "6", "7", "8", "9", "10"],
+          "notes": "missing values can either be left blank or set to NA"
+        },
+        {
+          "column": "gleason_score_unknown_1",
+          "description": "grading determination unknown",
+          "data_type": "enumeration",
+          "enumerations": ["2", "3", "4", "5", "6", "7", "8", "9", "10"],
+          "notes": "missing values can either be left blank or set to NA"
+        },
+        {
+          "column": "psa_at_diagnosis_1",
+          "description": "psa score at diagnosis of prostate cancer",
+          "data_type": "float"
+        },
+        {
+          "column": "screening_history_1",
+          "description": "whether or not participant underwent screening for prostate cancer",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "recurrence_1",
+          "description": "whether or not a recurrence occurred",
+          "data_type": "enumeration",
+          "enumerations": ["recurrence_primary", "recurrence_second_primary", "unknown", "none"]
+        },
+        {
+          "column": "surgery_1",
+          "description": "whether or not participant received surgery",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "radiotherapy_1",
+          "description": "whether or not participant received radiotherapy",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "chemotherapy_1",
+          "description": "whether or not participant received chemotherapy",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "hormone_therapy_1",
+          "description": "whether or not participant received horome therapy (e.g., androgen deprivation therapy or ADT)",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "NSAID_1",
+          "description": "use of non-steroidal anti-inflammatory drugs",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "deceased_1",
+          "description": "indicator of whether individual is deceased",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "cause_of_death_prostate_cancer_1",
+          "description": "indication of whether cause of death was due to prostate cancer or other cause",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "0 = 'no, cause of death not due to prostate cancer' 1 = 'yes, cause of death due to prostate cancer' Missing values indicate unknown cause of death not deceased and can either be left blank or set to NA."
+        },
+        {
+          "column": "age_at_death_1",
+          "description": "age at death of individual",
+          "data_type": "float",
+          "notes": "Set to missing (either blank or NA) if individual is not deceased"
         }
       ]
     }
