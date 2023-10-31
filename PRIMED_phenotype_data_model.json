@@ -1,7 +1,7 @@
 {
   "name": "PRIMED Phenotype Data Model",
   "description": "Data model for phenotype data in the PRIMED consortium",
-  "version": "1.4",
+  "version": "1.5",
   "tables": [
     {
       "table": "subject",
@@ -296,7 +296,9 @@
           "primary_key": true,
           "required": true,
           "description": "the age at which the observation or measurement for the phenotype(s) were taken",
-          "data_type": "float"
+          "data_type": "float",
+          "min": " 0",
+          "max": "89"
         },
         {
           "column": "visit",
@@ -442,6 +444,8 @@
           "required": true,
           "description": "the age at which the observation or measurement for the phenotype(s) were taken",
           "data_type": "float",
+          "min": 0,
+          "max": 89,
           "examples": "56.2"
         },
         {
@@ -455,18 +459,21 @@
           "column": "height_1",
           "description": "standing body height",
           "data_type": "float",
+          "min": 0,
           "examples": "165.1"
         },
         {
           "column": "weight_1",
           "description": "body weight at baseline",
           "data_type": "float",
+          "min": 0,
           "examples": "72.574"
         },
         {
           "column": "bmi_1",
           "description": "body mass index calculated",
           "data_type": "float",
+          "min": 0,
           "examples": "26.45"
         },
         {
@@ -496,6 +503,8 @@
           "required": true,
           "description": "the age at which the observation or measurement for the phenotype(s) were taken",
           "data_type": "float",
+          "min": 0,
+          "max": 89,
           "examples": "56.2"
         },
         {
@@ -546,6 +555,8 @@
           "required": true,
           "description": "the age at which the observation or measurement for the phenotype(s) were taken",
           "data_type": "float",
+          "min": 0,
+          "max": 89,
           "examples": "56.2"
         },
         {
@@ -606,6 +617,8 @@
           "required": true,
           "description": "the age at which the observation or measurement for the phenotype(s) were taken",
           "data_type": "float",
+          "min": 0,
+          "max": 89,
           "examples": "56.2"
         },
         {
@@ -712,6 +725,8 @@
           "required": true,
           "description": "the age at which the observation or measurement for the phenotype(s) were taken",
           "data_type": "float",
+          "min": 0,
+          "max": 89,
           "examples": "56.2"
         },
         {
@@ -763,6 +778,8 @@
           "required": true,
           "description": "the age at which the observation or measurement for the phenotype(s) were taken",
           "data_type": "float",
+          "min": 0,
+          "max": 89,
           "examples": "56.2"
         },
         {
@@ -849,6 +866,8 @@
           "required": true,
           "description": "the age at which the observation or measurement for the phenotype(s) were taken",
           "data_type": "float",
+          "min": 0,
+          "max": 89,
           "examples": "56.2"
         },
         {
@@ -877,6 +896,7 @@
     {
       "table": "cancer_breast",
       "url": "https://docs.google.com/spreadsheets/d/1Gfj_EoPuYWhiNk7AaR6DOPjeTC7Nn06sF8qcoMGQ9KM/edit#gid=0",
+      "version": "1.0",
       "columns": [
         {
           "column": "subject_id",
@@ -893,6 +913,8 @@
           "required": true,
           "description": "the age at which the observation or measurement for the phenotype(s) were taken",
           "data_type": "float",
+          "min": 0,
+          "max": 89,
           "examples": "56.2"
         },
         {
@@ -913,6 +935,8 @@
           "column": "age_at_diagnosis_1",
           "description": "age at which participant was diagnosed with breast cancer",
           "data_type": "float",
+          "min": 0,
+          "max": 89,
           "notes": "may be the same as age_at_obs or not"
         },
         {
@@ -1083,6 +1107,8 @@
           "column": "age_at_natural_menopause_1",
           "description": "age at which natural menopause occurred",
           "data_type": "float",
+          "min": 0,
+          "max": 89,
           "notes": "NA if menopause has not occurred"
         },
         {
@@ -1100,12 +1126,16 @@
         {
           "column": "age_at_first_birth_1",
           "description": "age at which the first birth occurred",
-          "data_type": "float"
+          "data_type": "float",
+          "min": 0,
+          "max": 89
         },
         {
           "column": "age_at_menarche_1",
           "description": "age at which menarche occurred",
-          "data_type": "float"
+          "data_type": "float",
+          "min": 0,
+          "max": 89
         },
         {
           "column": "deceased_1",
@@ -1125,6 +1155,8 @@
           "column": "age_at_death_1",
           "description": "age at death of individual",
           "data_type": "float",
+          "min": 0,
+          "max": 89,
           "notes": "Set to missing (either blank or NA) if individual is not deceased"
         }
       ]
@@ -1132,6 +1164,7 @@
     {
       "table": "cancer_prostate",
       "url": "https://docs.google.com/spreadsheets/d/1Gfj_EoPuYWhiNk7AaR6DOPjeTC7Nn06sF8qcoMGQ9KM/edit#gid=1811888649",
+      "version": "1.0",
       "columns": [
         {
           "column": "subject_id",
