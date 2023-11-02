@@ -1,7 +1,7 @@
 {
   "name": "PRIMED Genotype Data Model",
   "description": "Data model for genotype data in the PRIMED consortium",
-  "version": "1.2",
+  "version": "1.3",
   "tables": [
     {
       "table": "subject",
@@ -198,7 +198,8 @@
           "column": "file_path",
           "required": true,
           "description": "absolute file path in cloud storage",
-          "data_type": "string"
+          "data_type": "string",
+          "is_bucket_path": true
         },
         {
           "column": "file_type",
@@ -305,7 +306,8 @@
           "column": "file_path",
           "required": true,
           "description": "absolute file path in cloud storage",
-          "data_type": "string"
+          "data_type": "string",
+          "is_bucket_path": true
         },
         {
           "column": "file_type",
@@ -441,7 +443,8 @@
           "column": "file_path",
           "required": true,
           "description": "absolute file path in cloud storage",
-          "data_type": "string"
+          "data_type": "string",
+          "is_bucket_path": true
         },
         {
           "column": "file_type",
@@ -541,7 +544,8 @@
           "column": "file_path",
           "required": true,
           "description": "absolute file path in cloud storage",
-          "data_type": "string"
+          "data_type": "string",
+          "is_bucket_path": true
         },
         {
           "column": "file_type",
