@@ -129,13 +129,15 @@
           "column": "file_path",
           "required": true,
           "description": "absolute file path in cloud storage",
-          "data_type": "string"
+          "data_type": "string",
+          "is_bucket_path": true
         },
         {
           "column": "file_readme_path",
           "required": true,
           "description": "path to the README",
-          "data_type": "string"
+          "data_type": "string",
+          "is_bucket_path": true
         },
         {
           "column": "n_subjects",
@@ -179,13 +181,15 @@
           "column": "file_path",
           "required": true,
           "description": "absolute file path in cloud storage",
-          "data_type": "string"
+          "data_type": "string",
+          "is_bucket_path": true
         },
         {
           "column": "file_dd_path",
           "required": true,
           "description": "path to the data dictionary",
-          "data_type": "string"
+          "data_type": "string",
+          "is_bucket_path": true
         },
         {
           "column": "n_subjects",
