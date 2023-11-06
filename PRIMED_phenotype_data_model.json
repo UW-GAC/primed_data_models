@@ -150,6 +150,12 @@
           "required": true,
           "description": "Number of rows in file (may be > n_subjects for longitudinal data)",
           "data_type": "integer"
+        },
+        {
+          "column": "data_model_version",
+          "description": "data model version for this table",
+          "data_type": "float",
+          "notes": "added automatically by validation workflow"
         }
       ]
     },
@@ -825,6 +831,8 @@
           "required": true,
           "description": "the age at which the observation or measurement for the phenotype(s) were taken",
           "data_type": "float",
+          "min": 0,
+          "max": 89,
           "examples": "56.2"
         },
         {
@@ -946,7 +954,7 @@
         {
           "column": "year_at_diagnosis_1",
           "description": "year participant was diagnosed",
-          "data_type": "float",
+          "data_type": "integer",
           "examples": "1999"
         },
         {
@@ -1210,7 +1218,7 @@
         {
           "column": "year_at_diagnosis",
           "description": "year participant was diagnosed",
-          "data_type": "float",
+          "data_type": "integer",
           "examples": "1999"
         },
         {
