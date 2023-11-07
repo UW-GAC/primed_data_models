@@ -9,11 +9,11 @@ library(jsonlite)
 url <- "https://docs.google.com/spreadsheets/d/1kpWz-6QfjMPVtm62fQwm4hoxzXhR0dnKxVt02fbx9ks"
 model_name <- "PRIMED Phenotype Data Model"
 model_description <- "Data model for phenotype data in the PRIMED consortium"
-model_version <-"1.4"
+model_version <-"1.5"
 
 # table metadata
 meta <- read_sheet(url, sheet="Description", skip=1, col_types="c") %>%
-    select(table=Table, required=Required, url=Link, version=Version) %>%
+    select(table=Table, required=Required, url=Link, version=`Table version`) %>%
     filter(!is.na(url)) # only keep tables with links
 
 #table_names <- meta$table
@@ -51,30 +51,31 @@ for (i in 1:length(tables)) {
             mutate(primary_key = ifelse(paste0(names(tables)[i], "_id") == Column, TRUE, NA))
     }
     
-    if ("Multi-value delimiter" %in% names(tmp)) {
-        tables[[i]] <- tmp %>%
-            select(column = Column, 
-                   primary_key,
-                   required = Required,
-                   description = Description, 
-                   data_type = `Data type`, 
-                   references = References, 
-                   enumerations = Enumerations, 
-                   multi_value_delimiter = `Multi-value delimiter`,
-                   examples = Examples, 
-                   notes = `Notes/comments`)
-    } else {
-        tables[[i]] <- tmp %>%
-            select(column = Column, 
-                   primary_key,
-                   required = Required,
-                   description = Description, 
-                   data_type = `Data type`, 
-                   references = References, 
-                   enumerations = Enumerations, 
-                   examples = Examples, 
-                   notes = `Notes/comments`)
-    }
+    lookup <- c(
+        data_type = "Data type", 
+        multi_value_delimiter = "Multi-value delimiter",
+        notes = "Notes/comments"
+    )
+    tmp <- tmp %>%
+        rename(any_of(lookup)) %>%
+        rename_with(tolower)
+    
+    keep_cols <- c(
+        "column", 
+        "primary_key",
+        "required",
+        "description", 
+        "data_type", 
+        "min",
+        "max",
+        "references", 
+        "enumerations", 
+        "multi_value_delimiter",
+        "examples", 
+        "notes"
+    )
+    tables[[i]] <- tmp %>%
+        select(any_of(keep_cols))
 }
 
 
