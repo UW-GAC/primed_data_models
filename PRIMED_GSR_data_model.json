@@ -1,7 +1,7 @@
 {
   "name": "PRIMED GSR Data Model",
   "description": "Data model for Genomic Summary Results in the PRIMED consortium",
-  "version": "1.0",
+  "version": "1.1",
   "tables": [
     {
       "table": "analysis",
@@ -423,7 +423,8 @@
           "column": "file_path",
           "required": true,
           "description": "File path in cloud storage",
-          "data_type": "string"
+          "data_type": "string",
+          "is_bucket_path": true
         },
         {
           "column": "file_type",

@@ -37,6 +37,7 @@ rm(list = c("table_info", "url"))
 for (i in 1:length(tables)) {
     tmp <- tables[[i]] %>%
         filter(!is.na(`Data type`)) %>% # keep only valid rows
+        mutate(is_bucket_path = ifelse(grepl("file_.*path", Column), TRUE, NA)) %>%
         mutate(Required=as.logical(Required), # non-T/F values will be NA
                Description=gsub('"', "'", Description), # replace double with single quote
                Description=gsub('\n', ' ', Description), # replace newline with space
@@ -70,6 +71,7 @@ for (i in 1:length(tables)) {
         "max",
         "references", 
         "enumerations", 
+        "is_bucket_path",
         "multi_value_delimiter",
         "examples", 
         "notes"
