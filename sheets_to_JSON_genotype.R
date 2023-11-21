@@ -8,7 +8,7 @@ library(jsonlite)
 url <- "https://docs.google.com/spreadsheets/d/1lwVMGT-TQaWbMWvi3hdqWuEthZvaKGOImINAqXguPaM"
 model_name <- "PRIMED Genotype Data Model"
 model_description <- "Data model for genotype data in the PRIMED consortium"
-model_version <- "1.2"
+model_version <- "1.3"
 
 
 # read in the data
@@ -27,6 +27,7 @@ rm(list = c("table_names", "url"))
 for (i in 1:length(tables)) {
     tables[[i]] <- tables[[i]] %>%
         mutate(primary_key = ifelse(paste0(names(tables)[i], "_id") == Column, TRUE, NA)) %>%
+        mutate(is_bucket_path = ifelse(Column == "file_path", TRUE, NA)) %>%
         select(column = Column, 
                primary_key,
                required = Required,
@@ -34,6 +35,7 @@ for (i in 1:length(tables)) {
                data_type = `Data type`, 
                references = References, 
                enumerations = Enumerations, 
+               is_bucket_path,
                examples = Examples, 
                notes = `Notes/comments`) %>%
         mutate(description=gsub('"', "'", description),
