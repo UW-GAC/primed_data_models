@@ -9,7 +9,7 @@ library(jsonlite)
 url <- "https://docs.google.com/spreadsheets/d/1xfSQqRQIq6pGkJ5jzzv2QhetmX5boaEZoNECpDwXe5I"
 model_name <- "PRIMED GSR Data Model"
 model_description <- "Data model for Genomic Summary Results in the PRIMED consortium"
-model_version <- "1.0"
+model_version <- "1.1"
 
 
 # table metadata
@@ -28,35 +28,37 @@ for (i in 1:length(tables)) {
     tmp <- tables[[i]] %>%
         filter(!is.na(`Data type`)) %>% # keep only valid rows
         mutate(primary_key = ifelse(paste0(names(tables)[i], "_id") == Column, TRUE, NA)) %>%
+        mutate(is_bucket_path = ifelse(Column == "file_path", TRUE, NA)) %>%
         mutate(Description=gsub('"', "'", Description), # replace double with single quote
                Description=gsub('\n', ' ', Description), # replace newline with space
                `Notes/comments`=gsub('"', "'", `Notes/comments`), # replace double with single quote
                `Notes/comments`=gsub('\n', ' ', `Notes/comments`), # replace newline with space
                References=ifelse(grepl("omop_concept", References), NA, References)) # remove external table reference
-    if ("Multi-value delimiter" %in% names(tmp)) {
-        tables[[i]] <- tmp %>%
-            select(column = Column, 
-               primary_key,
-               required = Required,
-               description = Description, 
-               data_type = `Data type`, 
-               references = References, 
-               enumerations = Enumerations, 
-               multi_value_delimiter = `Multi-value delimiter`,
-               examples = Examples, 
-               notes = `Notes/comments`)
-    } else {
-        tables[[i]] <- tmp %>%
-            select(column = Column, 
-               primary_key,
-               required = Required,
-               description = Description, 
-               data_type = `Data type`, 
-               references = References, 
-               enumerations = Enumerations, 
-               examples = Examples, 
-               notes = `Notes/comments`)
-    }
+    
+    lookup <- c(
+        data_type = "Data type", 
+        multi_value_delimiter = "Multi-value delimiter",
+        notes = "Notes/comments"
+    )
+    tmp <- tmp %>%
+        rename(any_of(lookup)) %>%
+        rename_with(tolower)
+    
+    keep_cols <- c(
+        "column", 
+        "primary_key",
+        "required",
+        "description", 
+        "data_type", 
+        "references", 
+        "enumerations", 
+        "is_bucket_path",
+        "multi_value_delimiter",
+        "examples", 
+        "notes"
+    )
+    tables[[i]] <- tmp %>%
+        select(any_of(keep_cols))
 }
 rm(list = c("tmp"))
 

@@ -9,12 +9,12 @@ library(jsonlite)
 url <- "https://docs.google.com/spreadsheets/d/1kpWz-6QfjMPVtm62fQwm4hoxzXhR0dnKxVt02fbx9ks"
 model_name <- "PRIMED Phenotype Data Model"
 model_description <- "Data model for phenotype data in the PRIMED consortium"
-model_version <-"1.2"
-
+model_version <-"1.5"
 
 # table metadata
-meta <- read_sheet(url, sheet="Description", skip=1) %>%
-    select(table=Table, required=Required, url=Link)
+meta <- read_sheet(url, sheet="Description", skip=1, col_types="c") %>%
+    select(table=Table, required=Required, url=Link, version=`Table version`) %>%
+    filter(!is.na(url)) # only keep tables with links
 
 #table_names <- meta$table
 #tables <- lapply(table_names, function(x) read_sheet(url, sheet=x, skip=1))
@@ -37,11 +37,13 @@ rm(list = c("table_info", "url"))
 for (i in 1:length(tables)) {
     tmp <- tables[[i]] %>%
         filter(!is.na(`Data type`)) %>% # keep only valid rows
+        mutate(is_bucket_path = ifelse(grepl("file_.*path", Column), TRUE, NA)) %>%
         mutate(Required=as.logical(Required), # non-T/F values will be NA
                Description=gsub('"', "'", Description), # replace double with single quote
                Description=gsub('\n', ' ', Description), # replace newline with space
                `Notes/comments`=gsub('"', "'", `Notes/comments`), # replace double with single quote
                `Notes/comments`=gsub('\n', ' ', `Notes/comments`)) # replace newline with space
+    
     if ("Primary key" %in% names(tmp)) {
         tmp <- tmp %>%
             rename(primary_key = `Primary key`)
@@ -49,30 +51,33 @@ for (i in 1:length(tables)) {
         tmp <- tmp %>%
             mutate(primary_key = ifelse(paste0(names(tables)[i], "_id") == Column, TRUE, NA))
     }
-    if ("Multi-value delimiter" %in% names(tmp)) {
-        tables[[i]] <- tmp %>%
-            select(column = Column, 
-                   primary_key,
-                   required = Required,
-                   description = Description, 
-                   data_type = `Data type`, 
-                   references = References, 
-                   enumerations = Enumerations, 
-                   multi_value_delimiter = `Multi-value delimiter`,
-                   examples = Examples, 
-                   notes = `Notes/comments`)
-    } else {
-        tables[[i]] <- tmp %>%
-            select(column = Column, 
-                   primary_key,
-                   required = Required,
-                   description = Description, 
-                   data_type = `Data type`, 
-                   references = References, 
-                   enumerations = Enumerations, 
-                   examples = Examples, 
-                   notes = `Notes/comments`)
-    }
+    
+    lookup <- c(
+        data_type = "Data type", 
+        multi_value_delimiter = "Multi-value delimiter",
+        notes = "Notes/comments"
+    )
+    tmp <- tmp %>%
+        rename(any_of(lookup)) %>%
+        rename_with(tolower)
+    
+    keep_cols <- c(
+        "column", 
+        "primary_key",
+        "required",
+        "description", 
+        "data_type", 
+        "min",
+        "max",
+        "references", 
+        "enumerations", 
+        "is_bucket_path",
+        "multi_value_delimiter",
+        "examples", 
+        "notes"
+    )
+    tables[[i]] <- tmp %>%
+        select(any_of(keep_cols))
 }
 
 

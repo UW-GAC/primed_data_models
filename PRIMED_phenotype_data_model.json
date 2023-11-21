@@ -1,7 +1,7 @@
 {
   "name": "PRIMED Phenotype Data Model",
   "description": "Data model for phenotype data in the PRIMED consortium",
-  "version": "1.2",
+  "version": "1.5",
   "tables": [
     {
       "table": "subject",
@@ -57,6 +57,7 @@
     {
       "table": "population_descriptor",
       "url": "https://docs.google.com/spreadsheets/d/1kpWz-6QfjMPVtm62fQwm4hoxzXhR0dnKxVt02fbx9ks/edit#gid=1733510035",
+      "version": "1.0",
       "columns": [
         {
           "column": "population_descriptor_id",
@@ -128,13 +129,15 @@
           "column": "file_path",
           "required": true,
           "description": "absolute file path in cloud storage",
-          "data_type": "string"
+          "data_type": "string",
+          "is_bucket_path": true
         },
         {
           "column": "file_readme_path",
           "required": true,
           "description": "path to the README",
-          "data_type": "string"
+          "data_type": "string",
+          "is_bucket_path": true
         },
         {
           "column": "n_subjects",
@@ -184,13 +187,15 @@
           "column": "file_path",
           "required": true,
           "description": "absolute file path in cloud storage",
-          "data_type": "string"
+          "data_type": "string",
+          "is_bucket_path": true
         },
         {
           "column": "file_dd_path",
           "required": true,
           "description": "path to the data dictionary",
-          "data_type": "string"
+          "data_type": "string",
+          "is_bucket_path": true
         },
         {
           "column": "n_subjects",
@@ -209,6 +214,7 @@
     {
       "table": "pilot",
       "url": "https://docs.google.com/spreadsheets/d/1bo_I8_yOx0sXK9UcNAJ8b8DoKe8O3W4S9zzZG-y0thM/edit#gid=0",
+      "version": "1.0",
       "columns": [
         {
           "column": "subject_id",
@@ -284,6 +290,7 @@
     {
       "table": "cmqt_flags",
       "url": "https://docs.google.com/spreadsheets/d/1vQE4gHvKQUOLPaRt1bpLLfNUFp2st9qOl56zD57gob0/edit#gid=0",
+      "version": "1.0",
       "columns": [
         {
           "column": "subject_id",
@@ -299,7 +306,9 @@
           "primary_key": true,
           "required": true,
           "description": "the age at which the observation or measurement for the phenotype(s) were taken",
-          "data_type": "float"
+          "data_type": "float",
+          "min": " 0",
+          "max": "89"
         },
         {
           "column": "visit",
@@ -428,6 +437,7 @@
     {
       "table": "cmqt_anthropometry",
       "url": "https://docs.google.com/spreadsheets/d/1vQE4gHvKQUOLPaRt1bpLLfNUFp2st9qOl56zD57gob0/edit#gid=1206657525",
+      "version": "1.0",
       "columns": [
         {
           "column": "subject_id",
@@ -444,6 +454,8 @@
           "required": true,
           "description": "the age at which the observation or measurement for the phenotype(s) were taken",
           "data_type": "float",
+          "min": 0,
+          "max": 89,
           "examples": "56.2"
         },
         {
@@ -457,18 +469,21 @@
           "column": "height_1",
           "description": "standing body height",
           "data_type": "float",
+          "min": 0,
           "examples": "165.1"
         },
         {
           "column": "weight_1",
           "description": "body weight at baseline",
           "data_type": "float",
+          "min": 0,
           "examples": "72.574"
         },
         {
           "column": "bmi_1",
           "description": "body mass index calculated",
           "data_type": "float",
+          "min": 0,
           "examples": "26.45"
         },
         {
@@ -481,6 +496,7 @@
     {
       "table": "cmqt_blood_pressure",
       "url": "https://docs.google.com/spreadsheets/d/1vQE4gHvKQUOLPaRt1bpLLfNUFp2st9qOl56zD57gob0/edit#gid=455811479",
+      "version": "1.0",
       "columns": [
         {
           "column": "subject_id",
@@ -497,6 +513,8 @@
           "required": true,
           "description": "the age at which the observation or measurement for the phenotype(s) were taken",
           "data_type": "float",
+          "min": 0,
+          "max": 89,
           "examples": "56.2"
         },
         {
@@ -530,6 +548,7 @@
     {
       "table": "cmqt_lipids",
       "url": "https://docs.google.com/spreadsheets/d/1vQE4gHvKQUOLPaRt1bpLLfNUFp2st9qOl56zD57gob0/edit#gid=1052869785",
+      "version": "1.0",
       "columns": [
         {
           "column": "subject_id",
@@ -546,6 +565,8 @@
           "required": true,
           "description": "the age at which the observation or measurement for the phenotype(s) were taken",
           "data_type": "float",
+          "min": 0,
+          "max": 89,
           "examples": "56.2"
         },
         {
@@ -589,6 +610,7 @@
     {
       "table": "cmqt_hematology",
       "url": "https://docs.google.com/spreadsheets/d/1vQE4gHvKQUOLPaRt1bpLLfNUFp2st9qOl56zD57gob0/edit#gid=1535206686",
+      "version": "1.0",
       "columns": [
         {
           "column": "subject_id",
@@ -605,6 +627,8 @@
           "required": true,
           "description": "the age at which the observation or measurement for the phenotype(s) were taken",
           "data_type": "float",
+          "min": 0,
+          "max": 89,
           "examples": "56.2"
         },
         {
@@ -694,6 +718,7 @@
     {
       "table": "cmqt_glycemic",
       "url": "https://docs.google.com/spreadsheets/d/1vQE4gHvKQUOLPaRt1bpLLfNUFp2st9qOl56zD57gob0/edit#gid=2078107573",
+      "version": "1.0",
       "columns": [
         {
           "column": "subject_id",
@@ -710,6 +735,8 @@
           "required": true,
           "description": "the age at which the observation or measurement for the phenotype(s) were taken",
           "data_type": "float",
+          "min": 0,
+          "max": 89,
           "examples": "56.2"
         },
         {
@@ -744,6 +771,7 @@
     {
       "table": "cmqt_kidney_function",
       "url": "https://docs.google.com/spreadsheets/d/1vQE4gHvKQUOLPaRt1bpLLfNUFp2st9qOl56zD57gob0/edit#gid=746527944",
+      "version": "1.0",
       "columns": [
         {
           "column": "subject_id",
@@ -760,6 +788,8 @@
           "required": true,
           "description": "the age at which the observation or measurement for the phenotype(s) were taken",
           "data_type": "float",
+          "min": 0,
+          "max": 89,
           "examples": "56.2"
         },
         {
@@ -784,6 +814,7 @@
     {
       "table": "diabetes_diabetes",
       "url": "https://docs.google.com/spreadsheets/d/1vQE4gHvKQUOLPaRt1bpLLfNUFp2st9qOl56zD57gob0/edit#gid=1891810958",
+      "version": "1.0",
       "columns": [
         {
           "column": "subject_id",
@@ -800,6 +831,8 @@
           "required": true,
           "description": "the age at which the observation or measurement for the phenotype(s) were taken",
           "data_type": "float",
+          "min": 0,
+          "max": 89,
           "examples": "56.2"
         },
         {
@@ -828,6 +861,7 @@
     {
       "table": "cvd_cad",
       "url": "https://docs.google.com/spreadsheets/d/1gchIrBIPt2s_3uVEloUK1c1Rst6IxnbBm7Zwps2k31I/edit#gid=253559161",
+      "version": "1.0",
       "columns": [
         {
           "column": "subject_id",
@@ -844,6 +878,8 @@
           "required": true,
           "description": "the age at which the observation or measurement for the phenotype(s) were taken",
           "data_type": "float",
+          "min": 0,
+          "max": 89,
           "examples": "56.2"
         },
         {
@@ -872,6 +908,7 @@
     {
       "table": "cancer_breast",
       "url": "https://docs.google.com/spreadsheets/d/1Gfj_EoPuYWhiNk7AaR6DOPjeTC7Nn06sF8qcoMGQ9KM/edit#gid=0",
+      "version": "1.0",
       "columns": [
         {
           "column": "subject_id",
@@ -888,6 +925,8 @@
           "required": true,
           "description": "the age at which the observation or measurement for the phenotype(s) were taken",
           "data_type": "float",
+          "min": 0,
+          "max": 89,
           "examples": "56.2"
         },
         {
@@ -922,6 +961,8 @@
           "column": "age_at_diagnosis_1",
           "description": "age at which participant was diagnosed with breast cancer",
           "data_type": "float",
+          "min": 0,
+          "max": 89,
           "notes": "may be the same as age_at_obs or not"
         },
         {
@@ -1092,6 +1133,8 @@
           "column": "age_at_natural_menopause_1",
           "description": "age at which natural menopause occurred",
           "data_type": "float",
+          "min": 0,
+          "max": 89,
           "notes": "NA if menopause has not occurred"
         },
         {
@@ -1109,12 +1152,16 @@
         {
           "column": "age_at_first_birth_1",
           "description": "age at which the first birth occurred",
-          "data_type": "float"
+          "data_type": "float",
+          "min": 0,
+          "max": 89
         },
         {
           "column": "age_at_menarche_1",
           "description": "age at which menarche occurred",
-          "data_type": "float"
+          "data_type": "float",
+          "min": 0,
+          "max": 89
         },
         {
           "column": "deceased_1",
@@ -1134,6 +1181,8 @@
           "column": "age_at_death_1",
           "description": "age at death of individual",
           "data_type": "float",
+          "min": 0,
+          "max": 89,
           "notes": "Set to missing (either blank or NA) if individual is not deceased"
         }
       ]
@@ -1141,6 +1190,7 @@
     {
       "table": "cancer_prostate",
       "url": "https://docs.google.com/spreadsheets/d/1Gfj_EoPuYWhiNk7AaR6DOPjeTC7Nn06sF8qcoMGQ9KM/edit#gid=1811888649",
+      "version": "1.0",
       "columns": [
         {
           "column": "subject_id",
