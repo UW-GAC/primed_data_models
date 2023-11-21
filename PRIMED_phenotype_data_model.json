@@ -1224,8 +1224,15 @@
           "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
         },
         {
-          "column": "prostate_cancer_status_1",
-          "description": "whether or not the participant had prostate cancer",
+          "column": "prostate_cancer_status_registry_1",
+          "description": "whether or not the participant had prostate cancer as reported in a registry",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "prostate_cancer_status_survey_1",
+          "description": "whether or not the participant had prostate cancer as reported in a survey or self-report",
           "data_type": "enumeration",
           "enumerations": ["0", "1"],
           "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
