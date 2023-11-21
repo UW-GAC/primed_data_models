@@ -117,7 +117,7 @@
           "column": "domain",
           "required": true,
           "data_type": "enumeration",
-          "enumerations": ["pilot", "population_descriptor", "cmqt_flags", "cmqt_anthropometry", "cmqt_blood_pressure", "cmqt_lipids", "cmqt_hematology", "cmqt_glycemic", "cmqt_kidney_function", "diabetes_diabetes", "cvd_cad"]
+          "enumerations": ["pilot", "population_descriptor", "cmqt_flags", "cmqt_anthropometry", "cmqt_blood_pressure", "cmqt_lipids", "cmqt_hematology", "cmqt_glycemic", "cmqt_kidney_function", "diabetes_diabetes", "cvd_cad", "cancer_breast", "cancer_prostate"]
         },
         {
           "column": "md5sum",
