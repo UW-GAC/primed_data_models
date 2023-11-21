@@ -117,7 +117,7 @@
           "column": "domain",
           "required": true,
           "data_type": "enumeration",
-          "enumerations": ["pilot", "population_descriptor", "cmqt_flags", "cmqt_anthropometry", "cmqt_blood_pressure", "cmqt_lipids", "cmqt_hematology", "cmqt_glycemic", "cmqt_kidney_function", "diabetes_diabetes", "cvd_cad"]
+          "enumerations": ["pilot", "population_descriptor", "cmqt_flags", "cmqt_anthropometry", "cmqt_blood_pressure", "cmqt_lipids", "cmqt_hematology", "cmqt_glycemic", "cmqt_kidney_function", "diabetes_diabetes", "cvd_cad", "cancer_breast", "cancer_prostate"]
         },
         {
           "column": "md5sum",
@@ -897,8 +897,8 @@
           "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
         },
         {
-          "column": "cad_ehr_1",
-          "description": "ehr-defined variable",
+          "column": "cad_emerge_1",
+          "description": "indicator of coronary artery disease event occurrence using the emerge ehr-based definition",
           "data_type": "enumeration",
           "enumerations": ["0", "1"],
           "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
@@ -937,8 +937,22 @@
           "notes": "this can be any value that is used consistently within the study"
         },
         {
-          "column": "breast_cancer_status_1",
-          "description": "whether or not the participant had breast cancer",
+          "column": "breast_cancer_status_emerge_1",
+          "description": "whether or not the participant had breast cancer using the eMERGE EHR-based definition and instructions",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "breast_cancer_status_registry_1",
+          "description": "whether or not the participant had breast cancer as reported in a registry",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "breast_cancer_status_survey_1",
+          "description": "whether or not the participant had breast cancer as reported in a survey or self-report",
           "data_type": "enumeration",
           "enumerations": ["0", "1"],
           "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
@@ -1040,7 +1054,7 @@
           "enumerations": ["MX", "M0", "M1"]
         },
         {
-          "column": "stage_system",
+          "column": "stage_system_1",
           "description": "definition of staging system used (e.g., SEER, AJCC) and time period (e.g., year), if applicable",
           "data_type": "string",
           "examples": ["AJCC 2003", "SEER 1999"],
@@ -1203,8 +1217,22 @@
           "notes": "this can be any value that is used consistently within the study"
         },
         {
-          "column": "prostate_cancer_status_1",
-          "description": "whether or not the participant had prostate cancer",
+          "column": "prostate_cancer_status_emerge_1",
+          "description": "whether or not the participant had prostate cancer using the eMERGE EHR-based definition and instructions",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "prostate_cancer_status_registry_1",
+          "description": "whether or not the participant had prostate cancer as reported in a registry",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "prostate_cancer_status_survey_1",
+          "description": "whether or not the participant had prostate cancer as reported in a survey or self-report",
           "data_type": "enumeration",
           "enumerations": ["0", "1"],
           "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
@@ -1216,7 +1244,7 @@
           "notes": "may be the same as age_at_obs or not"
         },
         {
-          "column": "year_at_diagnosis",
+          "column": "year_at_diagnosis_1",
           "description": "year participant was diagnosed",
           "data_type": "integer",
           "examples": "1999"
@@ -1280,7 +1308,7 @@
           "enumerations": ["MX", "M0", "M1"]
         },
         {
-          "column": "stage_system",
+          "column": "stage_system_1",
           "description": "definition of staging system (e.g., SEER, AJCC) and time period (e.g., year), if applicable",
           "data_type": "string",
           "examples": ["AJCC 2003", "SEER 1999"],
@@ -1306,6 +1334,11 @@
           "data_type": "enumeration",
           "enumerations": ["2", "3", "4", "5", "6", "7", "8", "9", "10"],
           "notes": "missing values can either be left blank or set to NA"
+        },
+        {
+          "column": "psa_1",
+          "description": "psa score at current visit",
+          "data_type": "float"
         },
         {
           "column": "psa_at_diagnosis_1",
