@@ -3,7 +3,6 @@
 #prefix <- "PRIMED_genotype_data_model"
 prefix <- "PRIMED_phenotype_data_model"
 #prefix <- "PRIMED_GSR_data_model"
-#prefix <- "PRIMED_GSR_data_dictionary"
 
 # check that data model object can be created
 AnvilDataModels::json_to_dm(paste0(prefix, ".json"))
