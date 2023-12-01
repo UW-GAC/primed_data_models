@@ -1,0 +1,286 @@
+// version 1.5
+Table subject {
+  subject_id string [pk, note: 'subject/participant Identifier within project']
+  dbgap_subject_id string [note: 'subject identifier used by dbGaP (if available)']
+  consent_code string [note: 'consent abbreviation (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4721915/table/pgen.1005772.t001/?report=objectonly)']
+  study_nickname string [note: 'short name for study as defined by CC']
+  dbgap_submission boolean [note: 'flag if subject has been submitted to dbGaP']
+  dbgap_study_id string [note: 'PHS ID for study']
+  reported_sex enumeration [note: 'reported sex']
+}
+
+Table population_descriptor {
+  population_descriptor_id string [pk]
+  subject_id string [ref: > subject.subject_id]
+  population_descriptor string [note: 'a concept or classification scheme that categorizes people into groups (or “populations”) according to a perceived characteristic or dimension of interest']
+  population_label string [note: 'name given to a population that describes or classifies it according to the dimension along which it was identified']
+  country_of_recruitment string 
+  country_of_birth string 
+}
+
+Table phenotype_harmonized {
+  phenotype_harmonized_id string [pk]
+  domain enumeration 
+  md5sum string [note: 'md5 checksum for the file']
+  file_path string [note: 'absolute file path in cloud storage']
+  file_readme_path string [note: 'path to the README']
+  n_subjects integer [note: 'Number of unique subjects in file']
+  n_rows integer [note: 'Number of rows in file (may be > n_subjects for longitudinal data)']
+  data_model_version float [note: 'data model version for this table']
+}
+
+Table phenotype_unharmonized {
+  phenotype_unharmonized_id string [pk]
+  description string [note: 'description of data in file']
+  md5sum string [note: 'md5 checksum for the file in file_path']
+  file_path string [note: 'absolute file path in cloud storage']
+  file_dd_path string [note: 'path to the data dictionary']
+  n_subjects integer [note: 'Number of unique subjects in file']
+  n_rows integer [note: 'Number of rows in file (may be > n_subjects for longitudinal data)']
+}
+
+Table pilot {
+  subject_id string [pk, ref: > subject.subject_id, note: 'the PRIMED subject id']
+  age_at_obs float [pk, note: 'the age at which the observation or measurement for the phenotype of interest was taken']
+  visit string [note: 'indicator of visit number since participant/patient enrollment']
+  height float [note: 'height measurement at baseline visit']
+  weight float [note: 'weight measurement at baseline visit']
+  bmi float [note: 'bmi measurement at baseline visit']
+  chd enumeration [note: 'indicator of prevalent or incident coronary heart disease event']
+  ldl float [note: 'low-protein lipoprotein measurement at baseline']
+  ldl_medication enumeration [note: 'indicator of LDL medication use']
+  indexes {
+    (subject_id, age_at_obs) [pk]
+  }
+
+}
+
+Table cmqt_flags {
+  subject_id string [pk, ref: > subject.subject_id, note: 'the PRIMED subject id']
+  age_at_obs float [pk, note: 'the age at which the observation or measurement for the phenotype(s) were taken']
+  visit string [note: 'indicator of visit or time of observation']
+  flag_pregnancy_1 enumeration [note: 'indicator of pregnancy']
+  flag_acute_illness_1 enumeration [note: 'Acute medical/surgical illness']
+  flag_bld_1 enumeration [note: 'Blood cancer, leukemia, lymphoma, chemotherapy, myelodysplastic syndrome, bone marrow transplant']
+  flag_anemia_1 enumeration [note: 'Congenital or hereditary anemia']
+  flag_hiv_1 enumeration [note: 'HIV']
+  flag_eskd_1 enumeration [note: 'End-stage kidney disease, dialysis, EPO treatment']
+  flag_splenectomy_1 enumeration [note: 'Splenectomy']
+  flag_cirrhosis_1 enumeration [note: 'Cirrhosis']
+  flag_fasting_1 enumeration [note: 'Fasting (> 8 hours)']
+  flag_lipids_med_1 enumeration [note: 'Lipid medication status']
+  flag_bp_med_1 enumeration [note: 'Blood pressure medications status']
+  flag_cvd_1 enumeration [note: 'Cardiovascular diseases (CVD)  Note: CVD includes coronary artery disease (CAD) OR coronary heart disease (CHD) OR myocardial infarction (MI) OR stroke (CVA, acute ischemic stroke, or acute hemorrhagic stroke), based on available data in each cohort.']
+  flag_t2d_1 enumeration [note: 'Type 2 Diabetes']
+  flag_t1d_1 enumeration [note: 'Type 1 Diabetes']
+  flag_diabetes_other_1 enumeration [note: 'Other diabetes']
+  indexes {
+    (subject_id, age_at_obs) [pk]
+  }
+
+}
+
+Table cmqt_anthropometry {
+  subject_id string [pk, ref: > subject.subject_id, note: 'the PRIMED subject id']
+  age_at_obs float [pk, note: 'the age at which the observation or measurement for the phenotype(s) were taken']
+  visit string [note: 'indicator of visit or time of observation']
+  height_1 float [note: 'standing body height']
+  weight_1 float [note: 'body weight at baseline']
+  bmi_1 float [note: 'body mass index calculated']
+  waist_hip_ratio_1 float [note: 'wait hip ratio calculated']
+  indexes {
+    (subject_id, age_at_obs) [pk]
+  }
+
+}
+
+Table cmqt_blood_pressure {
+  subject_id string [pk, ref: > subject.subject_id, note: 'the PRIMED subject id']
+  age_at_obs float [pk, note: 'the age at which the observation or measurement for the phenotype(s) were taken']
+  visit string [note: 'indicator of visit or time of observation']
+  systolic_bp_1 float [note: 'Resting systolic blood pressure from the upper arm in a clinical setting']
+  diastolic_bp_1 float [note: 'Resting diastolic blood pressure from the upper arm in a clinical setting']
+  hypertension_1 enumeration [note: 'Indicator of whether or not a participant has a combined systolic and diastolic reading of greater than or equal to 140/90mmHg']
+  indexes {
+    (subject_id, age_at_obs) [pk]
+  }
+
+}
+
+Table cmqt_lipids {
+  subject_id string [pk, ref: > subject.subject_id, note: 'the PRIMED subject id']
+  age_at_obs float [pk, note: 'the age at which the observation or measurement for the phenotype(s) were taken']
+  visit string [note: 'indicator of visit or time of observation']
+  triglycerides_1 float [note: 'Blood mass concentration of triglycerides']
+  hdl_1 float [note: 'Blood mass concentration of high-density lipoprotein cholesterol.']
+  total_cholesterol_1 float [note: 'Blood mass concentration of total cholesterol']
+  ldl_1 float [note: 'Blood mass concentration of low-density lipoprotein cholesterol']
+  non_hdl_1 float [note: 'Blood mass concentration of non-high-density lipoprotein cholesterol.']
+  indexes {
+    (subject_id, age_at_obs) [pk]
+  }
+
+}
+
+Table cmqt_hematology {
+  subject_id string [pk, ref: > subject.subject_id, note: 'the PRIMED subject id']
+  age_at_obs float [pk, note: 'the age at which the observation or measurement for the phenotype(s) were taken']
+  visit string [note: 'indicator of visit or time of observation']
+  rbc_1 float [note: 'Red blood cell count']
+  hemoglobin_1 float [note: 'Hemoglobin']
+  hematocrit_1 float [note: 'Hematocrit']
+  mcv_1 float [note: 'Mean corpuscular volume']
+  mch_1 float [note: 'Mean corpuscular hemoglobin']
+  mchc_1 float [note: 'Mean corpuscular hemoglobin concentration']
+  rdw_1 float [note: 'Red blood cell distribution width']
+  wbc_1 float [note: 'White blood cell count']
+  basophil_count_1 float [note: 'Relative basophil count']
+  eosinophil_count_1 float [note: 'Relative eosinophil count']
+  lymphocyte_count_1 float [note: 'Relative lymphocyte count']
+  monocyte_count_1 float [note: 'Relative monocyte count']
+  neutrophil_count_1 float [note: 'Relative neutrophil count']
+  platelet_count_1 float [note: 'Platelet count']
+  mean_platelet_volume_1 float [note: 'Mean platelet volume']
+  indexes {
+    (subject_id, age_at_obs) [pk]
+  }
+
+}
+
+Table cmqt_glycemic {
+  subject_id string [pk, ref: > subject.subject_id, note: 'the PRIMED subject id']
+  age_at_obs float [pk, note: 'the age at which the observation or measurement for the phenotype(s) were taken']
+  visit string [note: 'indicator of visit or time of observation']
+  fasting_glucose_plasma_1 float [note: 'fasting plasma glucose']
+  fasting_glucose_serum_1 float [note: 'fasting serum glucose']
+  fasting_insulin_1 float [note: 'fasting insulin']
+  hba1c_1 float [note: 'HbA1c']
+  indexes {
+    (subject_id, age_at_obs) [pk]
+  }
+
+}
+
+Table cmqt_kidney_function {
+  subject_id string [pk, ref: > subject.subject_id, note: 'the PRIMED subject id']
+  age_at_obs float [pk, note: 'the age at which the observation or measurement for the phenotype(s) were taken']
+  visit string [note: 'indicator of visit or time of observation']
+  cystatin_c_1 float [note: 'Cystatin C']
+  serum_creatinine_1 float [note: 'Serum creatinine']
+  indexes {
+    (subject_id, age_at_obs) [pk]
+  }
+
+}
+
+Table diabetes_diabetes {
+  subject_id string [pk, ref: > subject.subject_id, note: 'the PRIMED subject id']
+  age_at_obs float [pk, note: 'the age at which the observation or measurement for the phenotype(s) were taken']
+  visit string [note: 'indicator of visit or time of observation']
+  t1d_1 enumeration [note: 'indicator of Type 1 Diabetes']
+  t2d_1 enumeration [note: 'indicator of Type 2 Diabetes']
+  indexes {
+    (subject_id, age_at_obs) [pk]
+  }
+
+}
+
+Table cvd_cad {
+  subject_id string [pk, ref: > subject.subject_id, note: 'the PRIMED subject id']
+  age_at_obs float [pk, note: 'the age at which the observation or measurement for the phenotype(s) were taken']
+  visit string [note: 'indicator of visit or time of observation']
+  cad_1 enumeration [note: 'any incident or prevalent coronary artery disease event']
+  cad_emerge_1 enumeration [note: 'indicator of coronary artery disease event occurrence using the emerge ehr-based definition']
+  indexes {
+    (subject_id, age_at_obs) [pk]
+  }
+
+}
+
+Table cancer_breast {
+  subject_id string [pk, ref: > subject.subject_id, note: 'the PRIMED subject id']
+  age_at_obs float [pk, note: 'the age at which the observation or measurement for the phenotype(s) were taken']
+  visit string [note: 'indicator of visit or time of observation']
+  breast_cancer_status_emerge_1 enumeration [note: 'whether or not the participant had breast cancer using the eMERGE EHR-based definition and instructions']
+  breast_cancer_status_registry_1 enumeration [note: 'whether or not the participant had breast cancer as reported in a registry']
+  breast_cancer_status_survey_1 enumeration [note: 'whether or not the participant had breast cancer as reported in a survey or self-report']
+  age_at_diagnosis_1 float [note: 'age at which participant was diagnosed with breast cancer']
+  year_at_diagnosis_1 integer [note: 'year participant was diagnosed']
+  breast_cancer_type_1 enumeration [note: 'breast cancer type upon diagnosis']
+  cancer_behavior_1 enumeration [note: 'behavior of the tumor']
+  her2_1 enumeration [note: 'human epidermal growth factor receptor 2']
+  pr_1 enumeration [note: 'progesterone receptor breast cancer cells']
+  er_1 enumeration [note: 'estrogen receptor breast cancer cells']
+  T_stage_clinical_1 enumeration [note: 'staging per diagnosis or biopsy. Note that this refers to T stage measuring tumor size.']
+  T_stage_pathological_1 enumeration [note: 'staging per diagnosis or biopsy. Note that this refers to T stage measuring tumor size.']
+  T_stage_uknown_1 enumeration [note: 'staging (clinical, pathological) is uknown']
+  T_stage_clinical_2 enumeration [note: 'staging per diagnosis or biopsy. Note that this refers to the general T stage and should be used if numeric T stage is not available.']
+  T_stage_pathological_2 enumeration [note: 'staging per diagnosis or biopsy. Note that this refers to the general T stage and should be used if numeric T stage is not available.']
+  T_stage_unknown_2 enumeration [note: 'staging (clinical, pathological) is uknown']
+  nodal_involvement_1 enumeration [note: 'regional lymph nodes (N)']
+  distant_metastasis_1 enumeration [note: 'distant metastasis (M)']
+  stage_system_1 string [note: 'definition of staging system used (e.g., SEER, AJCC) and time period (e.g., year), if applicable']
+  grade_clinical_1 enumeration [note: 'grading per diagnosis or biopsy']
+  grade_pathological_1 enumeration [note: 'grading per surgical pathology']
+  grade_unknown_1 enumeration [note: 'grading determination unknown']
+  screening_history_1 enumeration [note: 'whether or not participant underwent screening for breast cancer']
+  recurrence_1 enumeration [note: 'whether or not a recurrence occurred']
+  surgery_1 enumeration [note: 'whether or not participant received surgery']
+  radiotherapy_1 enumeration [note: 'whether or not participant received radiotherapy']
+  chemotherapy_1 enumeration [note: 'whether or not participant received chemotherapy']
+  hormone_therapy_1 enumeration [note: 'whether or not participant received hormone therapy. Includes oopherectomy, hysterectomy']
+  NSAID_1 enumeration [note: 'use of non-steroidal anti-inflammatory drugs']
+  age_at_natural_menopause_1 float [note: 'age at which natural menopause occurred']
+  post_menopausal_hormone_use_1 enumeration [note: 'whether or not hormone use occurred post menopause (not cancer-related use)']
+  parity_1 integer [note: 'the number of pregnancies carried for at least 20 weeks']
+  age_at_first_birth_1 float [note: 'age at which the first birth occurred']
+  age_at_menarche_1 float [note: 'age at which menarche occurred']
+  deceased_1 enumeration [note: 'indication of whether individual is deceased']
+  cause_of_death_breast_cancer_1 enumeration [note: 'indication of whether cause of death was due to breast cancer or other cause']
+  age_at_death_1 float [note: 'age at death of individual']
+  indexes {
+    (subject_id, age_at_obs) [pk]
+  }
+
+}
+
+Table cancer_prostate {
+  subject_id string [pk, ref: > subject.subject_id, note: 'the PRIMED subject id']
+  age_at_obs float [pk, note: 'the age at which the observation or measurement for the phenotype(s) were taken']
+  visit string [note: 'indicator of visit or time of observation']
+  prostate_cancer_status_emerge_1 enumeration [note: 'whether or not the participant had prostate cancer using the eMERGE EHR-based definition and instructions']
+  prostate_cancer_status_registry_1 enumeration [note: 'whether or not the participant had prostate cancer as reported in a registry']
+  prostate_cancer_status_survey_1 enumeration [note: 'whether or not the participant had prostate cancer as reported in a survey or self-report']
+  age_at_diagnosis_1 float [note: 'age at which participant was diagnosed with prostate cancer']
+  year_at_diagnosis_1 integer [note: 'year participant was diagnosed']
+  cancer_behavior_1 enumeration [note: 'behavior of the tumor']
+  T_stage_clinical_1 enumeration [note: 'staging per diagnosis or biopsy. Note that this refers to T stage measuring tumor size.']
+  T_stage_pathological_1 enumeration [note: 'staging per diagnosis or biopsy. Note that this refers to T stage measuring tumor size.']
+  T_stage_uknown_1 enumeration [note: 'staging (clinical, pathological) is uknown']
+  T_stage_clinical_2 enumeration [note: 'staging per diagnosis or biopsy. Note that this refers to the general T stage and should be used if numeric T stage is not available.']
+  T_stage_pathological_2 enumeration [note: 'staging per diagnosis or biopsy. Note that this refers to the general T stage and should be used if numeric T stage is not available.']
+  T_stage_unknown_2 enumeration [note: 'staging (clinical, pathological) is uknown']
+  nodal_involvement_1 enumeration [note: 'regional lymph nodes (N)']
+  distant_metastasis_1 enumeration [note: 'distant metastasis (M)']
+  stage_system_1 string [note: 'definition of staging system (e.g., SEER, AJCC) and time period (e.g., year), if applicable']
+  gleason_score_clinical_1 enumeration [note: 'grading per diagnosis or biopsy']
+  gleason_score_pathological_1 enumeration [note: 'grading per surgical pathology']
+  gleason_score_unknown_1 enumeration [note: 'grading determination unknown']
+  psa_1 float [note: 'psa score at current visit']
+  psa_at_diagnosis_1 float [note: 'psa score at diagnosis of prostate cancer']
+  screening_history_1 enumeration [note: 'whether or not participant underwent screening for prostate cancer']
+  recurrence_1 enumeration [note: 'whether or not a recurrence occurred']
+  surgery_1 enumeration [note: 'whether or not participant received surgery']
+  radiotherapy_1 enumeration [note: 'whether or not participant received radiotherapy']
+  chemotherapy_1 enumeration [note: 'whether or not participant received chemotherapy']
+  hormone_therapy_1 enumeration [note: 'whether or not participant received horome therapy (e.g., androgen deprivation therapy or ADT)']
+  NSAID_1 enumeration [note: 'use of non-steroidal anti-inflammatory drugs']
+  deceased_1 enumeration [note: 'indicator of whether individual is deceased']
+  cause_of_death_prostate_cancer_1 enumeration [note: 'indication of whether cause of death was due to prostate cancer or other cause']
+  age_at_death_1 float [note: 'age at death of individual']
+  indexes {
+    (subject_id, age_at_obs) [pk]
+  }
+
+}
+
