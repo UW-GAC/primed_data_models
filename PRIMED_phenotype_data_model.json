@@ -308,7 +308,8 @@
           "description": "the age at which the observation or measurement for the phenotype(s) were taken",
           "data_type": "float",
           "min": " 0",
-          "max": "89"
+          "max": "90",
+          "notes": "set all values >89 to 90"
         },
         {
           "column": "visit",
@@ -455,8 +456,9 @@
           "description": "the age at which the observation or measurement for the phenotype(s) were taken",
           "data_type": "float",
           "min": 0,
-          "max": 89,
-          "examples": "56.2"
+          "max": 90,
+          "examples": "56.2",
+          "notes": "set all values >89 to 90"
         },
         {
           "column": "visit",
@@ -514,8 +516,9 @@
           "description": "the age at which the observation or measurement for the phenotype(s) were taken",
           "data_type": "float",
           "min": 0,
-          "max": 89,
-          "examples": "56.2"
+          "max": 90,
+          "examples": "56.2",
+          "notes": "set all values >89 to 90"
         },
         {
           "column": "visit",
@@ -566,8 +569,9 @@
           "description": "the age at which the observation or measurement for the phenotype(s) were taken",
           "data_type": "float",
           "min": 0,
-          "max": 89,
-          "examples": "56.2"
+          "max": 90,
+          "examples": "56.2",
+          "notes": "set all values >89 to 90"
         },
         {
           "column": "visit",
@@ -628,8 +632,9 @@
           "description": "the age at which the observation or measurement for the phenotype(s) were taken",
           "data_type": "float",
           "min": 0,
-          "max": 89,
-          "examples": "56.2"
+          "max": 90,
+          "examples": "56.2",
+          "notes": "set all values >89 to 90"
         },
         {
           "column": "visit",
@@ -736,8 +741,9 @@
           "description": "the age at which the observation or measurement for the phenotype(s) were taken",
           "data_type": "float",
           "min": 0,
-          "max": 89,
-          "examples": "56.2"
+          "max": 90,
+          "examples": "56.2",
+          "notes": "set all values >89 to 90"
         },
         {
           "column": "visit",
@@ -789,8 +795,9 @@
           "description": "the age at which the observation or measurement for the phenotype(s) were taken",
           "data_type": "float",
           "min": 0,
-          "max": 89,
-          "examples": "56.2"
+          "max": 90,
+          "examples": "56.2",
+          "notes": "set all values >89 to 90"
         },
         {
           "column": "visit",
@@ -832,8 +839,9 @@
           "description": "the age at which the observation or measurement for the phenotype(s) were taken",
           "data_type": "float",
           "min": 0,
-          "max": 89,
-          "examples": "56.2"
+          "max": 90,
+          "examples": "56.2",
+          "notes": "set all values >89 to 90"
         },
         {
           "column": "visit",
@@ -879,8 +887,9 @@
           "description": "the age at which the observation or measurement for the phenotype(s) were taken",
           "data_type": "float",
           "min": 0,
-          "max": 89,
-          "examples": "56.2"
+          "max": 90,
+          "examples": "56.2",
+          "notes": "set all values >89 to 90"
         },
         {
           "column": "visit",
@@ -926,8 +935,9 @@
           "description": "the age at which the observation or measurement for the phenotype(s) were taken",
           "data_type": "float",
           "min": 0,
-          "max": 89,
-          "examples": "56.2"
+          "max": 90,
+          "examples": "56.2",
+          "notes": "set all values >89 to 90"
         },
         {
           "column": "visit",
@@ -962,13 +972,15 @@
           "description": "age at which participant was diagnosed with breast cancer",
           "data_type": "float",
           "min": 0,
-          "max": 89,
+          "max": 90,
           "notes": "may be the same as age_at_obs or not"
         },
         {
           "column": "year_at_diagnosis_1",
           "description": "year participant was diagnosed",
           "data_type": "integer",
+          "min": 1900,
+          "max": 2024,
           "examples": "1999"
         },
         {
@@ -1134,7 +1146,7 @@
           "description": "age at which natural menopause occurred",
           "data_type": "float",
           "min": 0,
-          "max": 89,
+          "max": 90,
           "notes": "NA if menopause has not occurred"
         },
         {
@@ -1147,21 +1159,22 @@
         {
           "column": "parity_1",
           "description": "the number of pregnancies carried for at least 20 weeks",
-          "data_type": "integer"
+          "data_type": "integer",
+          "min": 0
         },
         {
           "column": "age_at_first_birth_1",
           "description": "age at which the first birth occurred",
           "data_type": "float",
           "min": 0,
-          "max": 89
+          "max": 90
         },
         {
           "column": "age_at_menarche_1",
           "description": "age at which menarche occurred",
           "data_type": "float",
           "min": 0,
-          "max": 89
+          "max": 90
         },
         {
           "column": "deceased_1",
@@ -1182,7 +1195,7 @@
           "description": "age at death of individual",
           "data_type": "float",
           "min": 0,
-          "max": 89,
+          "max": 90,
           "notes": "Set to missing (either blank or NA) if individual is not deceased"
         }
       ]
@@ -1207,7 +1220,10 @@
           "required": true,
           "description": "the age at which the observation or measurement for the phenotype(s) were taken",
           "data_type": "float",
-          "examples": "56.2"
+          "min": 0,
+          "max": 90,
+          "examples": "56.2",
+          "notes": "set all values >89 to 90"
         },
         {
           "column": "visit",
@@ -1241,12 +1257,16 @@
           "column": "age_at_diagnosis_1",
           "description": "age at which participant was diagnosed with prostate cancer",
           "data_type": "float",
+          "min": 0,
+          "max": 90,
           "notes": "may be the same as age_at_obs or not"
         },
         {
           "column": "year_at_diagnosis_1",
           "description": "year participant was diagnosed",
           "data_type": "integer",
+          "min": 1900,
+          "max": 2024,
           "examples": "1999"
         },
         {
@@ -1338,12 +1358,14 @@
         {
           "column": "psa_1",
           "description": "psa score at current visit",
-          "data_type": "float"
+          "data_type": "float",
+          "min": 0
         },
         {
           "column": "psa_at_diagnosis_1",
           "description": "psa score at diagnosis of prostate cancer",
-          "data_type": "float"
+          "data_type": "float",
+          "min": 0
         },
         {
           "column": "screening_history_1",
@@ -1411,6 +1433,8 @@
           "column": "age_at_death_1",
           "description": "age at death of individual",
           "data_type": "float",
+          "min": 0,
+          "max": 90,
           "notes": "Set to missing (either blank or NA) if individual is not deceased"
         }
       ]
