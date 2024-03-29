@@ -472,6 +472,7 @@
           "description": "standing body height",
           "data_type": "float",
           "min": 0,
+          "max": 400,
           "examples": "165.1"
         },
         {
@@ -479,6 +480,7 @@
           "description": "body weight at baseline",
           "data_type": "float",
           "min": 0,
+          "max": 300,
           "examples": "72.574"
         },
         {
@@ -486,6 +488,7 @@
           "description": "body mass index calculated",
           "data_type": "float",
           "min": 0,
+          "max": 100,
           "examples": "26.45"
         },
         {
@@ -531,12 +534,16 @@
           "column": "systolic_bp_1",
           "description": "Resting systolic blood pressure from the upper arm in a clinical setting",
           "data_type": "float",
+          "min": 0,
+          "max": 370,
           "examples": "160"
         },
         {
           "column": "diastolic_bp_1",
           "description": "Resting diastolic blood pressure from the upper arm in a clinical setting",
           "data_type": "float",
+          "min": 0,
+          "max": 360,
           "examples": "80"
         },
         {
@@ -603,6 +610,13 @@
           "description": "Blood mass concentration of low-density lipoprotein cholesterol",
           "data_type": "float",
           "examples": "98"
+        },
+        {
+          "column": "ldl_emerge_1",
+          "description": "Blood mass concentration of low-density lipoprotein cholesterol",
+          "data_type": "float",
+          "examples": "99",
+          "notes": "This algorithm was provided for the Pilot harmonization (by Iftikhar Kullo)"
         },
         {
           "column": "non_hdl_1",
@@ -910,7 +924,14 @@
           "description": "indicator of coronary artery disease event occurrence using the emerge ehr-based definition",
           "data_type": "enumeration",
           "enumerations": ["0", "1"],
-          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA.  This algorithm was provided for the Pilot harmonization (provided by Iftikhar Kullo)"
+        },
+        {
+          "column": "cad_emerge_mod_1",
+          "description": "indicator of coronary artery disease event occurrence developed in PRIMED using a modified version of the emerge ehr-based definition",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA.  This algorithm was developed by the CVD Events sub-WG"
         }
       ]
     },
@@ -1459,7 +1480,10 @@
           "required": true,
           "description": "the age at which the observation or measurement for the phenotype(s) were taken",
           "data_type": "float",
-          "examples": "56.2"
+          "min": 0,
+          "max": 90,
+          "examples": "56.2",
+          "notes": "set all values >89 to 90"
         },
         {
           "column": "visit",
