@@ -117,7 +117,7 @@
           "column": "domain",
           "required": true,
           "data_type": "enumeration",
-          "enumerations": ["pilot", "population_descriptor", "cmqt_flags", "cmqt_anthropometry", "cmqt_blood_pressure", "cmqt_lipids", "cmqt_hematology", "cmqt_glycemic", "cmqt_kidney_function", "diabetes_diabetes", "cvd_cad", "cancer_breast", "cancer_prostate"]
+          "enumerations": ["pilot", "population_descriptor", "cmqt_flags", "cmqt_anthropometry", "cmqt_blood_pressure", "cmqt_lipids", "cmqt_hematology", "cmqt_glycemic", "cmqt_kidney_function", "diabetes_diabetes", "cvd_cad", "cancer_breast", "cancer_prostate", "family_history"]
         },
         {
           "column": "md5sum",
@@ -1412,6 +1412,212 @@
           "description": "age at death of individual",
           "data_type": "float",
           "notes": "Set to missing (either blank or NA) if individual is not deceased"
+        }
+      ]
+    },
+    {
+      "table": "family_history",
+      "url": "https://docs.google.com/spreadsheets/d/1zFFNig5Ig24koPjhlrHEgqWk2Gan2fA4XWN3EdMaP_A/edit#gid=0",
+      "version": "1.0",
+      "columns": [
+        {
+          "column": "subject_id",
+          "primary_key": true,
+          "required": true,
+          "description": "the PRIMED subject id",
+          "data_type": "string",
+          "references": "> subject.subject_id",
+          "notes": "references subject_id in participant table"
+        },
+        {
+          "column": "age_at_obs",
+          "primary_key": true,
+          "required": true,
+          "description": "the age at which the observation or measurement for the phenotype(s) were taken",
+          "data_type": "float",
+          "examples": "56.2"
+        },
+        {
+          "column": "visit",
+          "description": "indicator of visit or time of observation",
+          "data_type": "string",
+          "examples": ["visit_2", "baseline", "median"],
+          "notes": "this can be any value that is used consistently within the study"
+        },
+        {
+          "column": "family_hx_cancer_breast_1",
+          "description": "Whether or not there is a family history of breast cancer",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "family_hx_cancer_breast_relatedness_1",
+          "description": "Degree of relatedness. If first and second degree available, prioritize first degree",
+          "data_type": "enumeration",
+          "enumerations": ["1st degree", "2nd degree", "unknown"],
+          "notes": "Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "family_hx_cancer_prostate",
+          "description": "Whether or not there is a family history of prostate cancer",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "family_hx_cancer_prostate_relatedness_1",
+          "description": "Degree of relatedness. If first and second degree available, prioritize first degree",
+          "data_type": "enumeration",
+          "enumerations": ["1st degree", "2nd degree", "unknown"],
+          "notes": "Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "family_hx_cancer_pancreatic",
+          "description": "Whether or not there is a family history of pancreatic cancer",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "family_hx_cancer_pancreatic_relatedness_1",
+          "description": "Degree of relatedness. If first and second degree available, prioritize first degree",
+          "data_type": "enumeration",
+          "enumerations": ["1st degree", "2nd degree", "unknown"],
+          "notes": "Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "family_hx_cancer_colorectal",
+          "description": "Whether of not there is a family history of colorectal cancer",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "family_hx_cancer_colorectal_relatedness_1",
+          "description": "Degree of relatedness. If first and second degree available, prioritize first degree",
+          "data_type": "enumeration",
+          "enumerations": ["1st degree", "2nd degree", "unknown"],
+          "notes": "Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "family_hx_cancer_lung",
+          "description": "Whether of not there is a family history of lung cancer",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "family_hx_cancer_lung_relatedness_1",
+          "description": "Degree of relatedness. If first and second degree available, prioritize first degree",
+          "data_type": "enumeration",
+          "enumerations": ["1st degree", "2nd degree", "unknown"],
+          "notes": "Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "family_hx_cancer_any",
+          "description": "Whether or not there is a family history of any time of cancer",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "family_hx_type2_diabetes",
+          "description": "Whether or not there is a family history of type 2 diabetes",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "family_hx_type2_diabetes_relatedness_1",
+          "description": "Degree of relatedness. If first and second degree available, prioritize first degree",
+          "data_type": "enumeration",
+          "enumerations": ["1st degree", "2nd degree", "unknown"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "family_hx_myocardial_infarction",
+          "description": "Whether or not there is a family history of myocardial infarction/heart attack",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "family_hx_myocardial_infarction_relatedness_1",
+          "description": "Degree of relatedness. If first and second degree available, prioritize first degree",
+          "data_type": "enumeration",
+          "enumerations": ["1st degree", "2nd degree", "unknown"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "family_hx_dementia",
+          "description": "Whether or not there is a family history of dementia (includes Alzheimer's, vascular, etc.)",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "family_hx_dementia_relatedness_1",
+          "description": "Degree of relatedness. If first and second degree available, prioritize first degree",
+          "data_type": "enumeration",
+          "enumerations": ["1st degree", "2nd degree", "unknown"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "family_hx_type1_diabetes",
+          "description": "Whether or not there is a family history of type 1 diabetes",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "family_hx_type1_diabetes_relatedness_1",
+          "description": "Degree of relatedness. If first and second degree available, prioritize first degree",
+          "data_type": "enumeration",
+          "enumerations": ["1st degree", "2nd degree", "unknown"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "family_hx_asthma",
+          "description": "Whether or not there is a family history of asthma",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "family_hx_asthma_relatedness_1",
+          "description": "Degree of relatedness. If first and second degree available, prioritize first degree",
+          "data_type": "enumeration",
+          "enumerations": ["1st degree", "2nd degree", "unknown"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "family_hx_stroke",
+          "description": "Whether or not there is a family history of stroke",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "family_hx_stroke_relatedness_1",
+          "description": "Degree of relatedness. If first and second degree available, prioritize first degree",
+          "data_type": "enumeration",
+          "enumerations": ["1st degree", "2nd degree", "unknown"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "family_hx_heart_failure",
+          "description": "Whether or not there is a family history of congestive heart failure",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "family_hx_heart_failure_relatedness_1",
+          "description": "Degree of relatedness. If first and second degree available, prioritize first degree",
+          "data_type": "enumeration",
+          "enumerations": ["1st degree", "2nd degree", "unknown"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
         }
       ]
     }
