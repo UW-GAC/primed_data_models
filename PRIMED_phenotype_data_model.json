@@ -289,7 +289,7 @@
     },
     {
       "table": "cmqt_flags",
-      "url": "https://docs.google.com/spreadsheets/d/1vQE4gHvKQUOLPaRt1bpLLfNUFp2st9qOl56zD57gob0/edit#gid=0",
+      "url": "https://docs.google.com/spreadsheets/d/1VpVRrOEyaG5L3oVBYxox_qo1rQmeldUMPptkTkn3ex4/edit#gid=1692345774",
       "version": "1.0",
       "columns": [
         {
@@ -437,7 +437,7 @@
     },
     {
       "table": "cmqt_anthropometry",
-      "url": "https://docs.google.com/spreadsheets/d/1vQE4gHvKQUOLPaRt1bpLLfNUFp2st9qOl56zD57gob0/edit#gid=1206657525",
+      "url": "https://docs.google.com/spreadsheets/d/16d1c0ZVTtS2XsMgDD-sQoaxLXor1auBO-nzC_hh7V9U/edit#gid=51669439",
       "version": "1.0",
       "columns": [
         {
@@ -500,7 +500,7 @@
     },
     {
       "table": "cmqt_blood_pressure",
-      "url": "https://docs.google.com/spreadsheets/d/1vQE4gHvKQUOLPaRt1bpLLfNUFp2st9qOl56zD57gob0/edit#gid=455811479",
+      "url": "https://docs.google.com/spreadsheets/d/1qk5EhDIbgm6THomfZG8-xkTjfHOt4TFeVdIHs8pHO7k/edit#gid=1728216590",
       "version": "1.0",
       "columns": [
         {
@@ -557,8 +557,8 @@
     },
     {
       "table": "cmqt_lipids",
-      "url": "https://docs.google.com/spreadsheets/d/1vQE4gHvKQUOLPaRt1bpLLfNUFp2st9qOl56zD57gob0/edit#gid=1052869785",
-      "version": "1.0",
+      "url": "https://docs.google.com/spreadsheets/d/1PeIsZtffSm2TwJNKnpXZpH4CHO6j6Ey0jtjKoNBNjXY/edit#gid=1616149071",
+      "version": "1.1",
       "columns": [
         {
           "column": "subject_id",
@@ -627,7 +627,7 @@
     },
     {
       "table": "cmqt_hematology",
-      "url": "https://docs.google.com/spreadsheets/d/1vQE4gHvKQUOLPaRt1bpLLfNUFp2st9qOl56zD57gob0/edit#gid=1535206686",
+      "url": "https://docs.google.com/spreadsheets/d/1LTGvRdGTsc0gYiFrNHOvKsRE5E4ohxoI466pt4fXyjY/edit#gid=768778505",
       "version": "1.0",
       "columns": [
         {
@@ -736,7 +736,7 @@
     },
     {
       "table": "cmqt_glycemic",
-      "url": "https://docs.google.com/spreadsheets/d/1vQE4gHvKQUOLPaRt1bpLLfNUFp2st9qOl56zD57gob0/edit#gid=2078107573",
+      "url": "https://docs.google.com/spreadsheets/d/16_0VXWgp74vtb2F1L11NO96FlfGbXva0KKn3K2R-ym4/edit#gid=165344789",
       "version": "1.0",
       "columns": [
         {
@@ -790,7 +790,7 @@
     },
     {
       "table": "cmqt_kidney_function",
-      "url": "https://docs.google.com/spreadsheets/d/1vQE4gHvKQUOLPaRt1bpLLfNUFp2st9qOl56zD57gob0/edit#gid=746527944",
+      "url": "https://docs.google.com/spreadsheets/d/1-eafS-Bh5RX5EGm3dr56ndkNvu9zMSYqjlzNski-iEA/edit#gid=1816435420",
       "version": "1.0",
       "columns": [
         {
@@ -834,7 +834,7 @@
     },
     {
       "table": "diabetes_diabetes",
-      "url": "https://docs.google.com/spreadsheets/d/1vQE4gHvKQUOLPaRt1bpLLfNUFp2st9qOl56zD57gob0/edit#gid=1891810958",
+      "url": "https://docs.google.com/spreadsheets/d/1Zc1ALFmFI8kD_bn0n-u_HfRpZjOpSf10nM-lOuTiS6s/edit#gid=597696160",
       "version": "1.0",
       "columns": [
         {
@@ -883,7 +883,7 @@
     {
       "table": "cvd_cad",
       "url": "https://docs.google.com/spreadsheets/d/1gchIrBIPt2s_3uVEloUK1c1Rst6IxnbBm7Zwps2k31I/edit#gid=253559161",
-      "version": "1.0",
+      "version": "1.1",
       "columns": [
         {
           "column": "subject_id",
@@ -937,7 +937,7 @@
     },
     {
       "table": "cancer_breast",
-      "url": "https://docs.google.com/spreadsheets/d/1Gfj_EoPuYWhiNk7AaR6DOPjeTC7Nn06sF8qcoMGQ9KM/edit#gid=0",
+      "url": "https://docs.google.com/spreadsheets/d/1nydO4HeJRCIp0Pd8nI4GbZIdTaF-9319Qwpv7v9XGAM/edit#gid=1332223829",
       "version": "1.0",
       "columns": [
         {
@@ -1223,7 +1223,7 @@
     },
     {
       "table": "cancer_prostate",
-      "url": "https://docs.google.com/spreadsheets/d/1Gfj_EoPuYWhiNk7AaR6DOPjeTC7Nn06sF8qcoMGQ9KM/edit#gid=1811888649",
+      "url": "https://docs.google.com/spreadsheets/d/1F5n3btDVNQ6nckDaeRe8j-EblAoDrRxl4drfjr25hQE/edit#gid=1567632879",
       "version": "1.0",
       "columns": [
         {
