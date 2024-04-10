@@ -16,6 +16,18 @@ subject <- tibble(
   age_at_obs=round(rtnorm(n, 58, 5, 0, 90))
 )
 
+# fill in table after uploading tsv files to anvil
+phenotype_harmonized <- tibble(
+  phenotype_harmonized=rep(NA, 4), 
+  domain=rep(NA, 4),
+  md5sum=rep(NA, 4), 
+  file_path=rep(NA, 4), 
+  file_readme_path=rep(NA, 4), 
+  n_subjects=rep(NA, 4), 
+  n_rows=rep(NA, 4), 
+  data_model_version=rep(NA, 4), 
+)
+
 cmqt_anthropometry <- tibble(
   subject_id=rep(subject$subject_id),
   age_at_obs=rep(subject$age_at_obs),
@@ -68,9 +80,12 @@ cmqt_blood_pressure <- tibble(
 #   mean_platelet_volume_1
 # )
 
-# setwd("~/Downloads/primed_data_models")
+setwd("~/Downloads/primed_data_models")
+write_tsv(phenotype_harmonized, "test_data/phenotype_harmonized.tsv")
 write_tsv(subject, "test_data/subject.tsv")
 write_tsv(cmqt_anthropometry, "test_data/cmqt_anthropometry.tsv")
 write_tsv(cmqt_lipids, "test_data/cmqt_lipids.tsv")
 write_tsv(cmqt_blood_pressure, "test_data/cmqt_blood_pressure.tsv")
 # write_tsv(cmqt_hematology, "test_data/cmqt_hematology.tsv")
+
+# md5sum("test_data/cmqt_anthropometry.tsv")
