@@ -4,6 +4,10 @@ library(readr)
 # number of rows in test data
 n <- 20
 
+file_names <- c("cmqt_anthropometry", 
+                "cmqt_lipids", 
+                "cmqt_blood_pressure")
+
 # truncated normal distribution
 rtnorm <- function(n, mean, sd, a = -Inf, b = Inf){
   qnorm(runif(n, pnorm(a, mean, sd), pnorm(b, mean, sd)), mean, sd)
@@ -14,18 +18,6 @@ set.seed(4)
 subject <- tibble(
   subject_id = paste0("subject", 1:n),
   age_at_obs=round(rtnorm(n, 58, 5, 0, 90))
-)
-
-# fill in table after uploading tsv files to anvil
-phenotype_harmonized <- tibble(
-  phenotype_harmonized=rep(NA, 4), 
-  domain=rep(NA, 4),
-  md5sum=rep(NA, 4), 
-  file_path=rep(NA, 4), 
-  file_readme_path=rep(NA, 4), 
-  n_subjects=rep(NA, 4), 
-  n_rows=rep(NA, 4), 
-  data_model_version=rep(NA, 4), 
 )
 
 cmqt_anthropometry <- tibble(
@@ -59,6 +51,21 @@ cmqt_blood_pressure <- tibble(
   hypertension_1=ifelse(systolic_bp_1 > 140 & diastolic_bp_1 > 90, 1, 0)
 )
 
+# fill in table after uploading tsv files to anvil
+
+bucket <- "gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/"
+
+phenotype_harmonized <- tibble(
+  # phenotype_harmonized_id=
+  domain=(file_names), 
+  md5sum=as.vector(md5sum(paste0("test_data/", file_names, ".tsv"))), 
+  file_path=paste0(bucket, file_names, '.tsv'), 
+  file_readme_path=rep("readme", length(file_names)), 
+  n_subjects=rep(n, length(file_names)), 
+  n_rows=rep(n, length(file_names)), 
+  data_model_version=rep(5, length(file_names)), 
+)
+
 # cmqt_hematology <- tibble(
 #   subject_id=rep(subject$subject_id),
 #   age_at_obs=rep(subject$age_at_obs),
@@ -80,12 +87,10 @@ cmqt_blood_pressure <- tibble(
 #   mean_platelet_volume_1
 # )
 
-setwd("~/Downloads/primed_data_models")
-write_tsv(phenotype_harmonized, "test_data/phenotype_harmonized.tsv")
+# setwd("~/Downloads/primed_data_models")
 write_tsv(subject, "test_data/subject.tsv")
 write_tsv(cmqt_anthropometry, "test_data/cmqt_anthropometry.tsv")
 write_tsv(cmqt_lipids, "test_data/cmqt_lipids.tsv")
 write_tsv(cmqt_blood_pressure, "test_data/cmqt_blood_pressure.tsv")
+write_tsv(phenotype_harmonized, "test_data/phenotype_harmonized.tsv")
 # write_tsv(cmqt_hematology, "test_data/cmqt_hematology.tsv")
-
-# md5sum("test_data/cmqt_anthropometry.tsv")

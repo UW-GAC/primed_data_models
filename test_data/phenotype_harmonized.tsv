@@ -1,5 +1,4 @@
-phenotype_harmonized	domain	md5sum	file_path	file_readme_path	n_subjects	n_rows	data_model_version
-NA	NA	NA	NA	NA	NA	NA	NA
-NA	NA	NA	NA	NA	NA	NA	NA
-NA	NA	NA	NA	NA	NA	NA	NA
-NA	NA	NA	NA	NA	NA	NA	NA
+domain	md5sum	file_path	file_readme_path	n_subjects	n_rows	data_model_version
+cmqt_anthropometry	c790c18bcc0a4bda515c5872852fe7d4	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/cmqt_anthropometry.tsv	readme	20	20	5
+cmqt_lipids	0a16006e71901758713941f8a2be9eb4	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/cmqt_lipids.tsv	readme	20	20	5
+cmqt_blood_pressure	3265d4e88c18fd509c71c59cde47ff03	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/cmqt_blood_pressure.tsv	readme	20	20	5
