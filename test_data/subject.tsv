@@ -1,21 +1,21 @@
-subject_id	age_at_obs
-subject1	59
-subject2	46
-subject3	55
-subject4	55
-subject5	62
-subject6	55
-subject7	61
-subject8	65
-subject9	66
-subject10	51
-subject11	61
-subject12	55
-subject13	52
-subject14	66
-subject15	57
-subject16	57
-subject17	67
-subject18	59
-subject19	67
-subject20	62
+subject_id	consent_code	study_nickname	reported_sex
+subject1	HMB-IRB	ARIC	Other
+subject2	GRU	ARIC	Female
+subject3	GRU	JHS	Unknown
+subject4	GRU	JHS	Female
+subject5	DS-CVD	JHS	Other
+subject6	GRU	ARIC	Female
+subject7	DS-CVD	JHS	Other
+subject8	DS-CVD	ARIC	Other
+subject9	DS-CVD	JHS	Unknown
+subject10	GRU	JHS	Unknown
+subject11	DS-CVD	JHS	Male
+subject12	GRU	UKBB	Unknown
+subject13	GRU	ARIC	Other
+subject14	DS-CVD	JHS	Other
+subject15	HMB-IRB	JHS	Other
+subject16	HMB-IRB	ARIC	Male
+subject17	DS-CVD	JHS	Female
+subject18	HMB-IRB	JHS	Female
+subject19	DS-CVD	JHS	Other
+subject20	DS-CVD	UKBB	Unknown

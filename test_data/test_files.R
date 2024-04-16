@@ -1,5 +1,6 @@
 library(dplyr)
 library(readr)
+library(tools)
 
 # number of rows in test data
 n <- 20
@@ -15,14 +16,20 @@ rtnorm <- function(n, mean, sd, a = -Inf, b = Inf){
 
 set.seed(4)
 
+readme <- tibble(
+  read_me = c(NA)
+)
+
 subject <- tibble(
   subject_id = paste0("subject", 1:n),
-  age_at_obs=round(rtnorm(n, 58, 5, 0, 90))
+  consent_code = sample(x = c("GRU", "HMB-IRB", "DS-CVD"), size = n, replace = TRUE),
+  study_nickname = sample(x = c("UKBB", "JHS", "ARIC"), size = n, replace = TRUE), 
+  reported_sex = sample(x = c("Female", "Male", "Unknown", "Other"), size = n, replace = TRUE)
 )
 
 cmqt_anthropometry <- tibble(
   subject_id=rep(subject$subject_id),
-  age_at_obs=rep(subject$age_at_obs),
+  age_at_obs=round(rtnorm(n, 58, 5, 0, 90)),
   visit=rep("visit_1", n),
   height_1=rnorm(n, 165, 7), # height in cm
   weight_1=rnorm(n, 80, 5), # weight in kg
@@ -32,7 +39,7 @@ cmqt_anthropometry <- tibble(
 
 cmqt_lipids <- tibble(
   subject_id=rep(subject$subject_id),
-  age_at_obs=rep(subject$age_at_obs),
+  age_at_obs=round(rtnorm(n, 58, 5, 0, 90)),
   visit=rep("visit_1", n),
   triglycerides_1=rnorm(n, 116, 13.6), # mg/dL
   hdl_1=rnorm(n, 55, 15),
@@ -44,8 +51,8 @@ cmqt_lipids <- tibble(
 
 cmqt_blood_pressure <- tibble(
   subject_id=rep(subject$subject_id),
-  age_at_obs=rep(subject$age_at_obs),
-  visit=rep(1, n),
+  age_at_obs=round(rtnorm(n, 58, 5, 0, 90)),
+  visit=rep("visit_1", n),
   systolic_bp_1=rnorm(n, 120, 20),
   diastolic_bp_1=rnorm(n, 80, 10),
   hypertension_1=ifelse(systolic_bp_1 > 140 & diastolic_bp_1 > 90, 1, 0)
@@ -60,10 +67,9 @@ phenotype_harmonized <- tibble(
   domain=(file_names), 
   md5sum=as.vector(md5sum(paste0("test_data/", file_names, ".tsv"))), 
   file_path=paste0(bucket, file_names, '.tsv'), 
-  file_readme_path=rep("readme", length(file_names)), 
+  file_readme_path=paste0(bucket, 'readme.tsv'), 
   n_subjects=rep(n, length(file_names)), 
-  n_rows=rep(n, length(file_names)), 
-  data_model_version=rep(5, length(file_names)), 
+  n_rows=rep(n, length(file_names)),
 )
 
 # cmqt_hematology <- tibble(
@@ -87,7 +93,8 @@ phenotype_harmonized <- tibble(
 #   mean_platelet_volume_1
 # )
 
-# setwd("~/Downloads/primed_data_models")
+setwd("~/Downloads/primed_data_models")
+write_tsv(readme, "test_data/readme.tsv")
 write_tsv(subject, "test_data/subject.tsv")
 write_tsv(cmqt_anthropometry, "test_data/cmqt_anthropometry.tsv")
 write_tsv(cmqt_lipids, "test_data/cmqt_lipids.tsv")
