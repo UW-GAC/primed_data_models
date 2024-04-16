@@ -1,21 +1,21 @@
-subject_id	consent_code	study_nickname	reported_sex
-subject1	HMB-IRB	ARIC	Other
-subject2	GRU	ARIC	Female
-subject3	GRU	JHS	Unknown
-subject4	GRU	JHS	Female
-subject5	DS-CVD	JHS	Other
-subject6	GRU	ARIC	Female
-subject7	DS-CVD	JHS	Other
-subject8	DS-CVD	ARIC	Other
-subject9	DS-CVD	JHS	Unknown
-subject10	GRU	JHS	Unknown
-subject11	DS-CVD	JHS	Male
-subject12	GRU	UKBB	Unknown
-subject13	GRU	ARIC	Other
-subject14	DS-CVD	JHS	Other
-subject15	HMB-IRB	JHS	Other
-subject16	HMB-IRB	ARIC	Male
-subject17	DS-CVD	JHS	Female
-subject18	HMB-IRB	JHS	Female
-subject19	DS-CVD	JHS	Other
-subject20	DS-CVD	UKBB	Unknown
+subject_id	consent_code	study_nickname	dbgap_submission	reported_sex
+subject1	DS-CVD	ARIC	TRUE	Unknown
+subject2	DS-CVD	UKBB	TRUE	Female
+subject3	HMB-IRB	JHS	FALSE	Other
+subject4	HMB-IRB	UKBB	FALSE	Other
+subject5	HMB-IRB	ARIC	FALSE	Female
+subject6	DS-CVD	UKBB	FALSE	Unknown
+subject7	HMB-IRB	ARIC	FALSE	Female
+subject8	DS-CVD	ARIC	FALSE	Unknown
+subject9	HMB-IRB	ARIC	FALSE	Other
+subject10	HMB-IRB	JHS	FALSE	Other
+subject11	HMB-IRB	JHS	FALSE	Male
+subject12	GRU	ARIC	FALSE	Unknown
+subject13	DS-CVD	ARIC	FALSE	Male
+subject14	HMB-IRB	ARIC	FALSE	Male
+subject15	HMB-IRB	ARIC	FALSE	Other
+subject16	DS-CVD	JHS	FALSE	Unknown
+subject17	HMB-IRB	UKBB	FALSE	Male
+subject18	HMB-IRB	UKBB	FALSE	Male
+subject19	HMB-IRB	ARIC	FALSE	Male
+subject20	GRU	ARIC	FALSE	Female

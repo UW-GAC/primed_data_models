@@ -22,14 +22,16 @@ readme <- tibble(
 
 subject <- tibble(
   subject_id = paste0("subject", 1:n),
+  age_at_obs=round(rtnorm(n, 58, 5, 0, 90)),
   consent_code = sample(x = c("GRU", "HMB-IRB", "DS-CVD"), size = n, replace = TRUE),
   study_nickname = sample(x = c("UKBB", "JHS", "ARIC"), size = n, replace = TRUE), 
+  dbgap_submission = c(rep(TRUE, 2), rep(FALSE, n-2)), 
   reported_sex = sample(x = c("Female", "Male", "Unknown", "Other"), size = n, replace = TRUE)
 )
 
 cmqt_anthropometry <- tibble(
   subject_id=rep(subject$subject_id),
-  age_at_obs=round(rtnorm(n, 58, 5, 0, 90)),
+  age_at_obs=rep(subject$subject_id),
   visit=rep("visit_1", n),
   height_1=rnorm(n, 165, 7), # height in cm
   weight_1=rnorm(n, 80, 5), # weight in kg
@@ -39,7 +41,7 @@ cmqt_anthropometry <- tibble(
 
 cmqt_lipids <- tibble(
   subject_id=rep(subject$subject_id),
-  age_at_obs=round(rtnorm(n, 58, 5, 0, 90)),
+  age_at_obs=rep(subject$age_at_obs),
   visit=rep("visit_1", n),
   triglycerides_1=rnorm(n, 116, 13.6), # mg/dL
   hdl_1=rnorm(n, 55, 15),
@@ -51,7 +53,7 @@ cmqt_lipids <- tibble(
 
 cmqt_blood_pressure <- tibble(
   subject_id=rep(subject$subject_id),
-  age_at_obs=round(rtnorm(n, 58, 5, 0, 90)),
+  age_at_obs=rep(subject$age_at_obs),
   visit=rep("visit_1", n),
   systolic_bp_1=rnorm(n, 120, 20),
   diastolic_bp_1=rnorm(n, 80, 10),
@@ -71,6 +73,8 @@ phenotype_harmonized <- tibble(
   n_subjects=rep(n, length(file_names)), 
   n_rows=rep(n, length(file_names)),
 )
+
+subject <- subject %>% select(-age_at_obs)
 
 # cmqt_hematology <- tibble(
 #   subject_id=rep(subject$subject_id),
