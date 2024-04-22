@@ -16,10 +16,6 @@ rtnorm <- function(n, mean, sd, a = -Inf, b = Inf){
 
 set.seed(4)
 
-readme <- tibble(
-  read_me = c(NA)
-)
-
 subject <- tibble(
   subject_id = paste0("subject", 1:n),
   age_at_obs=round(rtnorm(n, 58, 5, 0, 90)),
@@ -29,15 +25,19 @@ subject <- tibble(
   reported_sex = sample(x = c("Female", "Male", "Unknown", "Other"), size = n, replace = TRUE)
 )
 
+set.seed(4)
+
 cmqt_anthropometry <- tibble(
   subject_id=rep(subject$subject_id),
-  age_at_obs=rep(subject$subject_id),
+  age_at_obs=rep(subject$age_at_obs),
   visit=rep("visit_1", n),
   height_1=rnorm(n, 165, 7), # height in cm
   weight_1=rnorm(n, 80, 5), # weight in kg
   bmi_1=weight_1 / (height_1 / 100)^2, # bmi in km/m^2
   waist_hip_ratio_1=rnorm(n, 0.8, 0.08)
 )
+
+set.seed(4)
 
 cmqt_lipids <- tibble(
   subject_id=rep(subject$subject_id),
@@ -51,6 +51,8 @@ cmqt_lipids <- tibble(
   non_hdl_1=rnorm(n, 81, 40),
 )
 
+set.seed(4)
+
 cmqt_blood_pressure <- tibble(
   subject_id=rep(subject$subject_id),
   age_at_obs=rep(subject$age_at_obs),
@@ -63,6 +65,10 @@ cmqt_blood_pressure <- tibble(
 # fill in table after uploading tsv files to anvil
 
 bucket <- "gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/"
+
+readme <- tibble(
+  read_me = c(NA)
+)
 
 phenotype_harmonized <- tibble(
   # phenotype_harmonized_id=
