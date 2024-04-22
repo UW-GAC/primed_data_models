@@ -1,4 +1,13 @@
 domain	md5sum	file_path	file_readme_path	n_subjects	n_rows
+cmqt_flags	NA	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/cmqt_flags.tsv	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/readme.tsv	20	20
 cmqt_anthropometry	d26b5af92459c0961442e2dcf7ce9235	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/cmqt_anthropometry.tsv	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/readme.tsv	20	20
-cmqt_lipids	17ce825be3d94425e26c08987fa78cd9	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/cmqt_lipids.tsv	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/readme.tsv	20	20
 cmqt_blood_pressure	9877023cd800d4235e1b99a650f88694	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/cmqt_blood_pressure.tsv	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/readme.tsv	20	20
+cmqt_lipids	17ce825be3d94425e26c08987fa78cd9	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/cmqt_lipids.tsv	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/readme.tsv	20	20
+cmqt_hematology	NA	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/cmqt_hematology.tsv	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/readme.tsv	20	20
+cmqt_glycemic	NA	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/cmqt_glycemic.tsv	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/readme.tsv	20	20
+cmqt_kidney_function	NA	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/cmqt_kidney_function.tsv	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/readme.tsv	20	20
+diabetes_diabetes	NA	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/diabetes_diabetes.tsv	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/readme.tsv	20	20
+cvd_cad	NA	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/cvd_cad.tsv	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/readme.tsv	20	20
+cancer_breast	NA	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/cancer_breast.tsv	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/readme.tsv	20	20
+cancer_prostate	NA	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/cancer_prostate.tsv	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/readme.tsv	20	20
+family_history	NA	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/family_history.tsv	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/readme.tsv	20	20

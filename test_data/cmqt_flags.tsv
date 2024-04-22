@@ -1,0 +1,21 @@
+subject_id	age_at_obs	visit	flag_pregnancy_1	flag_acute_illness_1	flag_bld_1	flag_anemia_1	flag_hiv_1	flag_eskd_1	flag_splenectomy_1	flag_cirrhosis_1	flag_fasting_1	flag_lipids_med_1	flag_bp_med_1	flag_cvd_1	flag_t2d_1	flag_t1d_1	flag_diabetes_other_1
+subject1	59	visit_1	unknown	unknown	data not collected	unknown	data not collected	yes	no	unknown	data not collected	no	data not collected	unknown	yes	data not collected	data not collected
+subject2	46	visit_1	no	data not collected	no	no	unknown	unknown	yes	unknown	data not collected	unknown	data not collected	unknown	yes	no	yes
+subject3	55	visit_1	yes	unknown	unknown	data not collected	unknown	yes	data not collected	yes	yes	no	yes	data not collected	no	unknown	data not collected
+subject4	55	visit_1	yes	yes	no	data not collected	data not collected	unknown	yes	data not collected	yes	data not collected	yes	yes	unknown	no	no
+subject5	62	visit_1	data not collected	unknown	data not collected	no	data not collected	yes	no	no	yes	unknown	yes	data not collected	data not collected	no	no
+subject6	55	visit_1	yes	data not collected	no	unknown	no	unknown	unknown	yes	no	no	no	unknown	no	no	no
+subject7	61	visit_1	unknown	yes	data not collected	no	no	unknown	data not collected	unknown	no	unknown	yes	unknown	yes	no	unknown
+subject8	65	visit_1	data not collected	data not collected	data not collected	unknown	data not collected	no	no	data not collected	no	yes	yes	yes	unknown	unknown	no
+subject9	66	visit_1	data not collected	unknown	unknown	data not collected	no	data not collected	unknown	data not collected	no	data not collected	unknown	yes	data not collected	yes	no
+subject10	51	visit_1	no	unknown	unknown	data not collected	data not collected	data not collected	yes	yes	data not collected	data not collected	no	data not collected	yes	data not collected	yes
+subject11	61	visit_1	data not collected	unknown	yes	yes	no	yes	yes	yes	no	yes	no	unknown	data not collected	data not collected	yes
+subject12	55	visit_1	yes	no	unknown	unknown	no	yes	no	no	unknown	data not collected	data not collected	data not collected	no	data not collected	no
+subject13	52	visit_1	no	data not collected	data not collected	yes	unknown	yes	yes	unknown	no	data not collected	data not collected	no	no	unknown	no
+subject14	66	visit_1	data not collected	unknown	data not collected	yes	yes	yes	no	data not collected	unknown	no	unknown	no	yes	unknown	yes
+subject15	57	visit_1	yes	yes	data not collected	data not collected	yes	data not collected	data not collected	yes	no	yes	data not collected	yes	unknown	yes	unknown
+subject16	57	visit_1	yes	data not collected	yes	unknown	no	unknown	data not collected	data not collected	no	unknown	unknown	unknown	unknown	data not collected	data not collected
+subject17	67	visit_1	data not collected	yes	no	yes	data not collected	yes	unknown	no	unknown	data not collected	no	data not collected	yes	no	yes
+subject18	59	visit_1	unknown	unknown	no	yes	yes	data not collected	yes	yes	no	yes	no	yes	data not collected	data not collected	yes
+subject19	67	visit_1	data not collected	yes	data not collected	yes	no	data not collected	yes	yes	yes	yes	no	no	no	data not collected	data not collected
+subject20	62	visit_1	data not collected	no	unknown	no	unknown	no	no	data not collected	unknown	no	unknown	yes	data not collected	unknown	no

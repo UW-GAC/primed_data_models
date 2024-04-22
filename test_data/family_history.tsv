@@ -1,0 +1,21 @@
+subject_id	age_at_obs	visit	family_hx_cancer_breast_1	family_hx_cancer_breast_relatedness_1	family_hx_cancer_prostate	family_hx_cancer_prostate_relatedness_1	family_hx_cancer_pancreatic	family_hx_cancer_pancreatic_relatedness_1	family_hx_cancer_colorectal	family_hx_cancer_colorectal_relatedness_1	family_hx_cancer_lung	family_hx_cancer_lung_relatedness_1	family_hx_cancer_any	family_hx_type2_diabetes	family_hx_type2_diabetes_relatedness_1	family_hx_myocardial_infarction	family_hx_myocardial_infarction_relatedness_1	family_hx_dementia	family_hx_dementia_relatedness_1	family_hx_type1_diabetes	family_hx_type1_diabetes_relatedness_1	family_hx_asthma	family_hx_asthma_relatedness_1	family_hx_stroke	family_hx_stroke_relatedness_1	family_hx_heart_failure	family_hx_heart_failure_relatedness_1
+subject1	59	1	1	unknown	1	2nd degree	1	1st degree	0	2nd degree	1	1st degree	1	1	2nd degree	1	unknown	1	2nd degree	1	1st degree	0	unknown	0	2nd degree	0	1st degree
+subject2	46	1	0	unknown	0	1st degree	1	2nd degree	0	unknown	1	2nd degree	1	1	2nd degree	0	2nd degree	1	1st degree	0	1st degree	1	1st degree	1	unknown	0	2nd degree
+subject3	55	1	0	2nd degree	1	unknown	1	1st degree	1	1st degree	0	1st degree	0	1	1st degree	1	unknown	0	unknown	0	2nd degree	0	1st degree	0	unknown	1	2nd degree
+subject4	55	1	0	2nd degree	0	unknown	1	2nd degree	0	unknown	0	unknown	0	0	2nd degree	0	1st degree	0	2nd degree	0	2nd degree	1	unknown	0	2nd degree	1	unknown
+subject5	62	1	1	2nd degree	1	1st degree	1	2nd degree	0	1st degree	0	2nd degree	0	1	unknown	0	1st degree	1	1st degree	0	2nd degree	1	2nd degree	0	2nd degree	0	1st degree
+subject6	55	1	0	unknown	0	2nd degree	0	2nd degree	1	2nd degree	0	1st degree	0	1	1st degree	0	1st degree	1	unknown	0	2nd degree	1	2nd degree	1	unknown	1	2nd degree
+subject7	61	1	1	2nd degree	1	1st degree	0	unknown	1	2nd degree	0	unknown	0	1	2nd degree	0	unknown	1	1st degree	0	1st degree	0	unknown	1	2nd degree	1	unknown
+subject8	65	1	1	unknown	1	2nd degree	1	1st degree	0	unknown	0	1st degree	0	0	unknown	1	1st degree	1	1st degree	1	1st degree	1	unknown	0	2nd degree	1	2nd degree
+subject9	66	1	1	2nd degree	1	unknown	0	unknown	1	unknown	0	unknown	1	0	unknown	0	1st degree	0	unknown	1	unknown	0	1st degree	1	unknown	0	1st degree
+subject10	51	1	0	2nd degree	1	unknown	1	unknown	0	2nd degree	1	unknown	0	1	1st degree	1	2nd degree	1	unknown	0	1st degree	0	1st degree	1	1st degree	1	1st degree
+subject11	61	1	1	2nd degree	0	2nd degree	0	1st degree	0	2nd degree	0	2nd degree	0	1	unknown	1	1st degree	1	1st degree	1	1st degree	0	unknown	0	1st degree	0	unknown
+subject12	55	1	0	1st degree	1	2nd degree	0	2nd degree	0	1st degree	1	unknown	1	1	1st degree	1	1st degree	1	2nd degree	0	1st degree	0	2nd degree	0	unknown	0	2nd degree
+subject13	52	1	0	unknown	1	2nd degree	1	1st degree	0	2nd degree	0	unknown	1	0	1st degree	1	1st degree	0	2nd degree	0	2nd degree	0	1st degree	0	unknown	0	2nd degree
+subject14	66	1	1	2nd degree	1	2nd degree	0	2nd degree	0	unknown	1	1st degree	1	0	2nd degree	1	2nd degree	1	2nd degree	1	2nd degree	1	1st degree	1	1st degree	1	unknown
+subject15	57	1	0	2nd degree	1	unknown	0	unknown	1	1st degree	0	1st degree	1	0	2nd degree	0	2nd degree	0	1st degree	1	unknown	1	unknown	0	1st degree	0	2nd degree
+subject16	57	1	0	unknown	0	unknown	0	2nd degree	1	unknown	0	unknown	1	1	2nd degree	1	unknown	1	1st degree	1	2nd degree	0	1st degree	1	2nd degree	0	2nd degree
+subject17	67	1	1	2nd degree	0	1st degree	1	2nd degree	1	1st degree	1	unknown	0	1	1st degree	0	1st degree	0	2nd degree	0	2nd degree	0	unknown	1	unknown	0	unknown
+subject18	59	1	1	2nd degree	0	2nd degree	0	unknown	0	1st degree	0	2nd degree	0	0	unknown	1	1st degree	0	unknown	0	unknown	0	2nd degree	0	1st degree	0	unknown
+subject19	67	1	1	2nd degree	1	1st degree	0	unknown	0	2nd degree	0	2nd degree	0	0	1st degree	1	unknown	1	2nd degree	0	2nd degree	1	2nd degree	0	2nd degree	1	unknown
+subject20	62	1	1	1st degree	1	1st degree	1	1st degree	0	unknown	1	1st degree	1	0	unknown	1	1st degree	0	1st degree	0	1st degree	1	unknown	0	2nd degree	0	1st degree
