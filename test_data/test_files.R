@@ -39,7 +39,7 @@ subject <- tibble(
 
 set.seed(4)
 
-cmqt_flagd <- tibble(
+cmqt_flags <- tibble(
   subject_id=rep(subject$subject_id),
   age_at_obs=rep(subject$age_at_obs),
   visit=rep("visit_1", n),
