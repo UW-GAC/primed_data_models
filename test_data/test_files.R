@@ -179,27 +179,27 @@ cancer_breast <- tibble(
   her2_1=sample(x = c("positive", "negative", "unknown"), size = n, replace = TRUE),
   pr_1=sample(x = c("positive", "negative", "unknown"), size = n, replace = TRUE),
   er_1=sample(x = c("positive", "negative", "unknown"), size = n, replace = TRUE),
-  T_stage_clinical_1=sample(x = c("stage1", "stage2", "stage3", "stage4", "unstaged", "unknown"), size = n, replace = TRUE),
-  T_stage_pathological_1=sample(x = c("stage1", "stage2", "stage3", "stage4", "unstaged", "unknown"), size = n, replace = TRUE),
-  T_stage_uknown_1=sample(x = c("stage1", "stage2", "stage3", "stage4", "unstaged", "unknown"), size = n, replace = TRUE),
+  T_stage_clinical_1=sample(x = c("stage 1", "stage 2", "stage 3", "stage 4", "unstaged", "unknown"), size = n, replace = TRUE),
+  T_stage_pathological_1=sample(x = c("stage 1", "stage 2", "stage 3", "stage 4", "unstaged", "unknown"), size = n, replace = TRUE),
+  T_stage_uknown_1=sample(x = c("stage 1", "stage 2", "stage 3", "stage 4", "unstaged", "unknown"), size = n, replace = TRUE),
   T_stage_clinical_2=sample(x = c("localized", "regional", "distant", "in_situ", "unstaged", "unknown"), size = n, replace = TRUE),
   T_stage_pathological_2=sample(x = c("localized", "regional", "distant", "in_situ", "unstaged", "unknown"), size = n, replace = TRUE),
   T_stage_unknown_2=sample(x = c("localized", "regional", "distant", "in_situ", "unstaged", "unknown"), size = n, replace = TRUE),
   nodal_involvement_1=sample(x = c("NX", "N0", "N1", "N2", "N3"), size = n, replace = TRUE),
   distant_metastasis_1=sample(x = c("MX", "M0", "M1"), size = n, replace = TRUE),
   stage_system_1=rep(NA, n),
-  grade_clinical_1=sample(x = c("grade1", "grade2", "grade3"), size = n, replace = TRUE),
-  grade_pathological_1=sample(x = c("grade1", "grade2", "grade3"), size = n, replace = TRUE),
-  grade_unknown_1=sample(x = c("grade1", "grade2", "grade3"), size = n, replace = TRUE),
+  grade_clinical_1=sample(x = c("grade 1", "grade 2", "grade 3"), size = n, replace = TRUE),
+  grade_pathological_1=sample(x = c("grade 1", "grade 2", "grade 3"), size = n, replace = TRUE),
+  grade_unknown_1=sample(x = c("grade 1", "grade 2", "grade 3"), size = n, replace = TRUE),
   screening_history_1=sample(x = c(0, 1), size = n, replace = TRUE),
-  recurrence_1=sample(x = c("recurrance_primary", "recurrance_second_primary", "unknown", "none"), size = n, replace = TRUE),
-  surgery_1=sample(x = c("grade1", "grade2", "grade3"), size = n, replace = TRUE),
-  radiotherapy_1=sample(x = c("grade1", "grade2", "grade3"), size = n, replace = TRUE),
-  chemotherapy_1=sample(x = c("grade1", "grade2", "grade3"), size = n, replace = TRUE),
+  recurrence_1=sample(x = c("recurrence_primary", "recurrence_second_primary", "unknown", "none"), size = n, replace = TRUE),
+  surgery_1=sample(x = c(0, 1), size = n, replace = TRUE),
+  radiotherapy_1=sample(x = c(0, 1), size = n, replace = TRUE),
+  chemotherapy_1=sample(x = c(0, 1), size = n, replace = TRUE),
   hormone_therapy_1=sample(x = c("pharmaceutical", "surgical", "both", "none", "unknown"), size = n, replace = TRUE),
-  NSAID_1=sample(x = c("grade1", "grade2", "grade3"), size = n, replace = TRUE),
+  NSAID_1=sample(x = c(0, 1), size = n, replace = TRUE),
   age_at_natural_menopause_1=sapply(subject$age_at_obs, function(x) round(rtnorm(1, x, 10, x, 90))),
-  post_menopausal_hormone_use_1=sample(x = c("grade1", "grade2", "grade3"), size = n, replace = TRUE),
+  post_menopausal_hormone_use_1=sample(x = c(0, 1), size = n, replace = TRUE),
   parity_1=sample(x = c(0, 1, 2), size = n, replace = TRUE),
   age_at_first_birth_1=round(rtnorm(n, 28, 5, 0, 90)),
   age_at_menarche_1=round(rtnorm(n, 15, 3, 0, 90)),
@@ -220,15 +220,30 @@ cancer_prostate <- tibble(
   age_at_diagnosis_1=sapply(subject$age_at_obs, function(x) round(rtnorm(1, x, 5, x, 90))),
   year_at_diagnosis_1=round(rtnorm(n, 2010, 5, 1900, 2024)),
   cancer_behavior_1=sample(x = c("benign", "borderline", "in_situ", "invasive"), size = n, replace = TRUE),
-  T_stage_clinical_1=sample(x = c("stage1", "stage2", "stage3", "stage4", "unstaged", "unknown"), size = n, replace = TRUE),
-  T_stage_pathological_1=sample(x = c("stage1", "stage2", "stage3", "stage4", "unstaged", "unknown"), size = n, replace = TRUE),
-  T_stage_uknown_1=sample(x = c("stage1", "stage2", "stage3", "stage4", "unstaged", "unknown"), size = n, replace = TRUE),
+  T_stage_clinical_1=sample(x = c("stage 1", "stage 2", "stage 3", "stage 4", "unstaged", "unknown"), size = n, replace = TRUE),
+  T_stage_pathological_1=sample(x = c("stage 1", "stage 2", "stage 3", "stage 4", "unstaged", "unknown"), size = n, replace = TRUE),
+  T_stage_uknown_1=sample(x = c("stage 1", "stage 2", "stage 3", "stage 4", "unstaged", "unknown"), size = n, replace = TRUE),
   T_stage_clinical_2=sample(x = c("localized", "regional", "distant", "in_situ", "unstaged", "unknown"), size = n, replace = TRUE),
   T_stage_pathological_2=sample(x = c("localized", "regional", "distant", "in_situ", "unstaged", "unknown"), size = n, replace = TRUE),
   T_stage_unknown_2=sample(x = c("localized", "regional", "distant", "in_situ", "unstaged", "unknown"), size = n, replace = TRUE),
   nodal_involvement_1=sample(x = c("NX", "N0", "N1", "N2", "N3"), size = n, replace = TRUE),
   distant_metastasis_1=sample(x = c("MX", "M0", "M1"), size = n, replace = TRUE),
-  stage_system_1=rep(NA, n)
+  stage_system_1=rep(NA, n), 
+  gleason_score_clinical_1=runif(n, 2, 10),
+  gleason_score_pathological_1=runif(n, 2, 10),
+  gleason_score_unknown_1=runif(n, 2, 10),
+  psa_1=rtnorm(n, 1.5, 1, 0, 50),
+  psa_at_diagnosis_1=rtnorm(n, 1.5, 1, 0, 50),
+  screening_history_1=sample(x = c(0, 1), size = n, replace = TRUE),
+  recurrence_1=sample(x = c("recurrence_primary", "recurrence_second_primary", "unknown", "none"), size = n, replace = TRUE),
+  surgery_1=sample(x = c(0, 1), size = n, replace = TRUE),
+  radiotherapy_1=sample(x = c(0, 1), size = n, replace = TRUE),
+  chemotherapy_1=sample(x = c(0, 1), size = n, replace = TRUE),
+  hormone_therapy_1=sample(x = c("pharmaceutical", "surgical", "both", "none", "unknown"), size = n, replace = TRUE),
+  NSAID_1=sample(x = c(0, 1), size = n, replace = TRUE),
+  deceased_1=sample(x = c(0, 1), size = n, replace = TRUE, prob = c(0.9, 0.1)),
+  cause_of_death_prostate_cancer_1=sample(x = c(0, 1), size = n, replace = TRUE, prob = c(0.9, 0.1)),
+  age_at_death_1=sapply(subject$age_at_obs, function(x) round(rtnorm(1, x, 20, x, 90))),
 )
 
 set.seed(4)
@@ -272,18 +287,7 @@ readme <- tibble(
   read_me = c(NA)
 )
 
-phenotype_harmonized <- tibble(
-  # phenotype_harmonized_id=
-  domain=(file_names), 
-  md5sum=as.vector(md5sum(paste0("test_data/", file_names, ".tsv"))), 
-  file_path=paste0(bucket, file_names, '.tsv'), 
-  file_readme_path=paste0(bucket, 'readme.tsv'), 
-  n_subjects=rep(n, length(file_names)), 
-  n_rows=rep(n, length(file_names)),
-)
-
 subject <- subject %>% select(-age_at_obs)
-
 
 
 setwd("~/Downloads/primed_data_models")
@@ -301,4 +305,15 @@ write_tsv(cvd_cad, "test_data/cvd_cad.tsv")
 write_tsv(cancer_breast, "test_data/cancer_breast.tsv")
 write_tsv(cancer_prostate, "test_data/cancer_prostate.tsv")
 write_tsv(family_history, "test_data/family_history.tsv")
+
+phenotype_harmonized <- tibble(
+  # phenotype_harmonized_id=
+  domain=(file_names), 
+  md5sum=as.vector(md5sum(paste0("test_data/", file_names, ".tsv"))), 
+  file_path=paste0(bucket, file_names, '.tsv'), 
+  file_readme_path=paste0(bucket, 'readme.tsv'), 
+  n_subjects=rep(n, length(file_names)), 
+  n_rows=rep(n, length(file_names)),
+)
+
 write_tsv(phenotype_harmonized, "test_data/phenotype_harmonized.tsv")

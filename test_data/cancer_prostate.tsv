@@ -1,21 +1,21 @@
-subject_id	age_at_obs	visit	prostate_cancer_status_emerge_1	prostate_cancer_status_registry_1	prostate_cancer_status_survey_1	age_at_diagnosis_1	year_at_diagnosis_1	cancer_behavior_1	T_stage_clinical_1	T_stage_pathological_1	T_stage_uknown_1	T_stage_clinical_2	T_stage_pathological_2	T_stage_unknown_2	nodal_involvement_1	distant_metastasis_1	stage_system_1
-subject1	59	visit_1	1	1	1	63	2017	borderline	stage1	stage4	unknown	localized	unstaged	in_situ	N1	M1	NA
-subject2	46	visit_1	0	1	0	46	2013	in_situ	stage3	unstaged	unknown	in_situ	unstaged	in_situ	N0	MX	NA
-subject3	55	visit_1	0	1	1	62	2011	borderline	unknown	stage2	stage3	regional	distant	unstaged	NX	M1	NA
-subject4	55	visit_1	0	0	0	64	2017	in_situ	stage2	unknown	stage3	unknown	distant	regional	N2	MX	NA
-subject5	62	visit_1	1	1	1	63	2016	borderline	stage1	stage2	stage2	in_situ	distant	unstaged	N3	MX	NA
-subject6	55	visit_1	0	1	0	59	2002	in_situ	unstaged	stage3	stage1	regional	localized	in_situ	NX	MX	NA
-subject7	61	visit_1	1	0	1	61	2002	in_situ	unknown	stage4	stage1	unstaged	distant	in_situ	N0	MX	NA
-subject8	65	visit_1	1	1	1	68	2021	benign	stage2	unknown	stage1	regional	distant	distant	N2	M0	NA
-subject9	66	visit_1	1	1	1	72	2006	invasive	stage4	unstaged	stage1	unstaged	in_situ	distant	N3	MX	NA
-subject10	51	visit_1	0	1	1	62	2017	invasive	stage3	stage3	unstaged	unknown	localized	unknown	N0	M1	NA
-subject11	61	visit_1	1	1	0	63	2006	borderline	stage3	stage3	stage1	distant	localized	in_situ	N3	M1	NA
-subject12	55	visit_1	0	0	1	59	2004	borderline	stage2	stage1	stage4	unknown	unknown	unknown	NX	M1	NA
-subject13	52	visit_1	0	1	1	55	2010	borderline	stage3	stage4	stage2	unknown	unknown	regional	NX	M1	NA
-subject14	66	visit_1	1	1	1	68	2007	borderline	stage2	unknown	stage4	regional	in_situ	regional	N0	M0	NA
-subject15	57	visit_1	0	0	1	64	2008	invasive	unstaged	stage2	stage1	regional	unstaged	regional	N2	M0	NA
-subject16	57	visit_1	0	1	0	62	2003	in_situ	unknown	unknown	stage1	unstaged	unstaged	in_situ	N2	M1	NA
-subject17	67	visit_1	1	0	0	69	2014	borderline	unstaged	stage2	stage4	unknown	localized	unknown	N0	MX	NA
-subject18	59	visit_1	1	1	0	62	2009	invasive	stage2	stage2	stage2	distant	regional	regional	N3	M1	NA
-subject19	67	visit_1	1	0	1	69	2001	invasive	stage3	stage3	stage3	distant	localized	regional	NX	M1	NA
-subject20	62	visit_1	1	0	1	63	2013	benign	stage1	unstaged	unstaged	localized	in_situ	regional	N3	M0	NA
+subject_id	age_at_obs	visit	prostate_cancer_status_emerge_1	prostate_cancer_status_registry_1	prostate_cancer_status_survey_1	age_at_diagnosis_1	year_at_diagnosis_1	cancer_behavior_1	T_stage_clinical_1	T_stage_pathological_1	T_stage_uknown_1	T_stage_clinical_2	T_stage_pathological_2	T_stage_unknown_2	nodal_involvement_1	distant_metastasis_1	stage_system_1	gleason_score_clinical_1	gleason_score_pathological_1	gleason_score_unknown_1	psa_1	psa_at_diagnosis_1	screening_history_1	recurrence_1	surgery_1	radiotherapy_1	chemotherapy_1	hormone_therapy_1	NSAID_1	deceased_1	cause_of_death_prostate_cancer_1	age_at_death_1
+subject1	59	visit_1	1	1	1	63	2017	borderline	stage 1	stage 4	unknown	localized	unstaged	in_situ	N1	M1	NA	8.731725374236703	8.478020103648305	7.070699093863368	3.3273850651366184	0.6910954617090586	0	none	0	0	0	pharmaceutical	1	0	0	68
+subject2	46	visit_1	0	1	0	46	2013	in_situ	stage 3	unstaged	unknown	in_situ	unstaged	in_situ	N0	MX	NA	5.31847382709384	6.302142806351185	3.4212676770985126	0.1117048051118088	1.114277099266359	1	recurrence_second_primary	1	1	0	surgical	0	0	0	70
+subject3	55	visit_1	0	1	1	62	2011	borderline	unknown	stage 2	stage 3	regional	distant	unstaged	NX	M1	NA	8.112247075885534	3.6575526501983404	7.505811808630824	1.1467807022659444	1.650565194078115	0	recurrence_primary	0	1	1	both	0	0	0	67
+subject4	55	visit_1	0	0	0	64	2017	in_situ	stage 2	unknown	stage 3	unknown	distant	regional	N2	MX	NA	2.075820654630661	3.5997560676187277	4.670109050348401	0.6244635030052077	1.385998555747178	1	none	0	1	1	unknown	0	0	1	62
+subject5	62	visit_1	1	1	1	63	2016	borderline	stage 1	stage 2	stage 2	in_situ	distant	unstaged	N3	MX	NA	3.5938638411462307	9.505069125443697	3.4053481109440327	1.0444848894466576	1.9458136918517794	1	recurrence_second_primary	0	0	0	pharmaceutical	0	1	0	63
+subject6	55	visit_1	0	1	0	59	2002	in_situ	unstaged	stage 3	stage 1	regional	localized	in_situ	NX	MX	NA	2.81782154366374	9.789288826286793	9.076163556426764	0.959323014536773	1.2909907535132685	1	recurrence_second_primary	1	1	1	none	1	0	0	59
+subject7	61	visit_1	1	0	1	61	2002	in_situ	unknown	stage 4	stage 1	unstaged	distant	in_situ	N0	MX	NA	7.864194095134735	9.322885816916823	2.6132918391376734	0.08122257203704342	0.302979697472334	0	none	1	1	1	none	0	0	0	62
+subject8	65	visit_1	1	1	1	68	2021	benign	stage 2	unknown	stage 1	regional	distant	distant	N2	M0	NA	2.845074152573943	9.902249811217189	2.6696471609175205	1.6165848336901831	0.3081623612021196	1	none	0	1	1	both	0	0	0	86
+subject9	66	visit_1	1	1	1	72	2006	invasive	stage 4	unstaged	stage 1	unstaged	in_situ	distant	N3	MX	NA	3.8796687815338373	4.515676589682698	8.683276420459151	3.215384566425846	3.4306225959208776	0	recurrence_primary	1	1	0	surgical	1	0	0	70
+subject10	51	visit_1	0	1	1	62	2017	invasive	stage 3	stage 3	unstaged	unknown	localized	unknown	N0	M1	NA	5.506285002455115	8.861765194684267	7.553499078378081	0.21256352824871372	1.1323419133081138	0	recurrence_primary	1	0	1	pharmaceutical	0	0	0	66
+subject11	61	visit_1	1	1	0	63	2006	borderline	stage 3	stage 3	stage 1	distant	localized	in_situ	N3	M1	NA	4.612345730885863	7.67168252915144	2.4880887512117624	1.6517128367933704	0.9405233862074993	0	none	0	0	0	unknown	1	1	0	85
+subject12	55	visit_1	0	0	1	59	2004	borderline	stage 2	stage 1	stage 4	unknown	unknown	unknown	NX	M1	NA	2.0972411278635263	7.748725865036249	6.268828645348549	0.2398326754427973	0.7250777214867976	0	unknown	0	1	0	both	1	0	0	85
+subject13	52	visit_1	0	1	1	55	2010	borderline	stage 3	stage 4	stage 2	unknown	unknown	regional	NX	M1	NA	2.9275574795901775	3.5649712923914194	6.056498387828469	1.1806309466433595	1.9446144610218248	0	recurrence_primary	0	1	0	both	0	0	0	54
+subject14	66	visit_1	1	1	1	68	2007	borderline	stage 2	unknown	stage 4	regional	in_situ	regional	N0	M0	NA	5.634906744584441	8.788703504949808	6.162681128829718	1.6857904625831341	1.52517841165081	1	recurrence_primary	1	0	1	none	1	0	0	86
+subject15	57	visit_1	0	0	1	64	2008	invasive	unstaged	stage 2	stage 1	regional	unstaged	regional	N2	M0	NA	7.215250797569752	3.9183619394898415	3.7540266644209623	2.1816372213400363	2.002552414007943	1	unknown	0	0	0	both	1	0	0	73
+subject16	57	visit_1	0	1	0	62	2003	in_situ	unknown	unknown	stage 1	unstaged	unstaged	in_situ	N2	M1	NA	9.906074807047844	7.992842447012663	3.8347186259925365	1.8889410806023983	1.223594159764647	0	recurrence_primary	1	0	0	both	0	0	0	57
+subject17	67	visit_1	1	0	0	69	2014	borderline	unstaged	stage 2	stage 4	unknown	localized	unknown	N0	MX	NA	4.422365535050631	2.1439468264579773	5.274411527439952	0.8706631343253838	1.8269750432423142	0	none	1	1	0	none	1	0	0	78
+subject18	59	visit_1	1	1	0	62	2009	invasive	stage 2	stage 2	stage 2	distant	regional	regional	N3	M1	NA	4.340394644066691	5.121547309681773	9.450007228180766	1.5219466926525085	2.223313852420131	0	unknown	0	0	0	unknown	0	0	0	60
+subject19	67	visit_1	1	0	1	69	2001	invasive	stage 3	stage 3	stage 3	distant	localized	regional	NX	M1	NA	8.548433542251587	8.913689605891705	5.135163985192776	0.61399603928097	1.4170698016606862	1	unknown	0	0	1	none	1	0	0	82
+subject20	62	visit_1	1	0	1	63	2013	benign	stage 1	unstaged	unstaged	localized	in_situ	regional	N3	M0	NA	3.4125859420746565	4.814642226323485	3.825298761948943	1.211037802492477	0.8747108557841603	1	none	0	0	0	pharmaceutical	0	0	0	81
