@@ -9,5 +9,5 @@ cmqt_kidney_function	35962811d3e9c081de82e4f3f8e4bfb5	gs://fc-e3b6ff37-761e-4e53
 diabetes_diabetes	fdf40653b5a3e9f8eb6f4c9608f07e66	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/diabetes_diabetes.tsv	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/readme.tsv	20	20
 cvd_cad	26439afc298880695450a008d3f92290	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/cvd_cad.tsv	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/readme.tsv	20	20
 cancer_breast	322959303fc4c173f503aaea46fbccbf	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/cancer_breast.tsv	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/readme.tsv	20	20
-cancer_prostate	2975de4991faf46556fb592d00e9214c	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/cancer_prostate.tsv	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/readme.tsv	20	20
+cancer_prostate	af65adca42868373afc81bef2dd2cd2b	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/cancer_prostate.tsv	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/readme.tsv	20	20
 family_history	53fe6db8b6d0864ca9adc9e46061a6b0	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/family_history.tsv	gs://fc-e3b6ff37-761e-4e53-89c0-fb243b8bd8e5/test_data/readme.tsv	20	20
