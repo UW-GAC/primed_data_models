@@ -1,7 +1,7 @@
 {
   "name": "PRIMED Phenotype Data Model",
   "description": "Data model for phenotype data in the PRIMED consortium",
-  "version": "1.6",
+  "version": "1.7",
   "tables": [
     {
       "table": "subject",
@@ -835,7 +835,7 @@
     {
       "table": "diabetes_diabetes",
       "url": "https://docs.google.com/spreadsheets/d/1Zc1ALFmFI8kD_bn0n-u_HfRpZjOpSf10nM-lOuTiS6s/edit#gid=597696160",
-      "version": "1.0",
+      "version": "1.1",
       "columns": [
         {
           "column": "subject_id",
@@ -873,6 +873,20 @@
         },
         {
           "column": "t2d_1",
+          "description": "indicator of Type 2 Diabetes",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "t1d_dprism_1",
+          "description": "indicator of Type 1 Diabetes",
+          "data_type": "enumeration",
+          "enumerations": ["0", "1"],
+          "notes": "0 = 'no' 1 = 'yes' Missing values can either be left blank or set to NA."
+        },
+        {
+          "column": "t2d_dprism_1",
           "description": "indicator of Type 2 Diabetes",
           "data_type": "enumeration",
           "enumerations": ["0", "1"],
