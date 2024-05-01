@@ -7,7 +7,7 @@ n <- 20
 
 file_names <- c(
   # "pilot",
-  # "population_descriptor",
+  "population_descriptor",
   "cmqt_flags",
   "cmqt_anthropometry",
   "cmqt_blood_pressure",
@@ -35,6 +35,17 @@ subject <- tibble(
   study_nickname = sample(x = c("UKBB", "JHS", "ARIC"), size = n, replace = TRUE), 
   dbgap_submission = c(rep(TRUE, 2), rep(FALSE, n-2)), 
   reported_sex = sample(x = c("Female", "Male", "Unknown", "Other"), size = n, replace = TRUE)
+)
+
+set.seed(4)
+
+population_descriptor <- tibble(
+  subject_id=rep(subject$subject_id),
+  population_descriptor_id = sample(x = c("01bb18a183122d64", "022f19bfe0b628e1", "0224684f6cb9e980"), size = n, replace = TRUE),
+  population_descriptor = sample(x = c("population|subpopulation"), size = n, replace = TRUE),
+  population_label = sample(x = c("PEL|AMR", "IBS|EUR", "MXL|AMR", "GBR|EUR", "MSL|AFR"), size = n, replace = TRUE), 
+  country_of_recruitment = sample(x = c("Peru", "Spain", "USA", "UK", "Sierra Leone"), size = n, replace = TRUE),
+  country_of_birth = sample(x = c("Peru", "Spain", "USA", "UK", "Sierra Leone"), size = n, replace = TRUE)
 )
 
 set.seed(4)
@@ -290,30 +301,32 @@ readme <- tibble(
 subject <- subject %>% select(-age_at_obs)
 
 
-setwd("~/Downloads/primed_data_models")
-write_tsv(readme, "test_data/readme.tsv")
-write_tsv(subject, "test_data/subject.tsv")
-write_tsv(cmqt_flags, "test_data/cmqt_flags.tsv")
-write_tsv(cmqt_anthropometry, "test_data/cmqt_anthropometry.tsv")
-write_tsv(cmqt_blood_pressure, "test_data/cmqt_blood_pressure.tsv")
-write_tsv(cmqt_lipids, "test_data/cmqt_lipids.tsv")
-write_tsv(cmqt_hematology, "test_data/cmqt_hematology.tsv")
-write_tsv(cmqt_glycemic, "test_data/cmqt_glycemic.tsv")
-write_tsv(cmqt_kidney_function, "test_data/cmqt_kidney_function.tsv")
-write_tsv(diabetes_diabetes, "test_data/diabetes_diabetes.tsv")
-write_tsv(cvd_cad, "test_data/cvd_cad.tsv")
-write_tsv(cancer_breast, "test_data/cancer_breast.tsv")
-write_tsv(cancer_prostate, "test_data/cancer_prostate.tsv")
-write_tsv(family_history, "test_data/family_history.tsv")
+# working in  primed_data_models/test_data directory 
+
+write_tsv(readme, "readme.tsv")
+write_tsv(subject, "subject.tsv")
+write_tsv(population_descriptor, "population_descriptor.tsv")
+write_tsv(cmqt_flags, "cmqt_flags.tsv")
+write_tsv(cmqt_anthropometry, "cmqt_anthropometry.tsv")
+write_tsv(cmqt_blood_pressure, "cmqt_blood_pressure.tsv")
+write_tsv(cmqt_lipids, "cmqt_lipids.tsv")
+write_tsv(cmqt_hematology, "cmqt_hematology.tsv")
+write_tsv(cmqt_glycemic, "cmqt_glycemic.tsv")
+write_tsv(cmqt_kidney_function, "cmqt_kidney_function.tsv")
+write_tsv(diabetes_diabetes, "diabetes_diabetes.tsv")
+write_tsv(cvd_cad, "cvd_cad.tsv")
+write_tsv(cancer_breast, "cancer_breast.tsv")
+write_tsv(cancer_prostate, "cancer_prostate.tsv")
+write_tsv(family_history, "family_history.tsv")
 
 phenotype_harmonized <- tibble(
   # phenotype_harmonized_id=
   domain=(file_names), 
-  md5sum=as.vector(md5sum(paste0("test_data/", file_names, ".tsv"))), 
+  md5sum=as.vector(md5sum(paste0(file_names, ".tsv"))), 
   file_path=paste0(bucket, file_names, '.tsv'), 
   file_readme_path=paste0(bucket, 'readme.tsv'), 
   n_subjects=rep(n, length(file_names)), 
   n_rows=rep(n, length(file_names)),
 )
 
-write_tsv(phenotype_harmonized, "test_data/phenotype_harmonized.tsv")
+write_tsv(phenotype_harmonized, "phenotype_harmonized.tsv")

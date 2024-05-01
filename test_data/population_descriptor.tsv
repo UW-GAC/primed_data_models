@@ -1,0 +1,21 @@
+subject_id	population_descriptor_id	population_descriptor	population_label	country_of_recruitment	country_of_birth
+subject1	022f19bfe0b628e1	population | subpopulation	MSL | AFR	USA	Sierra Leone
+subject2	01bb18a183122d64	population | subpopulation	IBS | EUR	Peru	UK
+subject3	01bb18a183122d64	population | subpopulation	MXL | AMR	Sierra Leone	USA
+subject4	01bb18a183122d64	population | subpopulation	PEL | AMR	Sierra Leone	Sierra Leone
+subject5	0224684f6cb9e980	population | subpopulation	MSL | AFR	Spain	Sierra Leone
+subject6	01bb18a183122d64	population | subpopulation	PEL | AMR	UK	Peru
+subject7	0224684f6cb9e980	population | subpopulation	MSL | AFR	Peru	Peru
+subject8	0224684f6cb9e980	population | subpopulation	MSL | AFR	USA	Sierra Leone
+subject9	0224684f6cb9e980	population | subpopulation	GBR | EUR	Sierra Leone	Spain
+subject10	01bb18a183122d64	population | subpopulation	MXL | AMR	Sierra Leone	Sierra Leone
+subject11	0224684f6cb9e980	population | subpopulation	IBS | EUR	Spain	Peru
+subject12	01bb18a183122d64	population | subpopulation	GBR | EUR	UK	Peru
+subject13	01bb18a183122d64	population | subpopulation	MSL | AFR	USA	USA
+subject14	0224684f6cb9e980	population | subpopulation	MSL | AFR	Spain	Spain
+subject15	022f19bfe0b628e1	population | subpopulation	MSL | AFR	Sierra Leone	Spain
+subject16	022f19bfe0b628e1	population | subpopulation	MXL | AMR	UK	Peru
+subject17	0224684f6cb9e980	population | subpopulation	PEL | AMR	Spain	UK
+subject18	022f19bfe0b628e1	population | subpopulation	PEL | AMR	USA	USA
+subject19	0224684f6cb9e980	population | subpopulation	MSL | AFR	Spain	Peru
+subject20	0224684f6cb9e980	population | subpopulation	GBR | EUR	Peru	UK
