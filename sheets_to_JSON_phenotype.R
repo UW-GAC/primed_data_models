@@ -9,7 +9,7 @@ library(jsonlite)
 url <- "https://docs.google.com/spreadsheets/d/1kpWz-6QfjMPVtm62fQwm4hoxzXhR0dnKxVt02fbx9ks"
 model_name <- "PRIMED Phenotype Data Model"
 model_description <- "Data model for phenotype data in the PRIMED consortium"
-model_version <-"1.5"
+model_version <-"1.7"
 
 # table metadata
 meta <- read_sheet(url, sheet="Description", skip=1, col_types="c") %>%
@@ -43,7 +43,7 @@ for (i in 1:length(tables)) {
                Description=gsub('\n', ' ', Description), # replace newline with space
                `Notes/comments`=gsub('"', "'", `Notes/comments`), # replace double with single quote
                `Notes/comments`=gsub('\n', ' ', `Notes/comments`)) # replace newline with space
-    
+
     if ("Primary key" %in% names(tmp)) {
         tmp <- tmp %>%
             rename(primary_key = `Primary key`)
@@ -51,29 +51,29 @@ for (i in 1:length(tables)) {
         tmp <- tmp %>%
             mutate(primary_key = ifelse(paste0(names(tables)[i], "_id") == Column, TRUE, NA))
     }
-    
+
     lookup <- c(
-        data_type = "Data type", 
+        data_type = "Data type",
         multi_value_delimiter = "Multi-value delimiter",
         notes = "Notes/comments"
     )
     tmp <- tmp %>%
         rename(any_of(lookup)) %>%
         rename_with(tolower)
-    
+
     keep_cols <- c(
-        "column", 
+        "column",
         "primary_key",
         "required",
-        "description", 
-        "data_type", 
+        "description",
+        "data_type",
         "min",
         "max",
-        "references", 
-        "enumerations", 
+        "references",
+        "enumerations",
         "is_bucket_path",
         "multi_value_delimiter",
-        "examples", 
+        "examples",
         "notes"
     )
     tables[[i]] <- tmp %>%
@@ -95,7 +95,7 @@ master <- list(
     name = model_name,
     description = model_description,
     version = model_version,
-    
+
     # Data Table Details
     tables = tab_list
 )
