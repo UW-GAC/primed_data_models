@@ -41,7 +41,7 @@ set.seed(4)
 
 population_descriptor <- tibble(
   subject_id=rep(subject$subject_id),
-  population_descriptor_id = sample(x = c("01bb18a183122d64", "022f19bfe0b628e1", "0224684f6cb9e980"), size = n, replace = TRUE),
+  # population_descriptor_id = sample(x = c("01bb18a183122d64", "022f19bfe0b628e1", "0224684f6cb9e980"), size = n, replace = TRUE),
   population_descriptor = sample(x = c("population|subpopulation"), size = n, replace = TRUE),
   population_label = sample(x = c("PEL|AMR", "IBS|EUR", "MXL|AMR", "GBR|EUR", "MSL|AFR"), size = n, replace = TRUE), 
   country_of_recruitment = sample(x = c("Peru", "Spain", "USA", "UK", "Sierra Leone"), size = n, replace = TRUE),
@@ -161,6 +161,8 @@ diabetes_diabetes <- tibble(
   visit=rep("visit_1", n),
   t1d_1=sample(x = c(0, 1), size = n, replace = TRUE, prob = c(0.95, 0.05)),
   t2d_1=sample(x = c(0, 1), size = n, replace = TRUE, prob = c(0.95, 0.05)),
+  t1d_dprism_1=sample(x = c(0, 1), size = n, replace = TRUE, prob = c(0.95, 0.05)),
+  t2d_dprism_1=sample(x = c(0, 1), size = n, replace = TRUE, prob = c(0.95, 0.05)),
 )
 
 set.seed(4)
@@ -301,7 +303,7 @@ readme <- tibble(
 subject <- subject %>% select(-age_at_obs)
 
 
-# working in  primed_data_models/test_data directory 
+# working in primed_data_models/test_data directory 
 
 write_tsv(readme, "readme.tsv")
 write_tsv(subject, "subject.tsv")
