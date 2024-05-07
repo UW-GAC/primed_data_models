@@ -42,7 +42,7 @@ set.seed(4)
 population_descriptor <- tibble(
   subject_id=rep(subject$subject_id),
   # population_descriptor_id = sample(x = c("01bb18a183122d64", "022f19bfe0b628e1", "0224684f6cb9e980"), size = n, replace = TRUE),
-  population_descriptor = sample(x = c("population|subpopulation"), size = n, replace = TRUE),
+  population_descriptor = sample(x = c("population|superpopulation"), size = n, replace = TRUE),
   population_label = sample(x = c("PEL|AMR", "IBS|EUR", "MXL|AMR", "GBR|EUR", "MSL|AFR"), size = n, replace = TRUE), 
   country_of_recruitment = sample(x = c("Peru", "Spain", "USA", "UK", "Sierra Leone"), size = n, replace = TRUE),
   country_of_birth = sample(x = c("Peru", "Spain", "USA", "UK", "Sierra Leone"), size = n, replace = TRUE)
