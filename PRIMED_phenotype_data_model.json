@@ -1,7 +1,7 @@
 {
   "name": "PRIMED Phenotype Data Model",
   "description": "Data model for phenotype data in the PRIMED consortium",
-  "version": "1.7",
+  "version": "1.8",
   "tables": [
     {
       "table": "subject",
@@ -628,7 +628,7 @@
     {
       "table": "cmqt_hematology",
       "url": "https://docs.google.com/spreadsheets/d/1LTGvRdGTsc0gYiFrNHOvKsRE5E4ohxoI466pt4fXyjY/edit#gid=768778505",
-      "version": "1.0",
+      "version": "1.1",
       "columns": [
         {
           "column": "subject_id",
@@ -660,77 +660,107 @@
         {
           "column": "rbc_1",
           "description": "Red blood cell count",
-          "data_type": "float"
+          "data_type": "float",
+          "min": 0,
+          "max": 100
         },
         {
           "column": "hemoglobin_1",
           "description": "Hemoglobin",
-          "data_type": "float"
+          "data_type": "float",
+          "min": 0,
+          "max": 100
         },
         {
           "column": "hematocrit_1",
           "description": "Hematocrit",
-          "data_type": "float"
+          "data_type": "float",
+          "min": 0,
+          "max": 100
         },
         {
           "column": "mcv_1",
           "description": "Mean corpuscular volume",
-          "data_type": "float"
+          "data_type": "float",
+          "min": 0,
+          "max": 1000
         },
         {
           "column": "mch_1",
           "description": "Mean corpuscular hemoglobin",
-          "data_type": "float"
+          "data_type": "float",
+          "min": 0,
+          "max": 1000
         },
         {
           "column": "mchc_1",
           "description": "Mean corpuscular hemoglobin concentration",
-          "data_type": "float"
+          "data_type": "float",
+          "min": 0,
+          "max": 1000
         },
         {
           "column": "rdw_1",
           "description": "Red blood cell distribution width",
-          "data_type": "float"
+          "data_type": "float",
+          "min": 0,
+          "max": 100
         },
         {
           "column": "wbc_1",
           "description": "White blood cell count",
-          "data_type": "float"
+          "data_type": "float",
+          "min": 0,
+          "max": 10000
         },
         {
           "column": "basophil_count_1",
           "description": "Relative basophil count",
-          "data_type": "float"
+          "data_type": "float",
+          "min": 0,
+          "max": 100
         },
         {
           "column": "eosinophil_count_1",
           "description": "Relative eosinophil count",
-          "data_type": "float"
+          "data_type": "float",
+          "min": 0,
+          "max": 100
         },
         {
           "column": "lymphocyte_count_1",
           "description": "Relative lymphocyte count",
-          "data_type": "float"
+          "data_type": "float",
+          "min": 0,
+          "max": 100
         },
         {
           "column": "monocyte_count_1",
           "description": "Relative monocyte count",
-          "data_type": "float"
+          "data_type": "float",
+          "min": 0,
+          "max": 100
         },
         {
           "column": "neutrophil_count_1",
           "description": "Relative neutrophil count",
-          "data_type": "float"
+          "data_type": "float",
+          "min": 0,
+          "max": 100
         },
         {
           "column": "platelet_count_1",
           "description": "Platelet count",
-          "data_type": "float"
+          "data_type": "float",
+          "min": 0,
+          "max": 10000
         },
         {
           "column": "mean_platelet_volume_1",
           "description": "Mean platelet volume",
-          "data_type": "float"
+          "data_type": "float",
+          "min": 0,
+          "max": 100
         }
       ]
     },
