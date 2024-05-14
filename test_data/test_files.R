@@ -21,6 +21,14 @@ file_names <- c(
   "cancer_prostate",
   "family_history")
 
+# Compatibility for using set.seed between different versions of R:
+# https://stackoverflow.com/questions/47199415/is-set-seed-consistent-over-different-versions-of-r-and-ubuntu
+RNGkind(
+  kind = "Mersenne-Twister",
+  normal.kind = "Inversion",
+  sample.kind = "Rounding"
+)
+
 # truncated normal distribution
 rtnorm <- function(n, mean, sd, a = -Inf, b = Inf){
   qnorm(runif(n, pnorm(a, mean, sd), pnorm(b, mean, sd)), mean, sd)
