@@ -40,8 +40,8 @@ subject <- tibble(
   subject_id = paste0("subject", 1:n),
   age_at_obs=round(rtnorm(n, 58, 5, 0, 90)),
   consent_code = sample(x = c("GRU", "HMB-IRB", "DS-CVD"), size = n, replace = TRUE),
-  study_nickname = sample(x = c("UKBB", "JHS", "ARIC"), size = n, replace = TRUE), 
-  dbgap_submission = c(rep(TRUE, 2), rep(FALSE, n-2)), 
+  study_nickname = sample(x = c("UKBB", "JHS", "ARIC"), size = n, replace = TRUE),
+  dbgap_submission = c(rep(TRUE, 2), rep(FALSE, n-2)),
   reported_sex = sample(x = c("Female", "Male", "Unknown", "Other"), size = n, replace = TRUE)
 )
 
@@ -51,7 +51,7 @@ population_descriptor <- tibble(
   subject_id=rep(subject$subject_id),
   # population_descriptor_id = sample(x = c("01bb18a183122d64", "022f19bfe0b628e1", "0224684f6cb9e980"), size = n, replace = TRUE),
   population_descriptor = sample(x = c("population|superpopulation"), size = n, replace = TRUE),
-  population_label = sample(x = c("PEL|AMR", "IBS|EUR", "MXL|AMR", "GBR|EUR", "MSL|AFR"), size = n, replace = TRUE), 
+  population_label = sample(x = c("PEL|AMR", "IBS|EUR", "MXL|AMR", "GBR|EUR", "MSL|AFR"), size = n, replace = TRUE),
   country_of_recruitment = sample(x = c("Peru", "Spain", "USA", "UK", "Sierra Leone"), size = n, replace = TRUE),
   country_of_birth = sample(x = c("Peru", "Spain", "USA", "UK", "Sierra Leone"), size = n, replace = TRUE)
 )
@@ -122,21 +122,21 @@ cmqt_hematology <- tibble(
   subject_id=rep(subject$subject_id),
   age_at_obs=rep(subject$age_at_obs),
   visit=rep("visit_1", n),
-  rbc_1=rnorm(n, 4, 1.5),
-  hemoglobin_1=rnorm(n, 13, 3),
-  hematocrit_1=rnorm(n, 0.4, 0.4),
+  rbc_1=rtnorm(n, 4, 1.5, a=0, b=100),
+  hemoglobin_1=rtnorm(n, 13, 3, a=0, b=100),
+  hematocrit_1=rtnorm(n, 0.4, 0.4, a=0, b=100),
   mcv_1=(hematocrit_1 * 10) / rbc_1,
-  mch_1=rnorm(n, 38, 2),
-  mchc_1=rnorm(n, 34, 2),
-  rdw_1=rnorm(n, 10, 1),
-  wbc_1=rnorm(n, 8, 3),
-  basophil_count_1=rnorm(n, 200, 100),
-  eosinophil_count_1=rnorm(n, 200, 100),
-  lymphocyte_count_1=rnorm(n, 1300, 1000),
-  monocyte_count_1=rnorm(n, 450, 100),
-  neutrophil_count_1=rnorm(n, 4000, 2000),
-  platelet_count_1=rnorm(n, 800, 200),
-  mean_platelet_volume_1=rnorm(n, 10, 2)
+  mch_1=rtnorm(n, 38, 2, a=0, b=1000),
+  mchc_1=rtnorm(n, 34, 2, a=0, b=1000),
+  rdw_1=rtnorm(n, 10, 1, a=0, b=100),
+  wbc_1=rtnorm(n, 8, 3, a=0, b=10000),
+  basophil_count_1=rtnorm(n, 200, 100, a=0, b=100),
+  eosinophil_count_1=rtnorm(n, 200, 100, a=0, b=100),
+  lymphocyte_count_1=rtnorm(n, 1300, 1000, a=0, b=100),
+  monocyte_count_1=rtnorm(n, 450, 100, a=0, b=100),
+  neutrophil_count_1=rtnorm(n, 4000, 2000, a=0, b=100),
+  platelet_count_1=rtnorm(n, 800, 200, a=0, b=1000),
+  mean_platelet_volume_1=rtnorm(n, 10, 2, a=0, b=100)
 )
 
 set.seed(4)
@@ -249,7 +249,7 @@ cancer_prostate <- tibble(
   T_stage_unknown_2=sample(x = c("localized", "regional", "distant", "in_situ", "unstaged", "unknown"), size = n, replace = TRUE),
   nodal_involvement_1=sample(x = c("NX", "N0", "N1", "N2", "N3"), size = n, replace = TRUE),
   distant_metastasis_1=sample(x = c("MX", "M0", "M1"), size = n, replace = TRUE),
-  stage_system_1=rep(NA, n), 
+  stage_system_1=rep(NA, n),
   gleason_score_clinical_1=sample(x = c(2, 3, 4, 5, 6, 7, 8, 9, 10), size = n, replace = TRUE),
   gleason_score_pathological_1=sample(x = c(2, 3, 4, 5, 6, 7, 8, 9, 10), size = n, replace = TRUE),
   gleason_score_unknown_1=sample(x = c(2, 3, 4, 5, 6, 7, 8, 9, 10), size = n, replace = TRUE),
@@ -311,7 +311,7 @@ readme <- tibble(
 subject <- subject %>% select(-age_at_obs)
 
 
-# working in primed_data_models/test_data directory 
+# working in primed_data_models/test_data directory
 
 write_tsv(readme, "readme.tsv")
 write_tsv(subject, "subject.tsv")
@@ -331,11 +331,11 @@ write_tsv(family_history, "family_history.tsv")
 
 phenotype_harmonized <- tibble(
   # phenotype_harmonized_id=
-  domain=(file_names), 
-  md5sum=as.vector(md5sum(paste0(file_names, ".tsv"))), 
-  file_path=paste0(bucket, file_names, '.tsv'), 
-  file_readme_path=paste0(bucket, 'readme.tsv'), 
-  n_subjects=rep(n, length(file_names)), 
+  domain=(file_names),
+  md5sum=as.vector(md5sum(paste0(file_names, ".tsv"))),
+  file_path=paste0(bucket, file_names, '.tsv'),
+  file_readme_path=paste0(bucket, 'readme.tsv'),
+  n_subjects=rep(n, length(file_names)),
   n_rows=rep(n, length(file_names)),
 )
 

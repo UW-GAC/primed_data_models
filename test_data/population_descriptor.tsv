@@ -1,21 +1,21 @@
-subject_id	population_descriptor_id	population_descriptor	population_label	country_of_recruitment	country_of_birth
-subject1	022f19bfe0b628e1	population|superpopulation	MSL|AFR	USA	Sierra Leone
-subject2	01bb18a183122d64	population|superpopulation	IBS|EUR	Peru	UK
-subject3	01bb18a183122d64	population|superpopulation	MXL|AMR	Sierra Leone	USA
-subject4	01bb18a183122d64	population|superpopulation	PEL|AMR	Sierra Leone	Sierra Leone
-subject5	0224684f6cb9e980	population|superpopulation	MSL|AFR	Spain	Sierra Leone
-subject6	01bb18a183122d64	population|superpopulation	PEL|AMR	UK	Peru
-subject7	0224684f6cb9e980	population|superpopulation	MSL|AFR	Peru	Peru
-subject8	0224684f6cb9e980	population|superpopulation	MSL|AFR	USA	Sierra Leone
-subject9	0224684f6cb9e980	population|superpopulation	GBR|EUR	Sierra Leone	Spain
-subject10	01bb18a183122d64	population|superpopulation	MXL|AMR	Sierra Leone	Sierra Leone
-subject11	0224684f6cb9e980	population|superpopulation	IBS|EUR	Spain	Peru
-subject12	01bb18a183122d64	population|superpopulation	GBR|EUR	UK	Peru
-subject13	01bb18a183122d64	population|superpopulation	MSL|AFR	USA	USA
-subject14	0224684f6cb9e980	population|superpopulation	MSL|AFR	Spain	Spain
-subject15	022f19bfe0b628e1	population|superpopulation	MSL|AFR	Sierra Leone	Spain
-subject16	022f19bfe0b628e1	population|superpopulation	MXL|AMR	UK	Peru
-subject17	0224684f6cb9e980	population|superpopulation	PEL|AMR	Spain	UK
-subject18	022f19bfe0b628e1	population|superpopulation	PEL|AMR	USA	USA
-subject19	0224684f6cb9e980	population|superpopulation	MSL|AFR	Spain	Peru
-subject20	0224684f6cb9e980	population|superpopulation	GBR|EUR	Peru	UK
+subject_id	population_descriptor	population_label	country_of_recruitment	country_of_birth
+subject1	population|superpopulation	GBR|EUR	Sierra Leone	USA
+subject2	population|superpopulation	MSL|AFR	Spain	Peru
+subject3	population|superpopulation	MXL|AMR	USA	Sierra Leone
+subject4	population|superpopulation	MXL|AMR	Peru	Sierra Leone
+subject5	population|superpopulation	GBR|EUR	Sierra Leone	Spain
+subject6	population|superpopulation	MSL|AFR	Peru	UK
+subject7	population|superpopulation	MXL|AMR	Sierra Leone	Peru
+subject8	population|superpopulation	MSL|AFR	Sierra Leone	USA
+subject9	population|superpopulation	MXL|AMR	UK	Sierra Leone
+subject10	population|superpopulation	MXL|AMR	USA	Sierra Leone
+subject11	population|superpopulation	MXL|AMR	Spain	Spain
+subject12	population|superpopulation	IBS|EUR	UK	UK
+subject13	population|superpopulation	MSL|AFR	Sierra Leone	USA
+subject14	population|superpopulation	GBR|EUR	Sierra Leone	Spain
+subject15	population|superpopulation	MXL|AMR	Sierra Leone	Sierra Leone
+subject16	population|superpopulation	MSL|AFR	USA	UK
+subject17	population|superpopulation	MXL|AMR	Peru	Spain
+subject18	population|superpopulation	GBR|EUR	Peru	USA
+subject19	population|superpopulation	IBS|EUR	Sierra Leone	Spain
+subject20	population|superpopulation	PEL|AMR	UK	Peru
