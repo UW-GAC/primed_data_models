@@ -48,7 +48,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up cromwell
-        uses: broadinstitute/cromwell/set_up_cromwell_action/action.yml@87
+        uses: broadinstitute/cromwell/.github/set_up_cromwell_action@87
         with:
           cromwell-version: "latest"
 
