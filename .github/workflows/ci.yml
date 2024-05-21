@@ -6,7 +6,7 @@ on:
     branches: [ "master", "main" ]
 
 jobs:
-  build:
+  check_data_models:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -38,3 +38,19 @@ jobs:
         run: |
           AnvilDataModels::json_to_dm("${{ matrix.data_model_file }}")
         shell: Rscript {0}
+
+  check_test_data:
+    runs-on: ubuntu-latest
+    name: Check test model
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up cromwell
+        uses: broadinstitute/cromwell/set_up_cromwell_action@f2b2c30
+        with:
+          cromwell-version: "latest"
+
+      - name: Success
+        run: echo "Success!"
