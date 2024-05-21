@@ -47,10 +47,23 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Set up cromwell
-        uses: broadinstitute/cromwell/.github/set_up_cromwell_action@87
+      # Install Java to this VM. This Java version and distribution is compatible with Cromwell.
+      # This is the same step as used by broadinstitute/cromwell/.github/set_up_cromwell_action.
+      - name: Setup JDK
+        uses: actions/setup-java@v3
         with:
-          cromwell-version: "latest"
+          distribution: temurin
+          java-version: 11
 
-      - name: Success
+      # Clone the cromwell repo to this VM.
+      # This is the same step as used by broadinstitute/cromwell/.github/set_up_cromwell_action,
+      # but without a token and into a different directory.
+      - name: Clone Cromwell
+        uses: actions/checkout@v3
+        with:
+          repository: broadinstitute/cromwell
+          ref: "87"
+          path: "cromwell"
+
+      - name: Success!
         run: echo "Success!"
