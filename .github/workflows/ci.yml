@@ -41,7 +41,7 @@ jobs:
 
   check_test_data:
     runs-on: ubuntu-latest
-    name: Check test model
+    name: Check test data
     steps:
 
       - name: Checkout repository
@@ -55,15 +55,17 @@ jobs:
           distribution: temurin
           java-version: 11
 
-      # Clone the cromwell repo to this VM.
-      # This is the same step as used by broadinstitute/cromwell/.github/set_up_cromwell_action,
-      # but without a token and into a different directory.
-      - name: Clone Cromwell
-        uses: actions/checkout@v3
+      # Get cromwell jar file
+      - uses: robinraju/release-downloader@v1.10
         with:
-          repository: broadinstitute/cromwell
-          ref: "87"
-          path: "cromwell"
+          repository: 'broadinstitute/cromwell'
+          tag: '87'
+          fileName: 'cromwell-87.jar'
+
+      - name: Validate test data
+        run: |
+          java -jar cromwell-87.jar --help
+        shell: bash
 
       - name: Success!
         run: echo "Success!"
