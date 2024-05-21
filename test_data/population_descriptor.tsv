@@ -1,0 +1,21 @@
+subject_id	population_descriptor	population_label	country_of_recruitment	country_of_birth
+subject1	population|superpopulation	GBR|EUR	Sierra Leone	USA
+subject2	population|superpopulation	MSL|AFR	Spain	Peru
+subject3	population|superpopulation	MXL|AMR	USA	Sierra Leone
+subject4	population|superpopulation	MXL|AMR	Peru	Sierra Leone
+subject5	population|superpopulation	GBR|EUR	Sierra Leone	Spain
+subject6	population|superpopulation	MSL|AFR	Peru	UK
+subject7	population|superpopulation	MXL|AMR	Sierra Leone	Peru
+subject8	population|superpopulation	MSL|AFR	Sierra Leone	USA
+subject9	population|superpopulation	MXL|AMR	UK	Sierra Leone
+subject10	population|superpopulation	MXL|AMR	USA	Sierra Leone
+subject11	population|superpopulation	MXL|AMR	Spain	Spain
+subject12	population|superpopulation	IBS|EUR	UK	UK
+subject13	population|superpopulation	MSL|AFR	Sierra Leone	USA
+subject14	population|superpopulation	GBR|EUR	Sierra Leone	Spain
+subject15	population|superpopulation	MXL|AMR	Sierra Leone	Sierra Leone
+subject16	population|superpopulation	MSL|AFR	USA	UK
+subject17	population|superpopulation	MXL|AMR	Peru	Spain
+subject18	population|superpopulation	GBR|EUR	Peru	USA
+subject19	population|superpopulation	IBS|EUR	Sierra Leone	Spain
+subject20	population|superpopulation	PEL|AMR	UK	Peru
