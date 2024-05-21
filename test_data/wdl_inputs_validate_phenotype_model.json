@@ -1,0 +1,11 @@
+{
+    "validate_phenotype_model.table_files": {
+        "subject": "test_data/subject.tsv",
+        "phenotype_harmonized": "test_data/phenotype_harmonized.tsv"
+    },
+    "validate_phenotype_model.model_url": "https://raw.githubusercontent.com/UW-GAC/primed-file-checks/main/testdata/data_model_phen.json",
+    "validate_phenotype_model.import_tables": false,
+    "validate_phenotype_model.overwrite": true,
+    "validate_phenotype_model.workspace_name": "PRIMED_pheno_QC_test",
+    "validate_phenotype_model.workspace_namespace": "primed-cc-scratch"
+}

@@ -47,6 +47,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Checkout primed-file-checks
+        uses: actions/checkout@v3
+        with:
+          repository: UW-GAC/primed-file-checks
+          path: primed-file-checks
+
       # Install Java to this VM. This Java version and distribution is compatible with Cromwell.
       # This is the same step as used by broadinstitute/cromwell/.github/set_up_cromwell_action.
       - name: Setup JDK
@@ -64,7 +70,7 @@ jobs:
 
       - name: Validate test data
         run: |
-          java -jar cromwell-87.jar --help
+          java -jar cromwell-87.jar run primed-file-checks/validate_phenotype_model.wdl --inputs test_data/wdl_inputs_validate_phenotype_model.json
         shell: bash
 
       - name: Success!
