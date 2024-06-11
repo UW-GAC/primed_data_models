@@ -169,8 +169,10 @@ diabetes_diabetes <- tibble(
   visit=rep("visit_1", n),
   t1d_1=sample(x = c(0, 1), size = n, replace = TRUE, prob = c(0.95, 0.05)),
   t2d_1=sample(x = c(0, 1), size = n, replace = TRUE, prob = c(0.95, 0.05)),
-  t1d_dprism_1=sample(x = c(0, 1), size = n, replace = TRUE, prob = c(0.95, 0.05)),
-  t2d_dprism_1=sample(x = c(0, 1), size = n, replace = TRUE, prob = c(0.95, 0.05)),
+  t1d_dprism_ehr_1=sample(x = c(0, 1), size = n, replace = TRUE, prob = c(0.95, 0.05)),
+  t1d_dprism_ehr_plus_1=sample(x = c(0, 1), size = n, replace = TRUE, prob = c(0.95, 0.05)),
+  t2d_dprism_ehr_1=sample(x = c(0, 1), size = n, replace = TRUE, prob = c(0.95, 0.05)),
+  t2d_dprism_ehr_plus_1=sample(x = c(0, 1), size = n, replace = TRUE, prob = c(0.95, 0.05)),
 )
 
 set.seed(4)
