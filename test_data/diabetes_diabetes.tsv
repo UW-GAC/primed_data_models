@@ -1,21 +1,21 @@
-subject_id	age_at_obs	visit	t1d_1	t2d_1	t1d_dprism_1	t2d_dprism_1
-subject1	59	visit_1	0	0	0	0
-subject2	46	visit_1	0	1	0	0
-subject3	55	visit_1	0	0	0	0
-subject4	55	visit_1	0	0	0	0
-subject5	62	visit_1	0	0	0	0
-subject6	55	visit_1	0	0	0	0
-subject7	61	visit_1	0	0	0	0
-subject8	65	visit_1	0	0	0	0
-subject9	66	visit_1	0	0	0	0
-subject10	51	visit_1	0	0	0	1
-subject11	61	visit_1	0	0	0	0
-subject12	55	visit_1	0	0	0	0
-subject13	52	visit_1	0	0	0	0
-subject14	66	visit_1	1	0	0	0
-subject15	57	visit_1	0	0	0	0
-subject16	57	visit_1	0	1	0	0
-subject17	67	visit_1	1	0	0	0
-subject18	59	visit_1	0	0	0	0
-subject19	67	visit_1	1	0	0	0
-subject20	62	visit_1	0	0	0	0
+subject_id	age_at_obs	visit	t1d_1	t2d_1	t1d_dprism_ehr_1	t1d_dprism_ehr_plus_1	t2d_dprism_ehr_1	t2d_dprism_ehr_plus_1
+subject1	59	visit_1	0	0	0	0	0	0
+subject2	46	visit_1	0	1	0	0	0	0
+subject3	55	visit_1	0	0	0	0	0	0
+subject4	55	visit_1	0	0	0	0	0	0
+subject5	62	visit_1	0	0	0	0	0	0
+subject6	55	visit_1	0	0	0	0	0	0
+subject7	61	visit_1	0	0	0	0	0	0
+subject8	65	visit_1	0	0	0	0	1	0
+subject9	66	visit_1	0	0	0	0	0	1
+subject10	51	visit_1	0	0	0	1	0	0
+subject11	61	visit_1	0	0	0	0	0	0
+subject12	55	visit_1	0	0	0	0	0	0
+subject13	52	visit_1	0	0	0	0	0	0
+subject14	66	visit_1	1	0	0	0	0	0
+subject15	57	visit_1	0	0	0	0	0	0
+subject16	57	visit_1	0	1	0	0	0	0
+subject17	67	visit_1	1	0	0	0	0	0
+subject18	59	visit_1	0	0	0	0	0	0
+subject19	67	visit_1	1	0	0	0	0	0
+subject20	62	visit_1	0	0	0	0	0	0
