@@ -9,18 +9,15 @@ library(jsonlite)
 url <- "https://docs.google.com/spreadsheets/d/1xfSQqRQIq6pGkJ5jzzv2QhetmX5boaEZoNECpDwXe5I"
 model_name <- "PRIMED GSR Data Model"
 model_description <- "Data model for Genomic Summary Results in the PRIMED consortium"
-model_version <- "1.1"
+model_version <- "2.0"
 
 
 # table metadata
-meta <- tibble(
-    table=c("analysis", "gsr_file", "gsr_files_dd"),
-    required=c("TRUE", "TRUE", "FALSE")
-)
+meta <- read_sheet(url, sheet="Tables", skip=1, col_types="c") %>%
+    select(table=Table, required=Required)
 table_names <- meta$table
 tables <- lapply(table_names, function(x) read_sheet(url, sheet=x, skip=1, col_types="c"))
 names(tables) <- table_names
-rm(list = c("table_names", "url"))
 
 
 # rename and reorder columns
@@ -60,7 +57,6 @@ for (i in 1:length(tables)) {
     tables[[i]] <- tmp %>%
         select(any_of(keep_cols))
 }
-rm(list = c("tmp"))
 
 
 # call in the sheets_to_list function that accepts two arguments:
@@ -68,7 +64,6 @@ rm(list = c("tmp"))
 # 2) the list of data tables corresponding to the first argument
 source("sheets_to_list.R")
 tab_list <- sheets_to_list(apply(meta, 1, as.list), tables)
-rm(list = c("meta", "tables", "sheets_to_list"))
 
 
 # initialize leading text
@@ -81,7 +76,6 @@ master <- list(
     # Data Table Details
     tables = tab_list
 )
-rm(list = c("tab_list"))
 
 
 # compile master file in JSON format
@@ -89,7 +83,6 @@ out <- toJSON(x = master,
               pretty = TRUE,
               auto_unbox = TRUE,
               unbox = TRUE)
-rm(list = c("master"))
 
 
 # unquote the logical parameters TRUE and FALSE
