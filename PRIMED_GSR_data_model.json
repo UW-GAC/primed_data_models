@@ -1,14 +1,14 @@
 {
   "name": "PRIMED GSR Data Model",
   "description": "Data model for Genomic Summary Results in the PRIMED consortium",
-  "version": "1.1",
+  "version": "2.0",
   "tables": [
     {
-      "table": "analysis",
-      "required": true,
+      "table": "association_analysis",
+      "required": "CONDITIONAL (association_file)",
       "columns": [
         {
-          "column": "analysis_id",
+          "column": "association_analysis_id",
           "primary_key": true,
           "description": "unique identifier for a gwas in primed",
           "data_type": "string",
@@ -137,9 +137,8 @@
         },
         {
           "column": "concept_id",
-          "description": "concept_id for trait from OMOP concept table",
-          "data_type": "string",
-          "notes": "discuss in PRIMED phenotype WG"
+          "description": "OMOP concept_id",
+          "data_type": "string"
         },
         {
           "column": "mapped_trait",
@@ -157,7 +156,7 @@
         },
         {
           "column": "dbsnp_build_version",
-          "description": "dbSNP build for the rsIDS included in GSR files",
+          "description": "dbSNP build for the rsIDs included in GSR files",
           "data_type": "string"
         },
         {
@@ -389,15 +388,28 @@
           "data_type": "string",
           "multi_value_delimiter": "|",
           "examples": ["GCTA", "PLINK", "GENESIS", "SAIGE"]
+        },
+        {
+          "column": "primed_dataset_id",
+          "description": "For GWAS that used a dataset in primed individual data model indicate its dataset_id",
+          "data_type": "string",
+          "multi_value_delimiter": "|",
+          "examples": "a60fb66cd539ad2c",
+          "notes": "From PRIMED inventory workspace"
+        },
+        {
+          "column": "analysis_workspace_id",
+          "description": "workspace identifier for the GWAS that was generated in PRIMED",
+          "data_type": "string",
+          "examples": "primed-analysis/PRIMED_ANALYSIS_GERA-topmed-v3-imputation"
         }
       ]
     },
     {
-      "table": "gsr_file",
-      "required": true,
+      "table": "association_file",
       "columns": [
         {
-          "column": "gsr_file_id",
+          "column": "association_file_id",
           "primary_key": true,
           "data_type": "string",
           "references": "from: md5sum",
@@ -412,11 +424,11 @@
           "notes": "(32-digit hexadecimal number)"
         },
         {
-          "column": "analysis_id",
+          "column": "association_analysis_id",
           "required": true,
           "description": "unique identifier for a gwas in primed",
           "data_type": "string",
-          "references": "> analysis.analysis_id",
+          "references": "> association_analysis.association_analysis_id",
           "notes": "AnVIL upload workflow would generate this"
         },
         {
@@ -453,8 +465,7 @@
       ]
     },
     {
-      "table": "gsr_files_dd",
-      "required": false,
+      "table": "association_files_dd",
       "columns": [
         {
           "column": "SNPID",
@@ -468,8 +479,7 @@
           "description": "the chromosome that the variant is located on",
           "data_type": "enumeration",
           "enumerations": ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "X", "Y", "MT"],
-          "examples": "13",
-          "notes": "confirm the enumerations with WG"
+          "examples": "13"
         },
         {
           "column": "position",
@@ -497,16 +507,15 @@
           "required": true,
           "description": "effect allele of the variant",
           "data_type": "string",
-          "examples": "A",
-          "notes": "allow for I/D as enum and QC"
+          "examples": ["A", "I", "ATTCG+"],
+          "notes": "Full strings encouraged. For long strings, they can be truncated with a '+' appended. I/D allowed for insertions/deletions."
         },
         {
           "column": "other_allele",
           "required": true,
           "description": "the other allele to the effect allele",
           "data_type": "string",
-          "examples": "G",
-          "notes": "allow for I/D as enum and QC"
+          "examples": "G"
         },
         {
           "column": "ref_allele",
@@ -663,6 +672,302 @@
           "column": "heterogeneity_I2",
           "description": "heterogeneity I^2 statistic value",
           "data_type": "float"
+        }
+      ]
+    },
+    {
+      "table": "genetic_ancestry_analysis",
+      "required": "CONDITIONAL (genetic_ancestry_file)",
+      "columns": [
+        {
+          "column": "genetic_ancestry_analysis_id",
+          "primary_key": true,
+          "description": "unique identifier for an analysis in primed",
+          "data_type": "string",
+          "notes": "PRIMED upload workflow would generate this"
+        },
+        {
+          "column": "gsr_source",
+          "required": true,
+          "description": "Information about source of GSR data. Include additional details in README",
+          "data_type": "string",
+          "examples": ["dbGaP", "Colorado Biobank ", "PRIMED"],
+          "notes": "free text short label; useful for unreleased GSR"
+        },
+        {
+          "column": "gsr_source_url",
+          "description": "URL of source (if applicable)",
+          "data_type": "string"
+        },
+        {
+          "column": "dbgap_analysis_accession",
+          "description": "Analysis accession identifier for GSR downloaded from dbGaP",
+          "data_type": "string",
+          "examples": "pha003690.1",
+          "notes": "identifier in phaXXXXXX.v format"
+        },
+        {
+          "column": "pubmed_id",
+          "description": "Pubmed ID identifier of the publication",
+          "data_type": "string",
+          "examples": "33568819",
+          "notes": "PMID identifier"
+        },
+        {
+          "column": "first_author",
+          "description": "Last name and initials of the first author",
+          "data_type": "string"
+        },
+        {
+          "column": "publication_url",
+          "description": "External link to the publication",
+          "data_type": "string",
+          "notes": "URL of publication"
+        },
+        {
+          "column": "release_date",
+          "description": "Date on which the analysis was released publicy",
+          "data_type": "date",
+          "notes": "e.g. on dbGaP or GWAS Catalog"
+        },
+        {
+          "column": "consent_code",
+          "required": true,
+          "description": "consent abbreviation (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4721915/table/pgen.1005772.t001/?report=objectonly)",
+          "data_type": "string",
+          "notes": "NRES is the code for no restrictions on data use (i.e. open access)"
+        },
+        {
+          "column": "upload_date",
+          "required": true,
+          "description": "Date GSR was uploaded to PRIMED AnVIL workspace",
+          "data_type": "date",
+          "examples": "2023-03-21",
+          "notes": "YYYY-MM-DD format"
+        },
+        {
+          "column": "contributor_contact",
+          "required": true,
+          "description": "email of the PRIMED contributor who can be contacted for data related questions",
+          "data_type": "string",
+          "notes": "recommended by WG. helpful when GSR is not publicly released and is from a Biobank or some other source"
+        },
+        {
+          "column": "reference_assembly",
+          "required": true,
+          "description": "Reference genome assembly that the submitted data is mapped to",
+          "data_type": "enumeration",
+          "enumerations": ["GRCh38", "GRCh37", "NCBI36", "NCBI35", "NCBI34"],
+          "examples": "GRCh38"
+        },
+        {
+          "column": "dbsnp_build_version",
+          "description": "dbSNP build for the rsIDs included in GSR files",
+          "data_type": "string"
+        },
+        {
+          "column": "n_variants",
+          "required": true,
+          "description": "Total number of variants in the analysis results across all chromosomes",
+          "data_type": "integer",
+          "examples": "1000000",
+          "notes": "This will be used for a QC step to check data integrity of submitted data"
+        },
+        {
+          "column": "min_MAF_filter",
+          "description": "minimum minor allele frequency filter",
+          "data_type": "float",
+          "examples": "0.01"
+        },
+        {
+          "column": "min_MAC_filter",
+          "description": "minimum minor allele count filter",
+          "data_type": "integer",
+          "examples": "20"
+        },
+        {
+          "column": "LD_max_r2_filter",
+          "description": "maximum r^2 for SNPs kept in LD pruning",
+          "data_type": "float",
+          "examples": "0.1"
+        },
+        {
+          "column": "genotyping_technology",
+          "required": true,
+          "description": "The genotyping technology used for detecting variants",
+          "data_type": "enumeration",
+          "enumerations": ["genome-wide array", "WGS", "exome array", "WES", "other array"],
+          "multi_value_delimiter": "|"
+        },
+        {
+          "column": "genotyping_platform",
+          "required": true,
+          "description": "Genotyping platform description including manufacturer, array name, sequencer name",
+          "data_type": "string",
+          "multi_value_delimiter": "|",
+          "examples": ["Illumina GSA", "Illumina Omni-2.5", "Illumina HiSeq", "Affymetrix"],
+          "notes": "put 'unavailable' if unknown"
+        },
+        {
+          "column": "is_imputed",
+          "required": true,
+          "description": "Indicator of whether the analysis was performed using imputed genotypes or dosages",
+          "data_type": "boolean",
+          "enumerations": ["TRUE", "FALSE"],
+          "examples": true
+        },
+        {
+          "column": "imputation_reference_panel",
+          "required": "CONDITIONAL (is_imputed = TRUE)",
+          "description": "Reference panel use for imputation",
+          "data_type": "enumeration",
+          "enumerations": ["1000 Genomes", "HRC", "TOPMed", "Other"],
+          "examples": "TOPMed",
+          "notes": "Put 'Other' if not one of the common reference panels listed. Can include further information in imputation_reference_panel_detail or README"
+        },
+        {
+          "column": "imputation_reference_panel_detail",
+          "required": "CONDITIONAL (is_imputed = TRUE)",
+          "description": "Details of the imputation reference panel; e.g. version number or name of panel when imputation_reference_panel = 'Other'",
+          "data_type": "string",
+          "examples": "TOPMed r2",
+          "notes": "version number or name of 'other' include N/A"
+        },
+        {
+          "column": "imputation_quality_filter",
+          "required": "CONDITIONAL (is_imputed = TRUE)",
+          "description": "minimum imputation quality value (e.g. Rsq, info) for filtering imputed variants",
+          "data_type": "float",
+          "examples": "0.3",
+          "notes": "If no filter, enter value of 0"
+        },
+        {
+          "column": "n_samp",
+          "required": true,
+          "description": "Total sample size in the analysis",
+          "data_type": "integer",
+          "notes": "When different markers have different sample sizes, e.g, due to missing genotypes, use max sample size across markers"
+        },
+        {
+          "column": "cohorts",
+          "required": true,
+          "description": "A list of cohorts that collected the samples.",
+          "data_type": "string",
+          "multi_value_delimiter": "|"
+        },
+        {
+          "column": "population_descriptor",
+          "required": true,
+          "description": "the concept or classification scheme used to categorize people into populations for this analysis",
+          "data_type": "string",
+          "examples": "reported ancestry"
+        },
+        {
+          "column": "population_labels",
+          "required": true,
+          "description": "name given to a population that describes or classifies it according to the dimension along which it was identified",
+          "data_type": "string",
+          "multi_value_delimiter": "|",
+          "examples": "Chinese Americans | European Americans | African Americans"
+        },
+        {
+          "column": "population_proportions",
+          "description": "proportion of participants from each population in the same order mapping to the values in the population_labels variable",
+          "data_type": "string",
+          "multi_value_delimiter": "|",
+          "examples": "0.7 | 0.1 | 0.2"
+        },
+        {
+          "column": "countries_of_recruitment",
+          "required": true,
+          "description": "Reported countries of recruitment",
+          "data_type": "string",
+          "multi_value_delimiter": "|",
+          "examples": "Ghana | Kenya | Nigeria"
+        },
+        {
+          "column": "countries_of_birth",
+          "description": "Reported countries of birth",
+          "data_type": "string",
+          "multi_value_delimiter": "|",
+          "examples": "Ghana | Kenya | Nigeria"
+        },
+        {
+          "column": "analysis_method",
+          "required": true,
+          "description": "The name or description of the method or computational algorithm used for genetic ancestry analysis.",
+          "data_type": "string",
+          "multi_value_delimiter": "|",
+          "examples": ["linear regression", "logistic regression", "LMM", "GLMM", "meta-analysis"]
+        },
+        {
+          "column": "analysis_software",
+          "description": "The name of the software used for the genetic anestry analysis",
+          "data_type": "string",
+          "multi_value_delimiter": "|",
+          "examples": ["GCTA", "PLINK", "GENESIS", "SAIGE"]
+        },
+        {
+          "column": "primed_dataset_id",
+          "description": "For analyses that used a dataset in primed individual data model indicate its dataset_id",
+          "data_type": "string",
+          "multi_value_delimiter": "|",
+          "examples": "a60fb66cd539ad2c",
+          "notes": "From PRIMED inventory workspace"
+        },
+        {
+          "column": "analysis_workspace_id",
+          "description": "workspace identifier for the GWAS that was generated in PRIMED",
+          "data_type": "string",
+          "examples": "primed-analysis/PRIMED_ANALYSIS_GERA-topmed-v3-imputation"
+        }
+      ]
+    },
+    {
+      "table": "genetic_ancestry_file",
+      "columns": [
+        {
+          "column": "genetic_ancestry_file_id",
+          "primary_key": true,
+          "data_type": "string",
+          "references": "from: md5sum",
+          "notes": "AnVIL requires entity id with naming convention <table_name>_id"
+        },
+        {
+          "column": "md5sum",
+          "required": true,
+          "description": "A valid md5 checksum",
+          "data_type": "string",
+          "examples": "49ea8cf53801c7f1e2f11336fb8a29c8",
+          "notes": "(32-digit hexadecimal number)"
+        },
+        {
+          "column": "genetic_ancestry_analysis_id",
+          "required": true,
+          "description": "unique identifier for an analysis in primed",
+          "data_type": "string",
+          "references": "> genetic_ancestry_analysis.genetic_ancestry_analysis_id",
+          "notes": "AnVIL upload workflow would generate this"
+        },
+        {
+          "column": "file_path",
+          "required": true,
+          "description": "File path in cloud storage",
+          "data_type": "string",
+          "is_bucket_path": true
+        },
+        {
+          "column": "file_type",
+          "required": true,
+          "description": "Type of the file",
+          "data_type": "string",
+          "examples": ["SNP loadings", "allele frequencies"]
+        },
+        {
+          "column": "n_variants",
+          "description": "Count of variants in the GSR data file",
+          "data_type": "integer",
+          "examples": "15281216"
         }
       ]
     }
