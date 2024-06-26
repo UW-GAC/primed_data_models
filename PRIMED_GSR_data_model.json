@@ -156,7 +156,7 @@
         },
         {
           "column": "dbsnp_build_version",
-          "description": "dbSNP build for the rsIDS included in GSR files",
+          "description": "dbSNP build for the rsIDs included in GSR files",
           "data_type": "string"
         },
         {
@@ -395,7 +395,7 @@
           "data_type": "string",
           "multi_value_delimiter": "|",
           "examples": "a60fb66cd539ad2c",
-          "notes": "From Genotype data model: array_dataset_id, imputation_dataset_id, or sequencing_dataset_id"
+          "notes": "From PRIMED inventory workspace"
         },
         {
           "column": "analysis_workspace_id",
@@ -751,6 +751,175 @@
           "description": "email of the PRIMED contributor who can be contacted for data related questions",
           "data_type": "string",
           "notes": "recommended by WG. helpful when GSR is not publicly released and is from a Biobank or some other source"
+        },
+        {
+          "column": "reference_assembly",
+          "required": true,
+          "description": "Reference genome assembly that the submitted data is mapped to",
+          "data_type": "enumeration",
+          "enumerations": ["GRCh38", "GRCh37", "NCBI36", "NCBI35", "NCBI34"],
+          "examples": "GRCh38"
+        },
+        {
+          "column": "dbsnp_build_version",
+          "description": "dbSNP build for the rsIDs included in GSR files",
+          "data_type": "string"
+        },
+        {
+          "column": "n_variants",
+          "required": true,
+          "description": "Total number of variants in the analysis results across all chromosomes",
+          "data_type": "integer",
+          "examples": "1000000",
+          "notes": "This will be used for a QC step to check data integrity of submitted data"
+        },
+        {
+          "column": "min_MAF_filter",
+          "description": "minimum minor allele frequency filter",
+          "data_type": "float",
+          "examples": "0.01"
+        },
+        {
+          "column": "min_MAC_filter",
+          "description": "minimum minor allele count filter",
+          "data_type": "integer",
+          "examples": "20"
+        },
+        {
+          "column": "LD_max_r2_filter",
+          "description": "maximum r^2 for SNPs kept in LD pruning",
+          "data_type": "float",
+          "examples": "0.1"
+        },
+        {
+          "column": "genotyping_technology",
+          "required": true,
+          "description": "The genotyping technology used for detecting variants",
+          "data_type": "enumeration",
+          "enumerations": ["genome-wide array", "WGS", "exome array", "WES", "other array"],
+          "multi_value_delimiter": "|"
+        },
+        {
+          "column": "genotyping_platform",
+          "required": true,
+          "description": "Genotyping platform description including manufacturer, array name, sequencer name",
+          "data_type": "string",
+          "multi_value_delimiter": "|",
+          "examples": ["Illumina GSA", "Illumina Omni-2.5", "Illumina HiSeq", "Affymetrix"],
+          "notes": "put 'unavailable' if unknown"
+        },
+        {
+          "column": "is_imputed",
+          "required": true,
+          "description": "Indicator of whether the analysis was performed using imputed genotypes or dosages",
+          "data_type": "boolean",
+          "enumerations": ["TRUE", "FALSE"],
+          "examples": true
+        },
+        {
+          "column": "imputation_reference_panel",
+          "required": "CONDITIONAL (is_imputed = TRUE)",
+          "description": "Reference panel use for imputation",
+          "data_type": "enumeration",
+          "enumerations": ["1000 Genomes", "HRC", "TOPMed", "Other"],
+          "examples": "TOPMed",
+          "notes": "Put 'Other' if not one of the common reference panels listed. Can include further information in imputation_reference_panel_detail or README"
+        },
+        {
+          "column": "imputation_reference_panel_detail",
+          "required": "CONDITIONAL (is_imputed = TRUE)",
+          "description": "Details of the imputation reference panel; e.g. version number or name of panel when imputation_reference_panel = 'Other'",
+          "data_type": "string",
+          "examples": "TOPMed r2",
+          "notes": "version number or name of 'other' include N/A"
+        },
+        {
+          "column": "imputation_quality_filter",
+          "required": "CONDITIONAL (is_imputed = TRUE)",
+          "description": "minimum imputation quality value (e.g. Rsq, info) for filtering imputed variants",
+          "data_type": "float",
+          "examples": "0.3",
+          "notes": "If no filter, enter value of 0"
+        },
+        {
+          "column": "n_samp",
+          "required": true,
+          "description": "Total sample size in the analysis",
+          "data_type": "integer",
+          "notes": "When different markers have different sample sizes, e.g, due to missing genotypes, use max sample size across markers"
+        },
+        {
+          "column": "cohorts",
+          "required": true,
+          "description": "A list of cohorts that collected the samples.",
+          "data_type": "string",
+          "multi_value_delimiter": "|"
+        },
+        {
+          "column": "population_descriptor",
+          "required": true,
+          "description": "the concept or classification scheme used to categorize people into populations for this analysis",
+          "data_type": "string",
+          "examples": "reported ancestry"
+        },
+        {
+          "column": "population_labels",
+          "required": true,
+          "description": "name given to a population that describes or classifies it according to the dimension along which it was identified",
+          "data_type": "string",
+          "multi_value_delimiter": "|",
+          "examples": "Chinese Americans | European Americans | African Americans"
+        },
+        {
+          "column": "population_proportions",
+          "description": "proportion of participants from each population in the same order mapping to the values in the population_labels variable",
+          "data_type": "string",
+          "multi_value_delimiter": "|",
+          "examples": "0.7 | 0.1 | 0.2"
+        },
+        {
+          "column": "countries_of_recruitment",
+          "required": true,
+          "description": "Reported countries of recruitment",
+          "data_type": "string",
+          "multi_value_delimiter": "|",
+          "examples": "Ghana | Kenya | Nigeria"
+        },
+        {
+          "column": "countries_of_birth",
+          "description": "Reported countries of birth",
+          "data_type": "string",
+          "multi_value_delimiter": "|",
+          "examples": "Ghana | Kenya | Nigeria"
+        },
+        {
+          "column": "analysis_method",
+          "required": true,
+          "description": "The name or description of the method or computational algorithm used for genetic ancestry analysis.",
+          "data_type": "string",
+          "multi_value_delimiter": "|",
+          "examples": ["linear regression", "logistic regression", "LMM", "GLMM", "meta-analysis"]
+        },
+        {
+          "column": "analysis_software",
+          "description": "The name of the software used for the genetic anestry analysis",
+          "data_type": "string",
+          "multi_value_delimiter": "|",
+          "examples": ["GCTA", "PLINK", "GENESIS", "SAIGE"]
+        },
+        {
+          "column": "primed_dataset_id",
+          "description": "For analyses that used a dataset in primed individual data model indicate its dataset_id",
+          "data_type": "string",
+          "multi_value_delimiter": "|",
+          "examples": "a60fb66cd539ad2c",
+          "notes": "From PRIMED inventory workspace"
+        },
+        {
+          "column": "analysis_workspace_id",
+          "description": "workspace identifier for the GWAS that was generated in PRIMED",
+          "data_type": "string",
+          "examples": "primed-analysis/PRIMED_ANALYSIS_GERA-topmed-v3-imputation"
         }
       ]
     },
@@ -792,21 +961,13 @@
           "required": true,
           "description": "Type of the file",
           "data_type": "string",
-          "examples": ["SNP loadings", "PCs", "admixture proportions"]
+          "examples": ["SNP loadings", "allele frequencies"]
         },
         {
           "column": "n_variants",
           "description": "Count of variants in the GSR data file",
           "data_type": "integer",
-          "examples": "15281216",
-          "notes": "If applicable (e.g. SNP loading files)"
-        },
-        {
-          "column": "n_samp",
-          "description": "Count of samples in the GSR data file",
-          "data_type": "integer",
-          "examples": "4500",
-          "notes": "If applicable (e.g. individual-level PC files)"
+          "examples": "15281216"
         }
       ]
     }
