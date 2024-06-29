@@ -676,11 +676,11 @@
       ]
     },
     {
-      "table": "genetic_ancestry_analysis",
+      "table": "ancestry_analysis",
       "required": "CONDITIONAL (genetic_ancestry_file)",
       "columns": [
         {
-          "column": "genetic_ancestry_analysis_id",
+          "column": "ancestry_analysis_id",
           "primary_key": true,
           "description": "unique identifier for an analysis in primed",
           "data_type": "string",
@@ -917,17 +917,17 @@
         },
         {
           "column": "analysis_workspace_id",
-          "description": "workspace identifier for the GWAS that was generated in PRIMED",
+          "description": "workspace identifier for the analysis that was generated in PRIMED",
           "data_type": "string",
           "examples": "primed-analysis/PRIMED_ANALYSIS_GERA-topmed-v3-imputation"
         }
       ]
     },
     {
-      "table": "genetic_ancestry_file",
+      "table": "ancestry_file",
       "columns": [
         {
-          "column": "genetic_ancestry_file_id",
+          "column": "ancestry_file_id",
           "primary_key": true,
           "data_type": "string",
           "references": "from: md5sum",
@@ -942,11 +942,11 @@
           "notes": "(32-digit hexadecimal number)"
         },
         {
-          "column": "genetic_ancestry_analysis_id",
+          "column": "ancestry_analysis_id",
           "required": true,
           "description": "unique identifier for an analysis in primed",
           "data_type": "string",
-          "references": "> genetic_ancestry_analysis.genetic_ancestry_analysis_id",
+          "references": "> ancestry_analysis.ancestry_analysis_id",
           "notes": "AnVIL upload workflow would generate this"
         },
         {
