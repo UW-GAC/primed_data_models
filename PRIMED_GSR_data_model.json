@@ -361,7 +361,6 @@
         },
         {
           "column": "countries_of_recruitment",
-          "required": true,
           "description": "Reported countries of recruitment",
           "data_type": "string",
           "multi_value_delimiter": "|",
@@ -879,7 +878,6 @@
         },
         {
           "column": "countries_of_recruitment",
-          "required": true,
           "description": "Reported countries of recruitment",
           "data_type": "string",
           "multi_value_delimiter": "|",
