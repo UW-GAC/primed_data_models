@@ -1,7 +1,7 @@
 {
   "name": "PRIMED Genotype Data Model",
   "description": "Data model for genotype data in the PRIMED consortium",
-  "version": "1.3",
+  "version": "1.4",
   "tables": [
     {
       "table": "subject",
@@ -205,7 +205,7 @@
           "column": "file_type",
           "required": true,
           "data_type": "enumeration",
-          "enumerations": ["README", "VCF", "VCF index", "PLINK bed", "PLINK bim", "PLINK fam", "PLINK2 pgen", "PLINK2 psam", "PLINK2 pvar", "quality metrics", "data dictionary", "supporting file"]
+          "enumerations": ["README", "VCF", "VCF index", "PLINK bed", "PLINK bim", "PLINK fam", "PLINK2 pgen", "PLINK2 psam", "PLINK2 pvar", "FLARE VCF", "quality metrics", "data dictionary", "supporting file", "variant info"]
         }
       ]
     },
@@ -313,7 +313,7 @@
           "column": "file_type",
           "required": true,
           "data_type": "enumeration",
-          "enumerations": ["README", "VCF", "VCF index", "PLINK bed", "PLINK bim", "PLINK fam", "PLINK2 pgen", "PLINK2 psam", "PLINK2 pvar", "quality metrics", "data dictionary", "supporting file"]
+          "enumerations": ["README", "VCF", "VCF index", "PLINK bed", "PLINK bim", "PLINK fam", "PLINK2 pgen", "PLINK2 psam", "PLINK2 pvar", "FLARE VCF", "quality metrics", "data dictionary", "supporting file", "variant info"]
         },
         {
           "column": "chromosome",
@@ -450,7 +450,7 @@
           "column": "file_type",
           "required": true,
           "data_type": "enumeration",
-          "enumerations": ["README", "VCF", "VCF index", "PLINK bed", "PLINK bim", "PLINK fam", "PLINK2 pgen", "PLINK2 psam", "PLINK2 pvar", "quality metrics", "data dictionary", "supporting file"]
+          "enumerations": ["README", "VCF", "VCF index", "PLINK bed", "PLINK bim", "PLINK fam", "PLINK2 pgen", "PLINK2 psam", "PLINK2 pvar", "FLARE VCF", "quality metrics", "data dictionary", "supporting file", "variant info"]
         },
         {
           "column": "chromosome",
@@ -551,7 +551,7 @@
           "column": "file_type",
           "required": true,
           "data_type": "enumeration",
-          "enumerations": ["README", "VCF", "VCF index", "PLINK bed", "PLINK bim", "PLINK fam", "PLINK2 pgen", "PLINK2 psam", "PLINK2 pvar", "quality metrics", "data dictionary", "variant info", "local ancestry"]
+          "enumerations": ["README", "VCF", "VCF index", "PLINK bed", "PLINK bim", "PLINK fam", "PLINK2 pgen", "PLINK2 psam", "PLINK2 pvar", "FLARE VCF", "quality metrics", "data dictionary", "supporting file", "variant info"]
         },
         {
           "column": "chromosome",
