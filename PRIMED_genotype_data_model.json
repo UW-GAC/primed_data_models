@@ -1,7 +1,7 @@
 {
   "name": "PRIMED Genotype Data Model",
   "description": "Data model for genotype data in the PRIMED consortium",
-  "version": "1.4",
+  "version": "2.1",
   "tables": [
     {
       "table": "subject",
@@ -326,7 +326,7 @@
     },
     {
       "table": "sequencing_dataset",
-      "required": "CONDITIONAL (sequencing_file)",
+      "required": "CONDITIONAL (sequencing_file, sequencing_alignment)",
       "columns": [
         {
           "column": "sequencing_dataset_id",
@@ -458,6 +458,49 @@
           "data_type": "enumeration",
           "enumerations": ["ALL", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "X", "Y", "None"],
           "notes": "Use 'None' where chromosome does not apply (e.g. README)"
+        }
+      ]
+    },
+    {
+      "table": "sequencing_alignment",
+      "columns": [
+        {
+          "column": "sequencing_alignment_id",
+          "primary_key": true,
+          "data_type": "string",
+          "references": "from: md5sum",
+          "notes": "AnVIL requires entity id with naming convention <table_name>_id"
+        },
+        {
+          "column": "md5sum",
+          "required": true,
+          "description": "md5 checksum for the file",
+          "data_type": "string"
+        },
+        {
+          "column": "sample_id",
+          "required": true,
+          "data_type": "string",
+          "references": "> sample.sample_id"
+        },
+        {
+          "column": "sequencing_dataset_id",
+          "required": true,
+          "data_type": "string",
+          "references": "> sequencing_dataset.sequencing_dataset_id"
+        },
+        {
+          "column": "file_path",
+          "required": true,
+          "description": "absolute file path in cloud storage",
+          "data_type": "string",
+          "is_bucket_path": true
+        },
+        {
+          "column": "index_file_path",
+          "required": true,
+          "description": "absolute file path in cloud storage",
+          "data_type": "string"
         }
       ]
     },
