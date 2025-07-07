@@ -484,12 +484,6 @@
           "references": "> sample.sample_id"
         },
         {
-          "column": "sequencing_dataset_id",
-          "required": true,
-          "data_type": "string",
-          "references": "> sequencing_dataset.sequencing_dataset_id"
-        },
-        {
           "column": "file_path",
           "required": true,
           "description": "absolute file path in cloud storage",
