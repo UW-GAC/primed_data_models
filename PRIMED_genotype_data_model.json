@@ -490,7 +490,7 @@
           "data_type": "string"
         },
         {
-          "column": "index_file_path",
+          "column": "cram_index_file_path",
           "description": "absolute file path in cloud storage for a cram or bam index file",
           "data_type": "string"
         },
@@ -506,6 +506,10 @@
           "data_type": "string"
         },
         {
+          "column": "gvcf_index_file_path",
+          "data_type": "string"
+        },
+        {
           "column": "vcf_file_path",
           "description": "absolute file path in cloud storage for a single-sample VCF file",
           "data_type": "string"
@@ -514,6 +518,10 @@
           "column": "vcf_md5sum",
           "required": "CONDITIONAL (vcf_file_path)",
           "description": "md5sum for the single-sample VCF file",
+          "data_type": "string"
+        },
+        {
+          "column": "vcf_index_file_path",
           "data_type": "string"
         }
       ]
