@@ -501,6 +501,7 @@
         },
         {
           "column": "gvcf_md5sum",
+          "required": "CONDITIONAL (gvcf_file_path)",
           "description": "md5sum for the gVCF file",
           "data_type": "string"
         },
@@ -511,6 +512,7 @@
         },
         {
           "column": "vcf_md5sum",
+          "required": "CONDITIONAL (vcf_file_path)",
           "description": "md5sum for the single-sample VCF file",
           "data_type": "string"
         }
