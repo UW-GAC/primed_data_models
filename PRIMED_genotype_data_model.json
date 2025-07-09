@@ -97,7 +97,7 @@
     },
     {
       "table": "sample_set",
-      "required": true,
+      "required": "CONDITIONAL (array_dataset, imputation_dataset, sequencing_dataset, simulation_dataset)",
       "columns": [
         {
           "column": "sample_set_id",
@@ -326,7 +326,7 @@
     },
     {
       "table": "sequencing_dataset",
-      "required": "CONDITIONAL (sequencing_file, sequencing_alignment)",
+      "required": "CONDITIONAL (sequencing_file)",
       "columns": [
         {
           "column": "sequencing_dataset_id",
