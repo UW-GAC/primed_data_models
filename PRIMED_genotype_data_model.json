@@ -462,20 +462,14 @@
       ]
     },
     {
-      "table": "sequencing_alignment",
+      "table": "sequencing_sample",
       "columns": [
         {
-          "column": "sequencing_alignment_id",
+          "column": "sequencing_sample_id",
           "primary_key": true,
           "data_type": "string",
-          "references": "from: md5sum",
+          "references": "from: cram_md5sum",
           "notes": "AnVIL requires entity id with naming convention <table_name>_id"
-        },
-        {
-          "column": "md5sum",
-          "required": true,
-          "description": "md5 checksum for the file",
-          "data_type": "string"
         },
         {
           "column": "sample_id",
@@ -484,16 +478,50 @@
           "references": "> sample.sample_id"
         },
         {
-          "column": "file_path",
+          "column": "cram_file_path",
           "required": true,
-          "description": "absolute file path in cloud storage",
-          "data_type": "string",
-          "is_bucket_path": true
+          "description": "absolute file path in cloud storage for a cram or bam file",
+          "data_type": "string"
         },
         {
-          "column": "index_file_path",
+          "column": "cram_md5sum",
           "required": true,
-          "description": "absolute file path in cloud storage",
+          "description": "md5 checksum for the cram or bam file",
+          "data_type": "string"
+        },
+        {
+          "column": "cram_index_file_path",
+          "description": "absolute file path in cloud storage for a cram or bam index file",
+          "data_type": "string"
+        },
+        {
+          "column": "gvcf_file_path",
+          "description": "absolute file path in cloud storage for a gVCF file",
+          "data_type": "string"
+        },
+        {
+          "column": "gvcf_md5sum",
+          "required": "CONDITIONAL (gvcf_file_path)",
+          "description": "md5sum for the gVCF file",
+          "data_type": "string"
+        },
+        {
+          "column": "gvcf_index_file_path",
+          "data_type": "string"
+        },
+        {
+          "column": "vcf_file_path",
+          "description": "absolute file path in cloud storage for a single-sample VCF file",
+          "data_type": "string"
+        },
+        {
+          "column": "vcf_md5sum",
+          "required": "CONDITIONAL (vcf_file_path)",
+          "description": "md5sum for the single-sample VCF file",
+          "data_type": "string"
+        },
+        {
+          "column": "vcf_index_file_path",
           "data_type": "string"
         }
       ]
