@@ -494,7 +494,7 @@
           "column": "file_type",
           "required": true,
           "data_type": "enumeration",
-          "enumerations": ["CRAM", "CRAM index", "BAM", "BAM index", "gVCF", "gCVF index", "VCF", "VCF index"]
+          "enumerations": ["CRAM", "CRAM index", "BAM", "BAM index", "gVCF", "gVCF index", "VCF", "VCF index"]
         }
       ]
     },
