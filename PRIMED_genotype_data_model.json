@@ -462,13 +462,13 @@
       ]
     },
     {
-      "table": "sequencing_sample",
+      "table": "sequencing_sample_file",
       "columns": [
         {
-          "column": "sequencing_sample_id",
+          "column": "sequencing_sample_file_id",
           "primary_key": true,
           "data_type": "string",
-          "references": "from: cram_md5sum",
+          "references": "from: md5sum",
           "notes": "AnVIL requires entity id with naming convention <table_name>_id"
         },
         {
@@ -478,51 +478,23 @@
           "references": "> sample.sample_id"
         },
         {
-          "column": "cram_file_path",
+          "column": "file_path",
           "required": true,
-          "description": "absolute file path in cloud storage for a cram or bam file",
-          "data_type": "string"
+          "description": "absolute file path in cloud storage",
+          "data_type": "string",
+          "is_bucket_path": true
         },
         {
-          "column": "cram_md5sum",
+          "column": "md5sum",
           "required": true,
-          "description": "md5 checksum for the cram or bam file",
+          "description": "md5 checksum for the file",
           "data_type": "string"
         },
         {
-          "column": "cram_index_file_path",
-          "description": "absolute file path in cloud storage for a cram or bam index file",
-          "data_type": "string"
-        },
-        {
-          "column": "gvcf_file_path",
-          "description": "absolute file path in cloud storage for a gVCF file",
-          "data_type": "string"
-        },
-        {
-          "column": "gvcf_md5sum",
-          "required": "CONDITIONAL (gvcf_file_path)",
-          "description": "md5sum for the gVCF file",
-          "data_type": "string"
-        },
-        {
-          "column": "gvcf_index_file_path",
-          "data_type": "string"
-        },
-        {
-          "column": "vcf_file_path",
-          "description": "absolute file path in cloud storage for a single-sample VCF file",
-          "data_type": "string"
-        },
-        {
-          "column": "vcf_md5sum",
-          "required": "CONDITIONAL (vcf_file_path)",
-          "description": "md5sum for the single-sample VCF file",
-          "data_type": "string"
-        },
-        {
-          "column": "vcf_index_file_path",
-          "data_type": "string"
+          "column": "file_type",
+          "required": true,
+          "data_type": "enumeration",
+          "enumerations": ["CRAM", "CRAM index", "BAM", "BAM index", "gVCF", "gVCF index", "VCF", "VCF index"]
         }
       ]
     },
