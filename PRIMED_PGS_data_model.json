@@ -1,0 +1,625 @@
+{
+  "name": "PRIMED PGS Data Model",
+  "description": "Data model for Genomic Summary Results in the PRIMED consortium",
+  "version": "2.2",
+  "tables": [
+    {
+      "table": "pgs_analysis",
+      "columns": [
+        {
+          "column": "pgs_analysis_id",
+          "primary_key": true,
+          "required": true,
+          "description": "unique identifier for an analysis in primed",
+          "data_type": "string"
+        },
+        {
+          "column": "pgs_source",
+          "required": true,
+          "description": "Information about source of PGS data. Include additional details in README",
+          "data_type": "string",
+          "examples": "PGS Catalog"
+        },
+        {
+          "column": "pgs_source_url",
+          "description": "URL of source (if applicable)",
+          "data_type": "string",
+          "examples": "https://www.pgscatalog.org/score/PGS000001/"
+        },
+        {
+          "column": "pgsc_pgs_id",
+          "description": "identifier in the PGS catalog",
+          "data_type": "string",
+          "examples": "PGS000001"
+        },
+        {
+          "column": "pubmed_id",
+          "description": "PubMed Identification number",
+          "data_type": "string",
+          "examples": "25855707"
+        },
+        {
+          "column": "doi",
+          "description": "The doi of each publication is curated in addition to the PMID to allow unpublished work (e.g. pre-prints) to be added to the catalog",
+          "data_type": "string",
+          "examples": "10.1093/jnci/djv036"
+        },
+        {
+          "column": "title",
+          "description": "Title of the publication",
+          "data_type": "string",
+          "examples": "Prediction of Breast Cancer Risk Based on Profiling With Common Genetic Variants"
+        },
+        {
+          "column": "first_author",
+          "description": "Last name and initials of the first author",
+          "data_type": "string",
+          "examples": "Mavaddat, N."
+        },
+        {
+          "column": "journal",
+          "description": "The name of the publication source",
+          "data_type": "string",
+          "examples": "Journal of the National Cancer Institute"
+        },
+        {
+          "column": "publication_date",
+          "description": "Date of publication (with respect to the PMID or doi upon upload to the Catalog)",
+          "data_type": "date",
+          "examples": "2015-04-02"
+        },
+        {
+          "column": "publication_url",
+          "description": "External link to the publication",
+          "data_type": "string",
+          "examples": "https://doi.org/10.1093/jnci/djv036"
+        },
+        {
+          "column": "pgsc_pgp_id",
+          "description": "Publication ID from PGS catalog",
+          "data_type": "string",
+          "examples": "PGP000001"
+        },
+        {
+          "column": "pgs_name",
+          "required": true,
+          "description": "This may be the name that the authors use to refer to the PGS, or a name that a curator has assigned to identify the score during the curation process (before a PGS ID has been given)",
+          "data_type": "string",
+          "examples": "PRS77_BC"
+        },
+        {
+          "column": "reference_assembly",
+          "required": true,
+          "description": "Reference genome assembly that the submitted data is mapped to",
+          "data_type": "enumeration",
+          "enumerations": ["GRCh38", "GRCh37", "NCBI36", "NCBI35", "NCBI34", "NR"],
+          "examples": "GRCh38",
+          "notes": "NR = Not Reported"
+        },
+        {
+          "column": "dbsnp_build_version",
+          "description": "dbSNP build for the rsIDs included in PGS files",
+          "data_type": "string"
+        },
+        {
+          "column": "n_variants",
+          "required": true,
+          "description": "Total number of variants used to calculate the PGS",
+          "data_type": "integer",
+          "examples": "77"
+        },
+        {
+          "column": "n_variant_interactions",
+          "description": "Number of higher-order variant interactions included in the PGS",
+          "data_type": "integer"
+        },
+        {
+          "column": "reported_trait",
+          "required": true,
+          "description": "The author-reported trait (e.g. body mass index [BMI], or coronary artery disease) that the PGS has been developed to predict",
+          "data_type": "string",
+          "examples": "Breast cancer"
+        },
+        {
+          "column": "mapped_trait",
+          "description": "The Reported Trait is mapped to Experimental Factor Ontology (EFO) terms and their respective identifiers by PGS Catalog curators",
+          "data_type": "string",
+          "multi_value_delimiter": "|",
+          "examples": "breast carcinoma"
+        },
+        {
+          "column": "trait_identifier",
+          "description": "The Experimental Factor Ontology ID (EFO_ID) identifier to consistently refer to traits using the EFO, and to other resources like the NHGRI-EBI GWAS Catalog",
+          "data_type": "string",
+          "multi_value_delimiter": "|",
+          "examples": "EFO_0000305"
+        },
+        {
+          "column": "trait_description",
+          "description": "Detailed description of the trait from EFO",
+          "data_type": "string",
+          "multi_value_delimiter": "|",
+          "examples": "A carcinoma that arises from epithelial cells of the breast"
+        },
+        {
+          "column": "trait_synonyms",
+          "description": "Other names for the trait",
+          "data_type": "string",
+          "multi_value_delimiter": "|"
+        },
+        {
+          "column": "trait_mapped_terms",
+          "description": "Includes references to terms in other databases and ontologies (e.g. ICD9/ICD10, MONDO, SNOMEDCT, etc.)",
+          "data_type": "string",
+          "multi_value_delimiter": "|",
+          "examples": "MONDO:0004989"
+        },
+        {
+          "column": "trait_type",
+          "description": "type of trait",
+          "data_type": "enumeration",
+          "enumerations": ["quantitative", "binary", "categorical", "ordinal", "time_to_event", "count"],
+          "examples": "binary",
+          "notes": "determines which columns we need to check for in the data file"
+        },
+        {
+          "column": "trait_unit",
+          "description": "unit of measurement for the reported trait (before transformation)",
+          "data_type": "string",
+          "notes": "Report unit as something like 'binary',  'indicator', or 'categorical'  for non-quantitative traits"
+        },
+        {
+          "column": "trait_transformation",
+          "description": "transformation applied to the reported trait",
+          "data_type": "string",
+          "examples": ["none", "log", "inverse normal", "winsorization", "standardization", "other"],
+          "notes": "put 'none' if no transformation applied"
+        },
+        {
+          "column": "trait_definition",
+          "description": "a brief description of how the trait was measured or defined; additional details can be provided in the README",
+          "data_type": "string",
+          "notes": "e.g. ICD codes used to identify cases/phenotypes in EHR data"
+        },
+        {
+          "column": "pgs_development_method",
+          "required": true,
+          "description": "The name or description of the method or computational algorithm used for developing the score.",
+          "data_type": "string",
+          "multi_value_delimiter": "|",
+          "examples": ["LDpred", "PRSice", "P+T", "lassosum", "GAUDI"]
+        },
+        {
+          "column": "pgs_development_details",
+          "description": "Describe key parameters used in the score. e.g. LD/SNP r2 threshold, significance/p-value threshold, fraction of causal variants (ρ)",
+          "data_type": "string",
+          "multi_value_delimiter": "|",
+          "examples": "SNPs passing genome-wide significance (P<5x10^8)"
+        },
+        {
+          "column": "analysis_workspace_id",
+          "description": "workspace identifier for the analysis that was generated in PRIMED",
+          "data_type": "string",
+          "examples": "primed-analysis/PRIMED_ANALYSIS_GERA-topmed-v3-imputation"
+        }
+      ]
+    },
+    {
+      "table": "pgs_sample_devel",
+      "columns": [
+        {
+          "column": "pgs_sample_id",
+          "data_type": "string",
+          "references": "from: pgs_analysis_id, pgs_sample_name, stage"
+        },
+        {
+          "column": "pgs_sample_name",
+          "required": true,
+          "description": "name describing the sample set",
+          "data_type": "string",
+          "notes": "Must be unique for a given pgs_analysis_id and stage"
+        },
+        {
+          "column": "pgs_analysis_id",
+          "required": true,
+          "data_type": "string",
+          "references": "> pgs_analysis.pgs_analysis_id"
+        },
+        {
+          "column": "stage",
+          "required": true,
+          "description": "Study Stage (Variant associations / Score development)",
+          "data_type": "enumeration",
+          "enumerations": ["gwas", "dev"],
+          "examples": "dev"
+        },
+        {
+          "column": "n_samp",
+          "required": true,
+          "description": "Total sample size in the analysis",
+          "data_type": "integer",
+          "examples": "67054",
+          "notes": "When different markers have different sample sizes, e.g, due to missing genotypes, use max sample size across markers"
+        },
+        {
+          "column": "n_case",
+          "description": "Number of cases",
+          "data_type": "integer",
+          "examples": "33673",
+          "notes": "When different markers have different sample sizes, e.g, due to missing genotypes, use max number of cases across markers"
+        },
+        {
+          "column": "n_ctrl",
+          "description": "Number of controls",
+          "data_type": "integer",
+          "examples": "33381",
+          "notes": "When different markers have different sample sizes, e.g, due to missing genotypes, use max number of controls across markers"
+        },
+        {
+          "column": "n_effective",
+          "description": "effective sample size = n_samp for quantitative traits  = 4/(1/n_case + 1/n_ctrl) for binary traits",
+          "data_type": "float",
+          "examples": "67053",
+          "notes": "When different markers have different sample sizes, e.g, due to missing genotypes, use max sample size across markers"
+        },
+        {
+          "column": "proportion_male",
+          "description": "proportion of male participants",
+          "data_type": "float",
+          "examples": "0.64"
+        },
+        {
+          "column": "age_mean",
+          "description": "mean age of study participants",
+          "data_type": "float"
+        },
+        {
+          "column": "age_median",
+          "description": "median age of study participants",
+          "data_type": "float"
+        },
+        {
+          "column": "age_min",
+          "description": "minimum age of study participants",
+          "data_type": "float"
+        },
+        {
+          "column": "age_max",
+          "description": "maximum age of study participants",
+          "data_type": "float"
+        },
+        {
+          "column": "age_mean_case",
+          "description": "mean age of study cases",
+          "data_type": "float"
+        },
+        {
+          "column": "age_median_case",
+          "description": "median age of study cases",
+          "data_type": "float"
+        },
+        {
+          "column": "age_min_case",
+          "description": "minimum age of study cases",
+          "data_type": "float"
+        },
+        {
+          "column": "age_max_case",
+          "description": "maximum age of study cases",
+          "data_type": "float"
+        },
+        {
+          "column": "age_mean_ctrl",
+          "description": "mean age of study controls",
+          "data_type": "float"
+        },
+        {
+          "column": "age_median_ctrl",
+          "description": "median age of study controls",
+          "data_type": "float"
+        },
+        {
+          "column": "age_min_ctrl",
+          "description": "minimum age of study controls",
+          "data_type": "float"
+        },
+        {
+          "column": "age_max_ctrl",
+          "description": "maximum age of study controls",
+          "data_type": "float"
+        },
+        {
+          "column": "cohorts",
+          "required": true,
+          "description": "A list of cohorts that collected the samples.",
+          "data_type": "string",
+          "multi_value_delimiter": "|"
+        },
+        {
+          "column": "population_descriptor",
+          "required": true,
+          "description": "the concept or classification scheme used to categorize people into populations for this analysis",
+          "data_type": "string",
+          "examples": "reported ancestry"
+        },
+        {
+          "column": "population_labels",
+          "required": true,
+          "description": "name given to a population that describes or classifies it according to the dimension along which it was identified",
+          "data_type": "string",
+          "multi_value_delimiter": "|",
+          "examples": "Chinese Americans | European Americans | African Americans"
+        },
+        {
+          "column": "population_proportions",
+          "description": "proportion of participants from each population in the same order mapping to the values in the population_labels variable",
+          "data_type": "string",
+          "multi_value_delimiter": "|",
+          "examples": "0.7 | 0.1 | 0.2"
+        },
+        {
+          "column": "countries_of_recruitment",
+          "description": "Reported countries of recruitment",
+          "data_type": "string",
+          "multi_value_delimiter": "|",
+          "examples": "Ghana | Kenya | Nigeria"
+        },
+        {
+          "column": "countries_of_birth",
+          "description": "Reported countries of birth",
+          "data_type": "string",
+          "multi_value_delimiter": "|",
+          "examples": "Ghana | Kenya | Nigeria"
+        },
+        {
+          "column": "primed_dataset_id",
+          "description": "For analysis that used a dataset in primed individual data model indicate its dataset_id",
+          "data_type": "string",
+          "examples": "a60fb66cd539ad2c",
+          "notes": "From PRIMED inventory workspace"
+        }
+      ]
+    },
+    {
+      "table": "pgs_file",
+      "columns": [
+        {
+          "column": "pgs_file_id",
+          "primary_key": true,
+          "data_type": "string",
+          "references": "from: md5sum",
+          "notes": "AnVIL requires entity id with naming convention <table_name>_id"
+        },
+        {
+          "column": "md5sum",
+          "required": true,
+          "description": "A valid md5 checksum",
+          "data_type": "string",
+          "examples": "49ea8cf53801c7f1e2f11336fb8a29c8",
+          "notes": "(32-digit hexadecimal number)"
+        },
+        {
+          "column": "pgs_analysis_id",
+          "required": true,
+          "description": "unique identifier for a pgs in primed",
+          "data_type": "string",
+          "references": "> pgs_analysis.pgs_analysis_id",
+          "notes": "AnVIL upload workflow would generate this"
+        },
+        {
+          "column": "file_path",
+          "required": true,
+          "description": "File path in cloud storage",
+          "data_type": "string",
+          "is_bucket_path": true
+        },
+        {
+          "column": "file_type",
+          "required": true,
+          "description": "Type of the file",
+          "data_type": "enumeration",
+          "enumerations": ["data", "data dictionary", "README"],
+          "examples": "data"
+        },
+        {
+          "column": "chromosome",
+          "required": true,
+          "description": "chromosome included in the GSR data file",
+          "data_type": "enumeration",
+          "enumerations": ["ALL", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "X", "Y", "MT", "None"],
+          "examples": "2",
+          "notes": "'None' for data dictionary or README files"
+        },
+        {
+          "column": "n_variants",
+          "description": "Count of variants in the GSR data file",
+          "data_type": "integer",
+          "examples": "15281216",
+          "notes": "Leave blank for data dictionary or README files"
+        }
+      ]
+    },
+    {
+      "table": "pgs_files_dd",
+      "columns": [
+        {
+          "column": "rsID",
+          "description": "The SNP’s rs ID. This column also contains HLA alleles in the standard notation (e.g. HLA-DQA1*0102) that aren’t always provided with chromosomal positions.",
+          "data_type": "string",
+          "examples": "rs7329174"
+        },
+        {
+          "column": "chr_name",
+          "required": true,
+          "description": "Chromosome name/number associated with the variant.",
+          "data_type": "string",
+          "examples": "13"
+        },
+        {
+          "column": "chr_position",
+          "required": true,
+          "description": "Chromosomal position associated with the variant.",
+          "data_type": "integer",
+          "examples": "40983974"
+        },
+        {
+          "column": "effect_allele",
+          "required": true,
+          "description": "The allele that's dosage is counted (e.g. {0, 1, 2}) and multiplied by the variant's weight (effect_weight) when calculating score. The effect allele is also known as the 'risk allele'. Note: this does not necessarily need to correspond to the minor allele/alternative allele.",
+          "data_type": "string",
+          "examples": "A"
+        },
+        {
+          "column": "other_allele",
+          "description": "The other allele(s) at the loci. Note: this does not necessarily need to correspond to the reference allele.",
+          "data_type": "string",
+          "examples": "C",
+          "notes": "Recommended by PGSC but not required."
+        },
+        {
+          "column": "locus_name",
+          "description": "This is kept in for loci where the variant may be referenced by the gene (APOE e4). It is also common (usually in smaller PGS) to see the variants named according to the genes they impact.",
+          "data_type": "string",
+          "examples": "APOE e4"
+        },
+        {
+          "column": "is_haplotype",
+          "description": "This is a TRUE/FALSE variable that flags whether the effect allele is a haplotype rather than a single SNP. Constituent SNPs in the haplotype are semi-colon separated.",
+          "data_type": "boolean",
+          "examples": false
+        },
+        {
+          "column": "is_diplotype",
+          "description": "This is a TRUE/FALSE variable that flags whether the effect allele is a diplotype rather than a single SNP. Constituent SNPs in the haplotype are semi-colon separated.",
+          "data_type": "boolean",
+          "examples": false
+        },
+        {
+          "column": "imputation_method",
+          "description": "This described whether the variant was specifically called with a specific imputation or variant calling method. This is mostly kept to describe HLA-genotyping methods (e.g. flag SNP2HLA, HLA*IMP) that gives alleles that are not referenced by genomic position.",
+          "data_type": "string",
+          "examples": "Minimac4"
+        },
+        {
+          "column": "variant_description",
+          "description": "This field describes any extra information about the variant (e.g. how it is genotyped or scored) that cannot be captured by the other fields.",
+          "data_type": "string"
+        },
+        {
+          "column": "inclusion_criteria",
+          "description": "Explanation of when this variant gets included into the PGS (e.g. if it depends on the results from other variants).",
+          "data_type": "string"
+        },
+        {
+          "column": "effect_weight",
+          "required": true,
+          "description": "Value of the effect that is multiplied by the dosage of the effect allele (effect_allele) when calculating the score. Additional information on how the effect_weight was derived is in the weight_type field of the header, and score development method in the metadata downloads.",
+          "data_type": "float",
+          "examples": "-2.76009e-02"
+        },
+        {
+          "column": "is_interaction",
+          "description": "This is a TRUE/FALSE variable that flags whether the weight should be multiplied with the dosage of more than one variant. Interactions are demarcated with a _x_ between entries for each of the variants present in the interaction.",
+          "data_type": "boolean",
+          "examples": false
+        },
+        {
+          "column": "is_dominant",
+          "description": "This is a TRUE/FALSE variable that flags whether the weight should be added to the PGS sum if there is at least 1 copy of the effect allele (e.g. it is a dominant allele).",
+          "data_type": "boolean",
+          "examples": false
+        },
+        {
+          "column": "is_recessive",
+          "description": "This is a TRUE/FALSE variable that flags whether the weight should be added to the PGS sum only if there are 2 copies of the effect allele (e.g. it is a recessive allele).",
+          "data_type": "boolean",
+          "examples": true
+        },
+        {
+          "column": "dosage_0_weight",
+          "description": "Weights that are specific to different dosages of the effect_allele (e.g. {0, 1, 2} copies) can also be reported when the the contribution of the variants to the score is not encoded as additive, dominant, or recessive. In this case three columns are added corresponding to which variant weight should be applied for each dosage, where the column name is formated as dosage_#_weight where the # sign indicates the number of effect_allele copies.",
+          "data_type": "float"
+        },
+        {
+          "column": "dosage_1_weight",
+          "data_type": "float"
+        },
+        {
+          "column": "dosage_2_weight",
+          "data_type": "float"
+        },
+        {
+          "column": "OR",
+          "description": "Author-reported effect sizes can be supplied to the Catalog. If no other effect_weight is given the weight is calculated using the log(OR).",
+          "data_type": "float",
+          "examples": "1.5"
+        },
+        {
+          "column": "HR",
+          "description": "Author-reported effect sizes can be supplied to the Catalog. If no other effect_weight is given the weight is calculated using the log(HR).",
+          "data_type": "float"
+        },
+        {
+          "column": "allelefrequency_effect",
+          "description": "Reported effect allele frequency, if the associated locus is a haplotype then haplotype frequency will be extracted.",
+          "data_type": "float",
+          "examples": "0.22",
+          "notes": "Additional columns may be supplied as allelefrequency_effect_Ancestry: Reported effect allele frequency in a specific population."
+        }
+      ]
+    },
+    {
+      "table": "pgs_analysis_set",
+      "columns": [
+        {
+          "column": "pgs_analysis_set_id",
+          "primary_key": true,
+          "required": true,
+          "data_type": "string"
+        },
+        {
+          "column": "pgs_analysis_id",
+          "required": true,
+          "data_type": "string"
+        }
+      ]
+    },
+    {
+      "table": "pgs_score_values",
+      "columns": [
+        {
+          "column": "pgs_score_values_id",
+          "primary_key": true,
+          "data_type": "string",
+          "references": "from: md5sum",
+          "notes": "AnVIL requires entity id with naming convention <table_name>_id"
+        },
+        {
+          "column": "md5sum",
+          "required": true,
+          "description": "md5 checksum for the file",
+          "data_type": "string"
+        },
+        {
+          "column": "file_path",
+          "required": true,
+          "description": "absolute file path in cloud storage",
+          "data_type": "string",
+          "is_bucket_path": true
+        },
+        {
+          "column": "file_readme_path",
+          "required": true,
+          "description": "path to the README",
+          "data_type": "string"
+        },
+        {
+          "column": "n_subjects",
+          "required": true,
+          "description": "Number of unique subjects in file",
+          "data_type": "integer"
+        }
+      ]
+    }
+  ]
+}
