@@ -330,7 +330,6 @@
         },
         {
           "column": "cohorts",
-          "required": true,
           "description": "A list of cohorts that collected the samples.",
           "data_type": "string",
           "multi_value_delimiter": "|"
