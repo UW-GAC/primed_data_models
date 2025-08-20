@@ -208,7 +208,8 @@
       "table": "pgs_sample_devel",
       "columns": [
         {
-          "column": "pgs_sample_id",
+          "column": "pgs_sample_devel_id",
+          "primary_key": true,
           "data_type": "string",
           "references": "from: pgs_analysis_id, pgs_sample_name, stage"
         },
