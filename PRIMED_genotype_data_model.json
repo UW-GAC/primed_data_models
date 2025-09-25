@@ -1,7 +1,7 @@
 {
   "name": "PRIMED Genotype Data Model",
   "description": "Data model for genotype data in the PRIMED consortium",
-  "version": "2.1",
+  "version": "2.2",
   "tables": [
     {
       "table": "subject",
@@ -217,7 +217,7 @@
           "column": "imputation_dataset_id",
           "primary_key": true,
           "data_type": "string",
-          "references": "from: sample_set_id, reference_panel, imputation_software, reference_assembly",
+          "references": "from: sample_set_id, reference_panel, imputation_software, reference_assembly, quality_filter",
           "notes": "AnVIL requires entity id with naming convention <table_name>_id"
         },
         {
