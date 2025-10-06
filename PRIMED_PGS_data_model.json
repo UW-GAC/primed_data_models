@@ -4,10 +4,10 @@
   "version": "2.2",
   "tables": [
     {
-      "table": "pgs_analysis",
+      "table": "pgs_model",
       "columns": [
         {
-          "column": "pgs_analysis_id",
+          "column": "pgs_model_id",
           "primary_key": true,
           "required": true,
           "description": "unique identifier for an analysis in primed",
@@ -211,7 +211,7 @@
           "column": "pgs_sample_devel_id",
           "primary_key": true,
           "data_type": "string",
-          "references": "from: pgs_analysis_id, pgs_sample_name, stage"
+          "references": "from: pgs_model_id, pgs_sample_name, stage"
         },
         {
           "column": "pgs_sample_name",
@@ -221,10 +221,10 @@
           "notes": "Must be unique for a given pgs_analysis_id and stage"
         },
         {
-          "column": "pgs_analysis_id",
+          "column": "pgs_model_id",
           "required": true,
           "data_type": "string",
-          "references": "> pgs_analysis.pgs_analysis_id"
+          "references": "> pgs_model.pgs_model_id"
         },
         {
           "column": "stage",
@@ -381,10 +381,10 @@
       ]
     },
     {
-      "table": "pgs_file",
+      "table": "pgs_scoring_file",
       "columns": [
         {
-          "column": "pgs_file_id",
+          "column": "pgs_scoring_file_id",
           "primary_key": true,
           "data_type": "string",
           "references": "from: md5sum",
@@ -399,11 +399,11 @@
           "notes": "(32-digit hexadecimal number)"
         },
         {
-          "column": "pgs_analysis_id",
+          "column": "pgs_model_id",
           "required": true,
           "description": "unique identifier for a pgs in primed",
           "data_type": "string",
-          "references": "> pgs_analysis.pgs_analysis_id",
+          "references": "> pgs_model.pgs_model_id",
           "notes": "AnVIL upload workflow would generate this"
         },
         {
@@ -440,7 +440,7 @@
       ]
     },
     {
-      "table": "pgs_files_dd",
+      "table": "pgs_scoring_file_dd",
       "columns": [
         {
           "column": "rsID",
@@ -569,26 +569,10 @@
       ]
     },
     {
-      "table": "pgs_analysis_set",
+      "table": "pgs_individual_file",
       "columns": [
         {
-          "column": "pgs_analysis_set_id",
-          "primary_key": true,
-          "required": true,
-          "data_type": "string"
-        },
-        {
-          "column": "pgs_analysis_id",
-          "required": true,
-          "data_type": "string"
-        }
-      ]
-    },
-    {
-      "table": "pgs_score_values",
-      "columns": [
-        {
-          "column": "pgs_score_values_id",
+          "column": "pgs_individual_file_id",
           "primary_key": true,
           "data_type": "string",
           "references": "from: md5sum",
