@@ -5,6 +5,7 @@
   "tables": [
     {
       "table": "pgs_model",
+      "required": true,
       "columns": [
         {
           "column": "pgs_model_id",
@@ -577,6 +578,12 @@
           "data_type": "string",
           "references": "from: md5sum",
           "notes": "AnVIL requires entity id with naming convention <table_name>_id"
+        },
+        {
+          "column": "pgs_model_id",
+          "required": true,
+          "data_type": "string",
+          "references": "> pgs_model.pgs_model_id"
         },
         {
           "column": "md5sum",
