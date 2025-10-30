@@ -609,6 +609,23 @@
           "required": true,
           "description": "Number of unique subjects in file",
           "data_type": "integer"
+        },
+        {
+          "column": "sampleset",
+          "required": true,
+          "description": "short name for sample set",
+          "data_type": "string"
+        },
+        {
+          "column": "primed_dataset_id",
+          "description": "if the sampleset is from a dataset in the PRIMED genotype data model, indicate its dataset_id",
+          "data_type": "string"
+        },
+        {
+          "column": "ancestry_adjusted",
+          "required": true,
+          "description": "TRUE or FALSE to indicate if scores have been adjusted for ancestry",
+          "data_type": "boolean"
         }
       ]
     }
