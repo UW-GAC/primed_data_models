@@ -13,7 +13,8 @@ jobs:
         data_model_file: [
           'PRIMED_phenotype_data_model.json',
           'PRIMED_genotype_data_model.json',
-          'PRIMED_GSR_data_model.json'
+          'PRIMED_GSR_data_model.json',
+          'PRIMED_PGS_data_model.json'
         ]
     name: Check data model
     steps:
