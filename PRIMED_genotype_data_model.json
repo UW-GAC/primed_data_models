@@ -1,7 +1,7 @@
 {
   "name": "PRIMED Genotype Data Model",
   "description": "Data model for genotype data in the PRIMED consortium",
-  "version": "2.2",
+  "version": "2.3",
   "tables": [
     {
       "table": "subject",
@@ -371,7 +371,7 @@
           "required": true,
           "description": "type of sequencing assay performed",
           "data_type": "enumeration",
-          "enumerations": ["WGS", "WES", "targeted"]
+          "enumerations": ["WGS", "WES", "BGE", "targeted"]
         },
         {
           "column": "exome_capture_platform",
@@ -588,7 +588,7 @@
           "column": "file_type",
           "required": true,
           "data_type": "enumeration",
-          "enumerations": ["README", "VCF", "VCF index", "PLINK bed", "PLINK bim", "PLINK fam", "PLINK2 pgen", "PLINK2 psam", "PLINK2 pvar", "FLARE VCF", "quality metrics", "data dictionary", "supporting file", "variant info"]
+          "enumerations": ["README", "VCF", "VCF index", "PLINK bed", "PLINK bim", "PLINK fam", "PLINK2 pgen", "PLINK2 psam", "PLINK2 pvar", "FLARE VCF", "LANC", "quality metrics", "data dictionary", "supporting file", "variant info"]
         },
         {
           "column": "chromosome",
